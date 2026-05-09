@@ -28,7 +28,7 @@ export function ClientFlowSystemSection() {
                 ClientFlow System связывает точки контакта в логику: что человек видит, чему верит, куда нажимает, как оставляет заявку и почему возвращается после первого касания.
               </p>
             </div>
-            <a className="button button-primary" href="#audit">Начать с аудита →</a>
+            <a className="button button-primary" href="#audit" data-analytics-event="cta_primary_click" data-analytics-label="system_start_audit" data-analytics-value="#audit">Начать с аудита →</a>
           </div>
           <div className="module-grid">
             <div className="system-center-node" aria-hidden="true">

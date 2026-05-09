@@ -3,6 +3,8 @@ import { Manrope, Onest } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 import { seoConfig } from "@/lib/seo";
+import { YandexMetrica } from "@/components/analytics/yandex-metrica";
+import { AnalyticsClickListener } from "@/components/analytics/analytics-click-listener";
 
 const manrope = Manrope({ subsets: ["cyrillic", "latin"], variable: "--font-manrope", display: "swap" });
 const onest = Onest({ subsets: ["cyrillic", "latin"], variable: "--font-onest", display: "swap" });
@@ -42,7 +44,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className={`${manrope.variable} ${onest.variable}`} suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        {children}
+        <YandexMetrica />
+        <AnalyticsClickListener />
+      </body>
     </html>
   );
 }

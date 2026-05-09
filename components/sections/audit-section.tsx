@@ -20,7 +20,7 @@ export function AuditSection() {
             </p>
             <div className="audit-outcome">На выходе: карта потерь, приоритеты и следующий шаг без лишней теории.</div>
             <div className="hero-actions">
-              <a className="button button-primary" href="#contacts">Пройти ClientFlow Аудит →</a>
+              <a className="button button-primary" href="#contacts" data-analytics-event="cta_primary_click" data-analytics-label="audit_primary" data-analytics-value="#contacts">Пройти ClientFlow Аудит →</a>
             </div>
           </div>
           <div className="audit-steps">

@@ -19,7 +19,15 @@ export function PricingSection() {
               <ul>
                 {item.items.map((line) => <li key={line}>{line}</li>)}
               </ul>
-              <a className="button button-primary" href="#contacts">Обсудить</a>
+              <a
+                className="button button-primary"
+                href="#contacts"
+                data-analytics-event="pricing_cta_click"
+                data-analytics-label={item.title}
+                data-analytics-value={item.price}
+              >
+                Обсудить
+              </a>
             </article>
           ))}
         </div>

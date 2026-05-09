@@ -24,8 +24,8 @@ export function HeroSection() {
             Для владельцев бизнеса и экспертов, которым нужен не набор digital-инструментов, а понятный маршрут от первого касания до заявки.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#contacts">Разбор системы →</a>
-            <a className="button button-secondary" href={siteConfig.telegramChannelUrl} target="_blank" rel="noreferrer">Telegram-канал</a>
+            <a className="button button-primary" href="#contacts" data-analytics-event="cta_primary_click" data-analytics-label="hero_primary" data-analytics-value="#contacts">Разбор системы →</a>
+            <a className="button button-secondary" href={siteConfig.telegramChannelUrl} target="_blank" rel="noreferrer" data-analytics-event="telegram_channel_click" data-analytics-label="hero_telegram_channel" data-analytics-value={siteConfig.telegramChannelUrl}>Telegram-канал</a>
           </div>
           <div className="trust-grid" aria-label="Ключевые факты">
             <div className="trust-card card"><strong>8 лет</strong><span>в digital</span></div>

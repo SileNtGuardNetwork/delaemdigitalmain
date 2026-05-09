@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { usePathname } from "next/navigation";
+import { trackEvent } from "@/lib/analytics/client";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -51,6 +53,7 @@ export function ContactForm() {
   const [consent, setConsent] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [statusMessage, setStatusMessage] = useState("");
+  const pathname = usePathname();
 
   function updateField(name: keyof typeof initialFields, value: string) {
     setFields((current) => ({ ...current, [name]: value }));
@@ -70,9 +73,21 @@ export function ContactForm() {
     if (Object.keys(nextErrors).length > 0) {
       setState("idle");
       setStatusMessage("Проверьте поля формы.");
+      trackEvent("lead_form_submit_error", {
+        service: fields.service,
+        source: "final-cta",
+        page: pathname
+      });
       return;
     }
 
+    const analyticsPayload = {
+      service: fields.service,
+      source: "final-cta",
+      page: pathname
+    };
+
+    trackEvent("lead_form_submit_attempt", analyticsPayload);
     setState("submitting");
     setStatusMessage("");
 
@@ -96,6 +111,7 @@ export function ContactForm() {
         setFieldErrors(result.fieldErrors ?? {});
         setState("error");
         setStatusMessage(result.message || "Не удалось отправить заявку. Напишите напрямую в Telegram: @vitalycreator");
+        trackEvent("lead_form_submit_error", analyticsPayload);
         return;
       }
 
@@ -104,9 +120,11 @@ export function ContactForm() {
       setFieldErrors({});
       setState("success");
       setStatusMessage("Заявка принята. Следующий шаг — первичный разбор вашей системы.");
+      trackEvent("lead_form_submit_success", analyticsPayload);
     } catch {
       setState("error");
       setStatusMessage("Не удалось отправить заявку. Напишите напрямую в Telegram: @vitalycreator");
+      trackEvent("lead_form_submit_error", analyticsPayload);
     }
   }
 
@@ -225,7 +243,7 @@ export function ContactForm() {
           aria-invalid={Boolean(fieldErrors.consent)}
         />
         <span>
-          Я соглашаюсь с <a href="/privacy">политикой конфиденциальности</a> и даю <a href="/consent">согласие на обработку персональных данных</a> для связи по моей заявке.
+          Я соглашаюсь с <a href="/privacy" data-analytics-event="legal_link_click" data-analytics-label="form_privacy" data-analytics-value="/privacy">политикой конфиденциальности</a> и даю <a href="/consent" data-analytics-event="legal_link_click" data-analytics-label="form_consent" data-analytics-value="/consent">согласие на обработку персональных данных</a> для связи по моей заявке.
         </span>
       </label>
       {fieldErrors.consent && <span className="field-error consent-error">{fieldErrors.consent}</span>}

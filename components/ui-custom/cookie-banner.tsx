@@ -14,11 +14,14 @@ export function CookieBanner() {
   return (
     <div className="cookie-banner card" role="dialog" aria-label="Cookie">
       <p>
-        Мы используем cookie для корректной работы сайта и улучшения пользовательского опыта. <a href="/cookies">Подробнее</a>.
+        Мы используем cookie для корректной работы сайта и улучшения пользовательского опыта. <a href="/cookies" data-analytics-event="legal_link_click" data-analytics-label="cookie_notice_more" data-analytics-value="/cookies">Подробнее</a>.
       </p>
       <button
         className="button button-primary"
         type="button"
+        data-analytics-event="cookie_accept"
+        data-analytics-label="cookie_banner_accept"
+        data-analytics-value="accepted"
         onClick={() => {
           window.localStorage.setItem("dd-cookie-accepted", "yes");
           setVisible(false);
