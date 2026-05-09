@@ -13,7 +13,7 @@ export function HeroSection() {
         <div className="hero-copy">
           <div className="hero-kicker">
             <span className="status-dot" />
-            Виталий Тимошенко · основатель Делаем Диджитал
+            Виталий Тимошенко · CEO «Делаем Диджитал» · Архитектор ClientFlow System
           </div>
           <h1 className="hero-title" aria-label="Собираю бизнесу управляемую систему привлечения клиентов">
             <span>Собираю бизнесу</span>
@@ -21,7 +21,7 @@ export function HeroSection() {
             <span>привлечения клиентов</span>
           </h1>
           <p className="hero-subtitle">
-            Для владельцев бизнеса и экспертов, которым нужен не набор digital-инструментов, а понятный маршрут от первого касания до заявки.
+            Сайт, трафик или полная система — под задачу бизнеса и текущую точку роста. Сайт · Трафик · Система.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contacts" data-analytics-event="cta_primary_click" data-analytics-label="hero_primary" data-analytics-value="#contacts">Разбор системы →</a>

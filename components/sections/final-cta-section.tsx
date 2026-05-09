@@ -6,7 +6,7 @@ export function FinalCtaSection() {
     <section id="contacts" className="section final-cta-section">
       <div className="container">
         <div className="section-eyebrow">Контакты</div>
-        <h2 className="section-title">Разберём, где ваша система теряет клиентов</h2>
+        <h2 className="section-title">Оставьте контакт — я посмотрю, что вам нужно: сайт, трафик или система</h2>
         <p className="section-text">
           Оставьте заявку — посмотрю ваш текущий маршрут привлечения и подскажу, с чего логичнее начать.
         </p>
@@ -18,8 +18,8 @@ export function FinalCtaSection() {
             </p>
             <div className="contact-route" aria-label="Маршрут заявки">
               <span>Заявка</span>
-              <span>Диагностика</span>
-              <span>Следующий шаг</span>
+              <span>Аудит</span>
+              <span>Формат</span>
             </div>
             <div className="contact-links">
               <a className="contact-link" href={siteConfig.telegramContactUrl} target="_blank" rel="noreferrer" data-analytics-event="telegram_contact_click" data-analytics-label="final_cta_telegram_contact" data-analytics-value={siteConfig.telegramContactUrl}>Telegram: @vitalycreator</a>

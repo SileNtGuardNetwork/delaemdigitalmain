@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { seoConfig } from "@/lib/seo";
 import { getPublishedArticleSlugs, getPublishedCaseSlugs } from "@/lib/content";
 
-const routes = ["", "/privacy", "/consent", "/cookies", "/cases", "/articles"] as const;
+const routes = ["", "/en", "/privacy", "/consent", "/cookies", "/cases", "/articles"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

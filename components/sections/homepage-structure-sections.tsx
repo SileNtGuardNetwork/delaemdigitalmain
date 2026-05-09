@@ -12,9 +12,9 @@ export function AssemblySection() {
     <section className="section section-graphite assembly-section">
       <div className="container">
         <div className="section-eyebrow">Что собирается</div>
-        <h2 className="section-title">В систему входят все точки, где клиент принимает решение</h2>
+        <h2 className="section-title">ClientFlow System связывает точки решения в один маршрут</h2>
         <p className="section-text">
-          Не нужно усиливать каждый инструмент отдельно. Важно собрать маршрут, где сайт, трафик, Telegram, AI, CRM, аналитика и follow-up работают как одна цепочка.
+          Не нужно усиливать каждый инструмент отдельно. Важно собрать маршрут, где оффер, сайт/квиз, трафик, заявка, follow-up и аналитика работают как одна цепочка.
         </p>
         <div className="assembly-grid">
           {assemblyModules.map(([index, title, text]) => (
@@ -35,7 +35,7 @@ export function ServicesSection() {
     <section className="section services-section">
       <div className="container">
         <div className="section-eyebrow">Продукты и услуги</div>
-        <h2 className="section-title">Можно начать с одного модуля или собрать маршрут целиком</h2>
+        <h2 className="section-title">Три продукта под разные задачи бизнеса</h2>
         <div className="service-track-grid">
           {serviceTracks.map((item) => (
             <article className="service-track card" key={item.title}>
@@ -55,7 +55,7 @@ export function ProcessSection() {
     <section className="section section-tight process-section">
       <div className="container">
         <div className="section-eyebrow">Процесс</div>
-        <h2 className="section-title">Работа идёт как сборка архитектуры, а не как хаотичный список задач</h2>
+        <h2 className="section-title">Работа идёт как сборка маршрута, а не как хаотичный список задач</h2>
         <div className="process-map">
           {processSteps.map(([index, title, text]) => (
             <article className="process-step" key={title}>
@@ -129,8 +129,8 @@ export function FounderSection() {
             />
           </div>
           <div>
-            <div className="section-eyebrow">Founder / approach</div>
-            <h2 className="section-title">Виталий Тимошенко — digital-архитектор, который собирает маршрут клиента</h2>
+            <div className="section-eyebrow">Founder / CEO</div>
+            <h2 className="section-title">Виталий Тимошенко — CEO «Делаем Диджитал» и архитектор ClientFlow System</h2>
           </div>
           <div>
             <p>
@@ -139,7 +139,10 @@ export function FounderSection() {
             <p>
               Поэтому в работе важны не только дизайн, реклама или автоматизация, а связка между ними: что человек видит, куда движется и почему доходит до контакта.
             </p>
-            <div className="founder-signature">Виталий Тимошенко · digital-архитектор</div>
+            <p>
+              Обновления по подходу и рабочие разборы — в Telegram-канале <a href="https://t.me/delaemdigital" target="_blank" rel="noreferrer" data-analytics-event="telegram_channel_click" data-analytics-label="founder_telegram_channel" data-analytics-value="https://t.me/delaemdigital">@delaemdigital</a>.
+            </p>
+            <div className="founder-signature">Виталий Тимошенко · CEO · ClientFlow архитектор</div>
           </div>
         </div>
       </div>

@@ -1,12 +1,12 @@
 const modules = [
-  ["01", "Позиционирование", "объясняет, почему выбирают вас"],
-  ["02", "Сайт", "ведёт человека к заявке"],
+  ["01", "Оффер", "задаёт ценность и направление"],
+  ["02", "Сайт/квиз", "объясняет решение и собирает заявку"],
   ["03", "Трафик", "приводит нужные касания"],
-  ["04", "Telegram", "удерживает внимание"],
-  ["05", "AI-воронка", "ускоряет диагностику"],
-  ["06", "CRM", "не теряет обращения"],
-  ["07", "Аналитика", "показывает узкие места"],
-  ["08", "Follow-up", "возвращает клиента к решению"]
+  ["04", "Заявка", "не даёт лидам теряться"],
+  ["05", "Follow-up", "возвращает клиента к контакту"],
+  ["06", "Аналитика", "показывает слабые места"],
+  ["07", "CRM", "фиксирует обращения"],
+  ["08", "Telegram", "держит рабочий канал связи"]
 ] as const;
 
 export function ClientFlowSystemSection() {
@@ -14,10 +14,14 @@ export function ClientFlowSystemSection() {
     <section id="system" className="section system-section">
       <div className="container">
         <div className="section-eyebrow">Система</div>
-        <h2 className="section-title">ClientFlow System собирает digital-инструменты в управляемый маршрут</h2>
+        <h2 className="section-title">ClientFlow System связывает оффер, сайт/квиз, трафик, заявку, follow-up и аналитику в один маршрут</h2>
         <p className="section-text">
-          Сайт, трафик, контент, Telegram, AI, CRM и продажи должны работать не отдельно, а как единая система движения клиента к заявке.
+          Оффер → Сайт/Квиз → Трафик → Заявка → Follow-up → Аналитика.
         </p>
+        <div className="hero-kicker" style={{ marginTop: 18 }}>
+          <span className="status-dot" />
+          Оффер → Сайт/Квиз → Трафик → Заявка → Follow-up → Аналитика
+        </div>
 
         <div className="system-layout">
           <div className="system-core card">
