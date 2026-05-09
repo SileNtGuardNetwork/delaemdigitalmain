@@ -6,16 +6,14 @@ export function FinalCtaSection() {
     <section id="contacts" className="section final-cta-section">
       <div className="container">
         <div className="section-eyebrow">Контакты</div>
-        <h2 className="section-title">Оставьте контакт — я посмотрю, что вам нужно: сайт, трафик или система</h2>
+        <h2 className="section-title">Оставьте контакт — покажу, что вам нужно: сайт, трафик или система</h2>
         <p className="section-text">
-          Оставьте заявку — посмотрю ваш текущий маршрут привлечения и подскажу, с чего логичнее начать.
+          Оставьте заявку — покажу, что усиливать первым.
         </p>
         <div className="contact-grid">
           <aside className="contact-aside card">
             <h3>Короткий маршрут</h3>
-            <p>
-              Вы оставляете заявку, я смотрю сайт/соцсеть и текущую систему касаний. Дальше — короткий разбор и понятный следующий шаг.
-            </p>
+            <p>Вы оставляете заявку. Я смотрю маршрут. Дальше — короткий разбор и следующий шаг.</p>
             <div className="contact-route" aria-label="Маршрут заявки">
               <span>Заявка</span>
               <span>Аудит</span>

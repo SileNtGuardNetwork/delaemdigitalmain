@@ -82,11 +82,11 @@ export function WhyItWorksSection() {
           <div className="why-points">
             <div className="why-contrast">
               <span>Инструменты отдельно</span>
-              <p>Сайт, реклама, CRM и контент спорят за внимание и не отвечают за общий результат.</p>
+              <p>Сайт, реклама, CRM и контент спорят за внимание.</p>
             </div>
             <div className="why-contrast positive">
               <span>Один маршрут</span>
-              <p>ClientFlow System связывает касания: человек понимает ценность, видит следующий шаг, оставляет заявку и не теряется после первого контакта.</p>
+              <p>ClientFlow System связывает касания в один путь к заявке.</p>
             </div>
           </div>
         </div>
@@ -133,15 +133,8 @@ export function FounderSection() {
             <h2 className="section-title">Виталий Тимошенко — CEO «Делаем Диджитал» и архитектор ClientFlow System</h2>
           </div>
           <div>
-            <p>
-              Я смотрю на digital не как на набор подрядчиков и задач, а как на систему управления вниманием, доверием и заявками.
-            </p>
-            <p>
-              Поэтому в работе важны не только дизайн, реклама или автоматизация, а связка между ними: что человек видит, куда движется и почему доходит до контакта.
-            </p>
-            <p>
-              Обновления по подходу и рабочие разборы — в Telegram-канале <a href="https://t.me/delaemdigital" target="_blank" rel="noreferrer" data-analytics-event="telegram_channel_click" data-analytics-label="founder_telegram_channel" data-analytics-value="https://t.me/delaemdigital">@delaemdigital</a>.
-            </p>
+            <p>Я проектирую маршруты, где сайт, трафик и заявки работают как одна система.</p>
+            <p>Telegram-канал: <a href="https://t.me/delaemdigital" target="_blank" rel="noreferrer" data-analytics-event="telegram_channel_click" data-analytics-label="founder_telegram_channel" data-analytics-value="https://t.me/delaemdigital">@delaemdigital</a>.</p>
             <div className="founder-signature">Виталий Тимошенко · CEO · ClientFlow архитектор</div>
           </div>
         </div>
