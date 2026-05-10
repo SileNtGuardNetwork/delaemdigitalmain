@@ -20,3 +20,6 @@ Thumbs.db
 
 .vercel
 .env*.local
+
+# Local design references
+Hero/
