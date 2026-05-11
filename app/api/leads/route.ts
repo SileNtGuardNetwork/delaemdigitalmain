@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { type LeadNotificationResult, sendLeadNotifications } from "@/lib/leads/notifications";
+import {
+  getLeadNotificationStatus,
+  type LeadContactType,
+  type LeadStorageResult,
+  storeSiteLeadPending,
+  updateSiteLeadDelivery
+} from "@/lib/leads/storage";
 
 type FieldErrors = Partial<Record<"name" | "contact" | "company" | "service" | "message" | "consent", string>>;
 
@@ -31,7 +38,7 @@ function isTooLong(value: unknown, maxLength: number) {
   return typeof value === "string" && value.trim().length > maxLength;
 }
 
-function getContactType(contact: string) {
+function getContactType(contact: string): LeadContactType {
   if (/^@[a-zA-Z0-9_]{5,32}$/.test(contact)) return "telegram";
   if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) return "email";
   if (/^[+\d][\d\s().-]{5,}$/.test(contact)) return "phone";
@@ -45,6 +52,7 @@ function logLeadAccepted(input: {
   hasMessage: boolean;
   contactType: string;
   receivedAt: string;
+  storage: LeadStorageResult["status"];
   delivery: LeadNotificationResult;
 }) {
   console.info("Lead accepted", {
@@ -54,9 +62,21 @@ function logLeadAccepted(input: {
     service: input.service,
     hasMessage: input.hasMessage,
     contactType: input.contactType,
+    storage: input.storage,
     delivery: input.delivery,
     receivedAt: input.receivedAt,
     result: "accepted"
+  });
+}
+
+function logLeadStorageFailure(stage: "insert" | "update", result: LeadStorageResult) {
+  if (result.status !== "failed") return;
+
+  console.warn("Lead storage failed", {
+    event: "lead_storage_failed",
+    stage,
+    status: result.status,
+    error: result.error
   });
 }
 
@@ -176,6 +196,13 @@ export async function POST(request: NextRequest) {
       receivedAt: new Date().toISOString()
     };
 
+    const contactType = getContactType(contact);
+    const storage = await storeSiteLeadPending({
+      lead: sanitizedLead,
+      contactType
+    });
+    logLeadStorageFailure("insert", storage);
+
     let delivery: LeadNotificationResult = {
       telegram: "failed",
       email: "failed"
@@ -192,13 +219,23 @@ export async function POST(request: NextRequest) {
     }
 
     logFailedDeliveries(delivery);
+    if (storage.status === "stored") {
+      const storageUpdate = await updateSiteLeadDelivery({
+        id: storage.id,
+        delivery,
+        notificationStatus: getLeadNotificationStatus(delivery)
+      });
+      logLeadStorageFailure("update", storageUpdate);
+    }
+
     logLeadAccepted({
       source,
       page,
       service,
       hasMessage: message.length > 0,
-      contactType: getContactType(contact),
+      contactType,
       receivedAt: sanitizedLead.receivedAt,
+      storage: storage.status,
       delivery
     });
 
