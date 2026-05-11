@@ -114,6 +114,19 @@ function formatLeadForEmailHtml(lead: SanitizedLead) {
   return `<pre style="font-family:Arial,sans-serif;white-space:pre-wrap;line-height:1.5">${lines.join("\n")}</pre>`;
 }
 
+function parseEmailRecipients(value: string | undefined) {
+  if (!value) return [];
+
+  return Array.from(
+    new Set(
+      value
+        .split(",")
+        .map((recipient) => recipient.trim())
+        .filter(Boolean)
+    )
+  ).slice(0, 50);
+}
+
 async function sendTelegramNotification(lead: SanitizedLead): Promise<DeliveryStatus> {
   const token = process.env.LEAD_NOTIFY_TELEGRAM_BOT_TOKEN;
   const chatId = process.env.LEAD_NOTIFY_TELEGRAM_CHAT_ID;
@@ -155,10 +168,10 @@ async function sendTelegramNotification(lead: SanitizedLead): Promise<DeliverySt
 
 async function sendEmailNotification(lead: SanitizedLead): Promise<DeliveryStatus> {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.LEAD_NOTIFY_EMAIL_TO;
+  const recipients = parseEmailRecipients(process.env.LEAD_NOTIFY_EMAIL_TO);
   const from = process.env.LEAD_NOTIFY_EMAIL_FROM;
 
-  if (!apiKey || !to || !from) {
+  if (!apiKey || recipients.length === 0 || !from) {
     return "skipped_missing_env";
   }
 
@@ -171,7 +184,7 @@ async function sendEmailNotification(lead: SanitizedLead): Promise<DeliveryStatu
       },
       body: JSON.stringify({
         from,
-        to,
+        to: recipients,
         subject: "Новая заявка с сайта Делаем Диджитал",
         text: formatLeadForEmailText(lead),
         html: formatLeadForEmailHtml(lead)
