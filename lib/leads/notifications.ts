@@ -36,6 +36,19 @@ function valueOrDash(value: string) {
   return value || "—";
 }
 
+function getSafeErrorName(error: unknown) {
+  return error instanceof Error ? error.name.slice(0, 80) : "unknown_error";
+}
+
+function logProviderFailure(provider: "telegram" | "email", details: Record<string, string | number>) {
+  console.warn("Lead notification provider failed", {
+    event: "lead_notification_provider_failed",
+    provider,
+    status: "failed",
+    ...details
+  });
+}
+
 function formatTelegramContact(value: string) {
   const contact = truncate(value, 120);
   const usernameMatch = /^@([a-zA-Z0-9_]{5,32})$/.exec(contact);
@@ -123,8 +136,19 @@ async function sendTelegramNotification(lead: SanitizedLead): Promise<DeliverySt
       })
     });
 
-    return response.ok ? "sent" : "failed";
-  } catch {
+    if (!response.ok) {
+      logProviderFailure("telegram", {
+        statusCode: response.status,
+        statusText: response.statusText.slice(0, 120)
+      });
+      return "failed";
+    }
+
+    return "sent";
+  } catch (error) {
+    logProviderFailure("telegram", {
+      errorName: getSafeErrorName(error)
+    });
     return "failed";
   }
 }
@@ -154,8 +178,19 @@ async function sendEmailNotification(lead: SanitizedLead): Promise<DeliveryStatu
       })
     });
 
-    return response.ok ? "sent" : "failed";
-  } catch {
+    if (!response.ok) {
+      logProviderFailure("email", {
+        statusCode: response.status,
+        statusText: response.statusText.slice(0, 120)
+      });
+      return "failed";
+    }
+
+    return "sent";
+  } catch (error) {
+    logProviderFailure("email", {
+      errorName: getSafeErrorName(error)
+    });
     return "failed";
   }
 }

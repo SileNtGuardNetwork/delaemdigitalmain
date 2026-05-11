@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendLeadNotifications } from "@/lib/leads/notifications";
+import { type LeadNotificationResult, sendLeadNotifications } from "@/lib/leads/notifications";
 
 type FieldErrors = Partial<Record<"name" | "contact" | "company" | "service" | "message" | "consent", string>>;
 
@@ -29,6 +29,47 @@ function normalize(value: unknown, maxLength: number) {
 
 function isTooLong(value: unknown, maxLength: number) {
   return typeof value === "string" && value.trim().length > maxLength;
+}
+
+function getContactType(contact: string) {
+  if (/^@[a-zA-Z0-9_]{5,32}$/.test(contact)) return "telegram";
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) return "email";
+  if (/^[+\d][\d\s().-]{5,}$/.test(contact)) return "phone";
+  return contact ? "other" : "empty";
+}
+
+function logLeadAccepted(input: {
+  source: string;
+  page: string;
+  service: string;
+  hasMessage: boolean;
+  contactType: string;
+  receivedAt: string;
+  delivery: LeadNotificationResult;
+}) {
+  console.info("Lead accepted", {
+    event: "lead_accepted",
+    source: input.source,
+    page: input.page,
+    service: input.service,
+    hasMessage: input.hasMessage,
+    contactType: input.contactType,
+    delivery: input.delivery,
+    receivedAt: input.receivedAt,
+    result: "accepted"
+  });
+}
+
+function logFailedDeliveries(delivery: LeadNotificationResult) {
+  (Object.entries(delivery) as Array<[keyof LeadNotificationResult, LeadNotificationResult[keyof LeadNotificationResult]]>)
+    .filter(([, status]) => status === "failed")
+    .forEach(([provider, status]) => {
+      console.warn("Lead notification delivery failed", {
+        event: "lead_notification_delivery_failed",
+        provider,
+        status
+      });
+    });
 }
 
 async function readJsonSafely(request: NextRequest): Promise<LeadPayload | null> {
@@ -135,9 +176,31 @@ export async function POST(request: NextRequest) {
       receivedAt: new Date().toISOString()
     };
 
-    console.info("Lead accepted", sanitizedLead);
-    const delivery = await sendLeadNotifications(sanitizedLead);
-    console.info("Lead notification delivery", delivery);
+    let delivery: LeadNotificationResult = {
+      telegram: "failed",
+      email: "failed"
+    };
+
+    try {
+      delivery = await sendLeadNotifications(sanitizedLead);
+    } catch {
+      console.warn("Lead notification delivery failed", {
+        event: "lead_notification_delivery_failed",
+        provider: "all",
+        status: "failed"
+      });
+    }
+
+    logFailedDeliveries(delivery);
+    logLeadAccepted({
+      source,
+      page,
+      service,
+      hasMessage: message.length > 0,
+      contactType: getContactType(contact),
+      receivedAt: sanitizedLead.receivedAt,
+      delivery
+    });
 
     return jsonResponse(
       {
