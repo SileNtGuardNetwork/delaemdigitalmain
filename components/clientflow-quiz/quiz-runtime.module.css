@@ -1,0 +1,220 @@
+.cfqShell {
+  min-height: 100svh;
+  padding: 48px 0;
+  background:
+    radial-gradient(circle at 76% 12%, rgba(199, 132, 92, 0.14), transparent 28rem),
+    linear-gradient(180deg, var(--bg), var(--bg-2));
+}
+
+.cfqContainer {
+  width: min(980px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.cfqPanel {
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(16, 18, 22, 0.94), rgba(11, 13, 17, 0.92));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.cfqHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.cfqBody {
+  padding: clamp(24px, 5vw, 48px);
+}
+
+.cfqEyebrow {
+  color: var(--copper-soft);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.cfqTitle {
+  max-width: 760px;
+  margin: 14px 0 0;
+  font-family: var(--font-manrope), ui-sans-serif, system-ui;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.cfqText {
+  max-width: 720px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.cfqProgress {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.cfqProgressBar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--copper), var(--primary-b));
+  transition: width 0.24s ease;
+}
+
+.cfqOptions {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.cfqOption {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 16px;
+  color: var(--text);
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.026);
+}
+
+.cfqOption[aria-pressed="true"] {
+  border-color: rgba(231, 198, 175, 0.42);
+  background: rgba(199, 132, 92, 0.13);
+}
+
+.cfqOptionDescription {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.cfqFieldGrid {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.cfqInput,
+.cfqTextarea {
+  width: 100%;
+  min-width: 0;
+  padding: 14px 15px;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  outline: none;
+}
+
+.cfqTextarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.cfqInput:focus,
+.cfqTextarea:focus {
+  border-color: rgba(231, 198, 175, 0.42);
+}
+
+.cfqActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.cfqButton {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  color: #071016;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary-a), var(--primary-b));
+  font-weight: 800;
+}
+
+.cfqButtonSecondary {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.cfqButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.cfqConsent {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.cfqConsent a {
+  color: var(--copper-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cfqError {
+  margin-top: 16px;
+  color: #ffd1c7;
+  font-size: 14px;
+}
+
+.cfqResultGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.cfqResultCard {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.026);
+}
+
+.cfqResultCard span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.cfqResultCard strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+@media (max-width: 720px) {
+  .cfqShell {
+    padding: 20px 0;
+  }
+
+  .cfqHeader {
+    display: grid;
+  }
+
+  .cfqResultGrid {
+    grid-template-columns: 1fr;
+  }
+}
