@@ -131,7 +131,11 @@ export function ContactForm() {
   const isSubmitting = state === "submitting";
 
   return (
-    <form className="form card" onSubmit={handleSubmit} noValidate>
+    <form className="form card d1-intake-form" onSubmit={handleSubmit} noValidate>
+      <div className="form-head">
+        <span>ClientFlow intake</span>
+        <strong>первичный разбор системы</strong>
+      </div>
       <div className="form-row">
         <div className="field">
           <label htmlFor="name">Имя</label>

@@ -9,16 +9,16 @@ import {
 
 export function AssemblySection() {
   return (
-    <section className="section section-graphite assembly-section">
+    <section className="section section-graphite assembly-section d1-section d1-assembly-section">
       <div className="container">
         <div className="section-eyebrow">Что собирается</div>
-        <h2 className="section-title">ClientFlow System связывает точки решения в один маршрут</h2>
+        <h2 className="section-title">Собираются все точки, которые влияют на заявку</h2>
         <p className="section-text">
-          Не нужно усиливать каждый инструмент отдельно. Важно собрать маршрут, где оффер, сайт/квиз, трафик, заявка, follow-up и аналитика работают как одна цепочка.
+          Оффер, сайт/квиз, трафик, заявка, follow-up и аналитика получают одну логику: что усиливать сейчас и где система должна довести клиента до действия.
         </p>
         <div className="assembly-grid">
           {assemblyModules.map(([index, title, text]) => (
-            <article className="assembly-card" key={title}>
+            <article className="assembly-card d1-line-card" key={title}>
               <span>{index}</span>
               <h3>{title}</h3>
               <p>{text}</p>
@@ -32,13 +32,16 @@ export function AssemblySection() {
 
 export function ServicesSection() {
   return (
-    <section className="section services-section">
+    <section className="section services-section d1-section d1-services-section">
       <div className="container">
-        <div className="section-eyebrow">Продукты и услуги</div>
-        <h2 className="section-title">Три продукта под разные задачи бизнеса</h2>
+        <div className="section-eyebrow">Выбор масштаба</div>
+        <h2 className="section-title">Сначала определяем масштаб задачи</h2>
+        <p className="section-text">
+          Сначала определяем масштаб: входная посадочная, запуск заявок или полная ClientFlow-система.
+        </p>
         <div className="service-track-grid">
           {serviceTracks.map((item) => (
-            <article className="service-track card" key={item.title}>
+            <article className="service-track card d1-service-track" key={item.title}>
               <div className="track-label">{item.label}</div>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -52,13 +55,13 @@ export function ServicesSection() {
 
 export function ProcessSection() {
   return (
-    <section className="section section-tight process-section">
+    <section className="section section-tight process-section d1-section d1-process-section">
       <div className="container">
         <div className="section-eyebrow">Процесс</div>
-        <h2 className="section-title">Работа идёт как сборка маршрута, а не как хаотичный список задач</h2>
+        <h2 className="section-title">Работа идёт как проектирование и запуск рабочей системы</h2>
         <div className="process-map">
           {processSteps.map(([index, title, text]) => (
-            <article className="process-step" key={title}>
+            <article className="process-step d1-process-step" key={title}>
               <span>{index}</span>
               <h3>{title}</h3>
               <p>{text}</p>
@@ -72,12 +75,12 @@ export function ProcessSection() {
 
 export function WhyItWorksSection() {
   return (
-    <section className="section why-section">
+    <section className="section why-section d1-section d1-why-section">
       <div className="container">
-        <div className="why-layout card">
+        <div className="why-layout card d1-editorial-panel">
           <div>
             <div className="section-eyebrow">Почему это работает</div>
-            <h2 className="section-title">Клиенту нужен не набор инструментов, а непрерывный маршрут</h2>
+            <h2 className="section-title">Клиенту нужен понятный путь к решению</h2>
           </div>
           <div className="why-points">
             <div className="why-contrast">
@@ -97,13 +100,13 @@ export function WhyItWorksSection() {
 
 export function AudienceSection() {
   return (
-    <section className="section section-graphite audience-section">
+    <section className="section section-graphite audience-section d1-section d1-audience-section">
       <div className="container">
         <div className="section-eyebrow">Кому подходит</div>
         <h2 className="section-title">Для тех, кому нужна управляемая система, а не разовые digital-работы</h2>
         <div className="audience-grid">
           {audienceCards.map(([title, text]) => (
-            <article className="audience-card" key={title}>
+            <article className="audience-card d1-line-card" key={title}>
               <h3>{title}</h3>
               <p>{text}</p>
             </article>
@@ -116,9 +119,9 @@ export function AudienceSection() {
 
 export function FounderSection() {
   return (
-    <section className="section founder-section">
+    <section className="section founder-section d1-section d1-founder-section">
       <div className="container">
-        <div className="founder-panel card">
+        <div className="founder-panel card d1-founder-panel">
           <div className="founder-photo">
             <Image
               src="/images/vitaly-founder-light.webp"
@@ -145,13 +148,13 @@ export function FounderSection() {
 
 export function FaqSection() {
   return (
-    <section className="section section-tight faq-section">
+    <section className="section section-tight faq-section d1-section d1-faq-section">
       <div className="container">
         <div className="section-eyebrow">FAQ</div>
         <h2 className="section-title">Коротко о формате работы</h2>
         <div className="faq-list">
           {faqItems.map(([question, answer]) => (
-            <details className="faq-item card" key={question}>
+            <details className="faq-item card d1-faq-item" key={question}>
               <summary>{question}</summary>
               <p>{answer}</p>
             </details>

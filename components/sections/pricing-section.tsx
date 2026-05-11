@@ -2,17 +2,17 @@ import { pricing } from "@/lib/pricing";
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="section pricing-section">
+    <section id="pricing" className="section pricing-section d1-section d1-pricing-section">
       <div className="container">
         <div className="section-eyebrow">Продукты</div>
-        <h2 className="section-title">Три продукта под разные задачи бизнеса</h2>
+        <h2 className="section-title">Коммерческие форматы ClientFlow</h2>
         <p className="section-text">
-          Можно начать с сайта, запустить быструю лидогенерацию или собрать полную систему целиком.
+          Ниже — конкретные форматы работы после выбора масштаба задачи.
         </p>
         <div className="pricing-grid">
           {pricing.map((item) => (
-            <article className={`price-card card ${item.title === "Делаем Систему" ? "featured" : ""}`} key={item.title}>
-              {item.title === "Делаем Систему" && <div className="price-badge">Главный продукт</div>}
+            <article className={`price-card card d1-price-card ${item.recommended ? "featured d1-recommended" : ""}`} key={item.title}>
+              <div className="price-badge">{item.path}</div>
               <h3>{item.title}</h3>
               <div className="price">{item.price}</div>
               <p>{item.description}</p>
@@ -26,7 +26,7 @@ export function PricingSection() {
                 data-analytics-label={item.title}
                 data-analytics-value={item.price}
               >
-                Обсудить
+                {item.cta}
               </a>
             </article>
           ))}
