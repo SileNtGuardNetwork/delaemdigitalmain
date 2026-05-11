@@ -50,6 +50,7 @@ export type StoreDeliveryLogInput = {
 };
 
 let cachedClient: SupabaseClient | null = null;
+const STORAGE_TIMEOUT_MS = 2500;
 
 function getSupabaseEnv() {
   const url = process.env.SUPABASE_URL;
@@ -67,12 +68,19 @@ function getSupabaseClient() {
   if (!env) return null;
 
   if (!cachedClient) {
-    cachedClient = createClient(env.url, env.serviceRoleKey, {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false
-      }
-    });
+    try {
+      cachedClient = createClient(env.url, env.serviceRoleKey, {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false
+        }
+      });
+    } catch (error) {
+      console.warn("ClientFlow Supabase client initialization failed", {
+        error: sanitizeStorageError(safeErrorMessage(error))
+      });
+      return null;
+    }
   }
 
   return cachedClient;
@@ -81,6 +89,30 @@ function getSupabaseClient() {
 function safeErrorMessage(error: unknown) {
   if (error instanceof Error) return error.message.slice(0, 240);
   return "Unknown Supabase storage error.";
+}
+
+function sanitizeStorageError(error: string) {
+  return error.replace(/Bearer\s+[A-Za-z0-9._-]+/g, "Bearer [redacted]").slice(0, 240);
+}
+
+async function withStorageTimeout(
+  operation: () => Promise<ClientFlowStorageResult>
+): Promise<ClientFlowStorageResult> {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+  const timeout = new Promise<ClientFlowStorageResult>((resolve) => {
+    timeoutId = setTimeout(() => {
+      resolve({ status: "failed", error: "storage_timeout" });
+    }, STORAGE_TIMEOUT_MS);
+  });
+
+  try {
+    return await Promise.race([operation(), timeout]);
+  } catch (error) {
+    return { status: "failed", error: sanitizeStorageError(safeErrorMessage(error)) };
+  } finally {
+    if (timeoutId) clearTimeout(timeoutId);
+  }
 }
 
 function normalizeUuid(value?: string) {
@@ -96,9 +128,9 @@ export function isClientFlowSupabaseConfigured() {
 
 export async function storeQuizSubmission(input: StoreQuizSubmissionInput): Promise<ClientFlowStorageResult> {
   const supabase = getSupabaseClient();
-  if (!supabase) return { status: "skipped_missing_env" };
+  if (!supabase) return getSupabaseEnv() ? { status: "failed", error: "storage_client_unavailable" } : { status: "skipped_missing_env" };
 
-  try {
+  return withStorageTimeout(async () => {
     const { data, error } = await supabase
       .from("clientflow_quiz_submissions")
       .insert({
@@ -123,31 +155,24 @@ export async function storeQuizSubmission(input: StoreQuizSubmissionInput): Prom
       .single();
 
     if (error) {
+      const message = sanitizeStorageError(error.message);
       console.warn("ClientFlow quiz submission storage failed", {
         quizSlug: input.config.slug,
         submissionCode: input.submissionCode,
-        error: error.message
+        error: message
       });
-      return { status: "failed", error: error.message };
+      return { status: "failed", error: message };
     }
 
     return { status: "stored", id: data?.id };
-  } catch (error) {
-    const message = safeErrorMessage(error);
-    console.warn("ClientFlow quiz submission storage failed", {
-      quizSlug: input.config.slug,
-      submissionCode: input.submissionCode,
-      error: message
-    });
-    return { status: "failed", error: message };
-  }
+  });
 }
 
 export async function storeQuizEvent(input: StoreQuizEventInput): Promise<ClientFlowStorageResult> {
   const supabase = getSupabaseClient();
-  if (!supabase) return { status: "skipped_missing_env" };
+  if (!supabase) return getSupabaseEnv() ? { status: "failed", error: "storage_client_unavailable" } : { status: "skipped_missing_env" };
 
-  try {
+  return withStorageTimeout(async () => {
     const { data, error } = await supabase
       .from("clientflow_quiz_events")
       .insert({
@@ -162,31 +187,24 @@ export async function storeQuizEvent(input: StoreQuizEventInput): Promise<Client
       .single();
 
     if (error) {
+      const message = sanitizeStorageError(error.message);
       console.warn("ClientFlow quiz event storage failed", {
         quizSlug: input.quizSlug,
         eventName: input.eventName,
-        error: error.message
+        error: message
       });
-      return { status: "failed", error: error.message };
+      return { status: "failed", error: message };
     }
 
     return { status: "stored", id: data?.id };
-  } catch (error) {
-    const message = safeErrorMessage(error);
-    console.warn("ClientFlow quiz event storage failed", {
-      quizSlug: input.quizSlug,
-      eventName: input.eventName,
-      error: message
-    });
-    return { status: "failed", error: message };
-  }
+  });
 }
 
 export async function storeDeliveryLog(input: StoreDeliveryLogInput): Promise<ClientFlowStorageResult> {
   const supabase = getSupabaseClient();
-  if (!supabase) return { status: "skipped_missing_env" };
+  if (!supabase) return getSupabaseEnv() ? { status: "failed", error: "storage_client_unavailable" } : { status: "skipped_missing_env" };
 
-  try {
+  return withStorageTimeout(async () => {
     const { data, error } = await supabase
       .from("clientflow_quiz_delivery_logs")
       .insert({
@@ -202,24 +220,16 @@ export async function storeDeliveryLog(input: StoreDeliveryLogInput): Promise<Cl
       .single();
 
     if (error) {
+      const message = sanitizeStorageError(error.message);
       console.warn("ClientFlow quiz delivery log storage failed", {
         submissionId: input.submissionId,
         channel: input.channel,
         provider: input.provider,
-        error: error.message
+        error: message
       });
-      return { status: "failed", error: error.message };
+      return { status: "failed", error: message };
     }
 
     return { status: "stored", id: data?.id };
-  } catch (error) {
-    const message = safeErrorMessage(error);
-    console.warn("ClientFlow quiz delivery log storage failed", {
-      submissionId: input.submissionId,
-      channel: input.channel,
-      provider: input.provider,
-      error: message
-    });
-    return { status: "failed", error: message };
-  }
+  });
 }

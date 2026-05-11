@@ -7,6 +7,7 @@ import { calculateClientFlowScores } from "@/lib/clientflow-quiz/scoring";
 import { quizSubmitRequestSchema } from "@/lib/clientflow-quiz/schema";
 import { assignClientFlowSegment } from "@/lib/clientflow-quiz/segmentation";
 import {
+  type ClientFlowStorageResult,
   storeDeliveryLog,
   storeQuizSubmission
 } from "@/lib/clientflow-quiz/storage/supabase";
@@ -29,6 +30,17 @@ function generateSubmissionCode() {
   const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
   const random = crypto.randomUUID().slice(0, 8).toUpperCase();
   return `CFQ-${date}-${random}`;
+}
+
+function getStorageErrorDetails(results: Record<string, ClientFlowStorageResult>) {
+  const errors = Object.entries(results)
+    .filter((entry): entry is [string, Extract<ClientFlowStorageResult, { status: "failed" }>] => entry[1].status === "failed")
+    .map(([operation, result]) => ({
+      operation,
+      error: result.error
+    }));
+
+  return errors.length > 0 ? errors : undefined;
 }
 
 async function readJsonSafely(request: NextRequest) {
@@ -110,6 +122,11 @@ export async function POST(request: NextRequest, context: RouteContext) {
       error: "CRM webhook integration is not enabled in Phase 2A."
     })
   ]);
+  const storageErrors = getStorageErrorDetails({
+    submission: submissionStorage,
+    telegramDeliveryLog,
+    crmDeliveryLog
+  });
 
   console.info("ClientFlow quiz submission accepted", {
     quizSlug: config.slug,
@@ -135,6 +152,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
       telegramDeliveryLog: telegramDeliveryLog.status,
       crmDeliveryLog: crmDeliveryLog.status
     },
+    storageErrors,
     integrations: {
       telegram: "noop_phase_2a",
       crmWebhook: "noop_phase_2a",
