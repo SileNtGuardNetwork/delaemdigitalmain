@@ -21,10 +21,11 @@ export function PricingSection() {
               </ul>
               <a
                 className="button button-primary"
-                href="#contacts"
+                href={`?service=${item.intent}&source=pricing#contacts`}
                 data-analytics-event="pricing_cta_click"
                 data-analytics-label={item.title}
                 data-analytics-value={item.price}
+                data-analytics-intent={item.intent}
               >
                 {item.cta}
               </a>

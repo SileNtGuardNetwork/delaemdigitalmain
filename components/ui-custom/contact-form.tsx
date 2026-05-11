@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { trackEvent } from "@/lib/analytics/client";
 
@@ -31,6 +31,16 @@ const initialFields = {
   company_website_hidden: ""
 };
 
+const pricingIntentToService: Record<string, (typeof serviceOptions)[number]> = {
+  "delaem-site": serviceOptions[1],
+  "delaem-traffic": serviceOptions[2],
+  "delaem-system": serviceOptions[3]
+};
+
+function getSafeLeadSource(value: string | null) {
+  return value === "pricing" ? "pricing" : "final-cta";
+}
+
 function getClientFieldErrors(fields: typeof initialFields, consent: boolean) {
   const errors: FieldErrors = {};
 
@@ -53,7 +63,19 @@ export function ContactForm() {
   const [consent, setConsent] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [statusMessage, setStatusMessage] = useState("");
+  const [leadSource, setLeadSource] = useState("final-cta");
   const pathname = usePathname();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const selectedService = pricingIntentToService[params.get("service") ?? ""];
+
+    if (selectedService) {
+      setFields((current) => ({ ...current, service: selectedService }));
+    }
+
+    setLeadSource(getSafeLeadSource(params.get("source")));
+  }, []);
 
   function updateField(name: keyof typeof initialFields, value: string) {
     setFields((current) => ({ ...current, [name]: value }));
@@ -75,7 +97,7 @@ export function ContactForm() {
       setStatusMessage("Проверьте поля формы.");
       trackEvent("lead_form_submit_error", {
         service: fields.service,
-        source: "final-cta",
+        source: leadSource,
         page: pathname
       });
       return;
@@ -83,7 +105,7 @@ export function ContactForm() {
 
     const analyticsPayload = {
       service: fields.service,
-      source: "final-cta",
+      source: leadSource,
       page: pathname
     };
 
@@ -100,7 +122,7 @@ export function ContactForm() {
         body: JSON.stringify({
           ...fields,
           consent,
-          source: "final-cta",
+          source: leadSource,
           page: typeof window === "undefined" ? "/" : window.location.pathname
         })
       });

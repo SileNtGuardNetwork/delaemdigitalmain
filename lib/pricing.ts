@@ -1,6 +1,7 @@
 export const pricing = [
   {
     title: "Делаем Сайт",
+    intent: "delaem-site",
     path: "Entry / посадочная",
     price: "от 150 000 ₽",
     description:
@@ -11,6 +12,7 @@ export const pricing = [
   },
   {
     title: "Делаем Трафик",
+    intent: "delaem-traffic",
     path: "Traffic launch / заявки",
     price: "от 250 000 ₽",
     description:
@@ -21,6 +23,7 @@ export const pricing = [
   },
   {
     title: "Делаем Систему",
+    intent: "delaem-system",
     path: "Главный ClientFlow продукт",
     price: "от 350 000 ₽",
     description:
