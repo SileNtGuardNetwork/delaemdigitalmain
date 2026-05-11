@@ -13,7 +13,13 @@ import type {
 type QuizStep = "start" | "questions" | "contact" | "result";
 
 type SubmitResponse =
-  | ({ ok: true } & ClientFlowSubmissionResult)
+  | {
+      ok: true;
+      submissionId: string;
+      submissionCode: string;
+      result: Omit<ClientFlowSubmissionResult, "submissionId">;
+      storage?: Record<string, string>;
+    }
   | { ok: false; error: { code: string; message: string } };
 
 function getSessionId() {
@@ -151,9 +157,9 @@ export function QuizRuntime({ config }: { config: ClientFlowQuizConfig }) {
 
       setResult({
         submissionId: payload.submissionId,
-        scores: payload.scores,
-        segment: payload.segment,
-        offerRoute: payload.offerRoute
+        scores: payload.result.scores,
+        segment: payload.result.segment,
+        offerRoute: payload.result.offerRoute
       });
       setStep("result");
       void trackEvent("quiz_completed", { submissionId: payload.submissionId });

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { isClientFlowQuizEventName } from "@/lib/clientflow-quiz/analytics/events";
 import { getClientFlowQuizConfig } from "@/lib/clientflow-quiz/config/registry";
 import { quizEventRequestSchema } from "@/lib/clientflow-quiz/schema";
+import { storeQuizEvent } from "@/lib/clientflow-quiz/storage/supabase";
 
 type RouteContext = {
   params: Promise<{ slug: string }>;
@@ -60,7 +61,18 @@ export async function POST(request: NextRequest, context: RouteContext) {
     submissionId: parsed.data.submissionId
   });
 
-  return successResponse({ stored: false, storage: "noop_phase_1" });
+  const storage = await storeQuizEvent({
+    quizSlug: config.slug,
+    eventName: parsed.data.eventName,
+    sessionId: parsed.data.sessionId,
+    submissionId: parsed.data.submissionId,
+    eventPayload: parsed.data.payload,
+    source: {
+      quizVersion: config.version
+    }
+  });
+
+  return successResponse({ stored: storage.status === "stored", storage: storage.status });
 }
 
 export function GET() {

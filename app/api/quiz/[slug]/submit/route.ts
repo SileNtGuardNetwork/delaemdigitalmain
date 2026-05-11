@@ -6,6 +6,10 @@ import { selectClientFlowOfferRoute } from "@/lib/clientflow-quiz/offer-routing"
 import { calculateClientFlowScores } from "@/lib/clientflow-quiz/scoring";
 import { quizSubmitRequestSchema } from "@/lib/clientflow-quiz/schema";
 import { assignClientFlowSegment } from "@/lib/clientflow-quiz/segmentation";
+import {
+  storeDeliveryLog,
+  storeQuizSubmission
+} from "@/lib/clientflow-quiz/storage/supabase";
 
 type RouteContext = {
   params: Promise<{ slug: string }>;
@@ -19,6 +23,12 @@ function successResponse(body: Record<string, unknown>, status = 200) {
 
 function errorResponse(code: string, message: string, status: number) {
   return NextResponse.json({ ok: false, error: { code, message } }, { status });
+}
+
+function generateSubmissionCode() {
+  const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+  const random = crypto.randomUUID().slice(0, 8).toUpperCase();
+  return `CFQ-${date}-${random}`;
 }
 
 async function readJsonSafely(request: NextRequest) {
@@ -68,28 +78,68 @@ export async function POST(request: NextRequest, context: RouteContext) {
   const scores = calculateClientFlowScores(config, parsed.data.answers);
   const segment = assignClientFlowSegment(config, scores.leadValue);
   const offerRoute = selectClientFlowOfferRoute(config, scores.leadValue);
-  const submissionId = `cfq_${crypto.randomUUID()}`;
+  const fallbackSubmissionId = `cfq_${crypto.randomUUID()}`;
+  const submissionCode = generateSubmissionCode();
+
+  const submissionStorage = await storeQuizSubmission({
+    config,
+    submissionCode,
+    contact: parsed.data.contact,
+    answers: parsed.data.answers,
+    scores,
+    segment,
+    offerRoute,
+    source: parsed.data.source ?? {},
+    consent: parsed.data.consent
+  });
+
+  const submissionId = submissionStorage.status === "stored" && submissionStorage.id ? submissionStorage.id : fallbackSubmissionId;
+  const [telegramDeliveryLog, crmDeliveryLog] = await Promise.all([
+    storeDeliveryLog({
+      submissionId: submissionStorage.status === "stored" ? submissionStorage.id : undefined,
+      channel: "telegram",
+      provider: "telegram_bot_api",
+      status: "skipped_phase_2a",
+      error: "Telegram integration is not enabled in Phase 2A."
+    }),
+    storeDeliveryLog({
+      submissionId: submissionStorage.status === "stored" ? submissionStorage.id : undefined,
+      channel: "webhook",
+      provider: "crm_webhook",
+      status: "skipped_phase_2a",
+      error: "CRM webhook integration is not enabled in Phase 2A."
+    })
+  ]);
 
   console.info("ClientFlow quiz submission accepted", {
     quizSlug: config.slug,
     quizVersion: config.version,
     submissionId,
+    submissionCode,
     segment: segment.id,
     offerRoute: offerRoute.id,
-    leadValue: scores.leadValue
+    leadValue: scores.leadValue,
+    storage: submissionStorage.status
   });
 
   return successResponse({
     submissionId,
-    scores,
-    segment,
-    offerRoute,
+    submissionCode,
+    result: {
+      scores,
+      segment,
+      offerRoute
+    },
+    storage: {
+      submission: submissionStorage.status,
+      telegramDeliveryLog: telegramDeliveryLog.status,
+      crmDeliveryLog: crmDeliveryLog.status
+    },
     integrations: {
-      storage: "noop_phase_1",
-      telegram: "noop_phase_1",
-      crmWebhook: "noop_phase_1",
-      ai: "noop_phase_1",
-      posthog: "noop_phase_1"
+      telegram: "noop_phase_2a",
+      crmWebhook: "noop_phase_2a",
+      ai: "noop_phase_2a",
+      posthog: "noop_phase_2a"
     }
   });
 }
