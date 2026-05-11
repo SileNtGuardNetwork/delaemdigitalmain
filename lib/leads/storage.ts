@@ -43,7 +43,11 @@ function safeErrorMessage(error: unknown) {
 }
 
 function sanitizeStorageError(error: string) {
-  return error.replace(/Bearer\s+[A-Za-z0-9._-]+/g, "Bearer [redacted]").slice(0, 240);
+  return error
+    .replace(/Bearer\s+[A-Za-z0-9._-]+/g, "Bearer [redacted]")
+    .replace(/bot[0-9]+:[A-Za-z0-9_-]+/g, "bot[redacted]")
+    .replace(/SUPABASE_SERVICE_ROLE_KEY\s*=\s*\S+/gi, "SUPABASE_SERVICE_ROLE_KEY=[redacted]")
+    .slice(0, 240);
 }
 
 function getSupabaseClient() {
@@ -103,65 +107,73 @@ export function getLeadNotificationStatus(delivery: LeadNotificationResult): Lea
 }
 
 export async function storeSiteLeadPending(input: StoreSiteLeadInput): Promise<LeadStorageResult> {
-  const supabase = getSupabaseClient();
-  if (!supabase) return getSupabaseEnv() ? { status: "failed", error: "storage_client_unavailable" } : { status: "skipped_missing_env" };
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return getSupabaseEnv() ? { status: "failed", error: "storage_client_unavailable" } : { status: "skipped_missing_env" };
 
-  return withStorageTimeout(async () => {
-    const { data, error } = await supabase
-      .from("site_leads")
-      .insert({
-        received_at: input.lead.receivedAt,
-        name: input.lead.name,
-        contact: input.lead.contact,
-        contact_type: input.contactType,
-        company: input.lead.company || null,
-        service: input.lead.service,
-        message: input.lead.message || null,
-        source: input.lead.source,
-        page: input.lead.page,
-        consent: input.lead.consent,
-        has_message: input.lead.message.length > 0,
-        delivery: {},
-        notification_status: "pending",
-        storage_metadata: {
-          version: "d2.4a",
-          storage_step: "pending_before_notifications"
-        }
-      })
-      .select("id")
-      .single();
+    return withStorageTimeout(async () => {
+      const { data, error } = await supabase
+        .from("site_leads")
+        .insert({
+          received_at: input.lead.receivedAt,
+          name: input.lead.name,
+          contact: input.lead.contact,
+          contact_type: input.contactType,
+          company: input.lead.company || null,
+          service: input.lead.service,
+          message: input.lead.message || null,
+          source: input.lead.source,
+          page: input.lead.page,
+          consent: input.lead.consent,
+          has_message: input.lead.message.length > 0,
+          delivery: {},
+          notification_status: "pending",
+          storage_metadata: {
+            version: "d2.4c",
+            storage_step: "pending_before_notifications"
+          }
+        })
+        .select("id")
+        .single();
 
-    if (error) {
-      return { status: "failed", error: sanitizeStorageError(error.message) };
-    }
+      if (error) {
+        return { status: "failed", error: sanitizeStorageError(error.message) };
+      }
 
-    return { status: "stored", id: data?.id };
-  });
+      return { status: "stored", id: data?.id };
+    });
+  } catch (error) {
+    return { status: "failed", error: sanitizeStorageError(safeErrorMessage(error)) };
+  }
 }
 
 export async function updateSiteLeadDelivery(input: UpdateSiteLeadDeliveryInput): Promise<LeadStorageResult> {
-  if (!input.id) return { status: "skipped_missing_env" };
+  try {
+    if (!input.id) return { status: "skipped_missing_env" };
 
-  const supabase = getSupabaseClient();
-  if (!supabase) return getSupabaseEnv() ? { status: "failed", error: "storage_client_unavailable" } : { status: "skipped_missing_env" };
+    const supabase = getSupabaseClient();
+    if (!supabase) return getSupabaseEnv() ? { status: "failed", error: "storage_client_unavailable" } : { status: "skipped_missing_env" };
 
-  return withStorageTimeout(async () => {
-    const { error } = await supabase
-      .from("site_leads")
-      .update({
-        delivery: input.delivery,
-        notification_status: input.notificationStatus,
-        storage_metadata: {
-          version: "d2.4a",
-          storage_step: "delivery_updated"
-        }
-      })
-      .eq("id", input.id);
+    return withStorageTimeout(async () => {
+      const { error } = await supabase
+        .from("site_leads")
+        .update({
+          delivery: input.delivery,
+          notification_status: input.notificationStatus,
+          storage_metadata: {
+            version: "d2.4c",
+            storage_step: "delivery_updated"
+          }
+        })
+        .eq("id", input.id);
 
-    if (error) {
-      return { status: "failed", error: sanitizeStorageError(error.message) };
-    }
+      if (error) {
+        return { status: "failed", error: sanitizeStorageError(error.message) };
+      }
 
-    return { status: "stored", id: input.id };
-  });
+      return { status: "stored", id: input.id };
+    });
+  } catch (error) {
+    return { status: "failed", error: sanitizeStorageError(safeErrorMessage(error)) };
+  }
 }

@@ -8,6 +8,8 @@ import {
   updateSiteLeadDelivery
 } from "@/lib/leads/storage";
 
+export const runtime = "nodejs";
+
 type FieldErrors = Partial<Record<"name" | "contact" | "company" | "service" | "message" | "consent", string>>;
 
 type LeadPayload = {
@@ -24,6 +26,15 @@ type LeadPayload = {
 };
 
 const MAX_BODY_LENGTH = 12_000;
+
+type LeadRouteStage =
+  | "read_payload"
+  | "validate"
+  | "storage_insert"
+  | "notifications"
+  | "storage_update"
+  | "accepted_response"
+  | "unknown";
 
 function jsonResponse(body: unknown, status: number) {
   return NextResponse.json(body, { status });
@@ -43,6 +54,28 @@ function getContactType(contact: string): LeadContactType {
   if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) return "email";
   if (/^[+\d][\d\s().-]{5,}$/.test(contact)) return "phone";
   return contact ? "other" : "empty";
+}
+
+function getSafeErrorName(error: unknown) {
+  return error instanceof Error ? error.name.slice(0, 80) : "unknown_error";
+}
+
+function getSafeErrorMessage(error: unknown) {
+  const message = error instanceof Error ? error.message : "Unknown lead route error.";
+  return message
+    .replace(/Bearer\s+[A-Za-z0-9._-]+/g, "Bearer [redacted]")
+    .replace(/bot[0-9]+:[A-Za-z0-9_-]+/g, "bot[redacted]")
+    .replace(/SUPABASE_SERVICE_ROLE_KEY\s*=\s*\S+/gi, "SUPABASE_SERVICE_ROLE_KEY=[redacted]")
+    .slice(0, 160);
+}
+
+function logLeadRouteFailure(stage: LeadRouteStage, error: unknown) {
+  console.error("Lead route failed", {
+    event: "lead_route_failed",
+    stage,
+    errorName: getSafeErrorName(error),
+    errorMessage: getSafeErrorMessage(error)
+  });
 }
 
 function logLeadAccepted(input: {
@@ -67,6 +100,26 @@ function logLeadAccepted(input: {
     receivedAt: input.receivedAt,
     result: "accepted"
   });
+}
+
+async function safelyStoreSiteLeadPending(
+  input: Parameters<typeof storeSiteLeadPending>[0]
+): Promise<LeadStorageResult> {
+  try {
+    return await storeSiteLeadPending(input);
+  } catch (error) {
+    return { status: "failed", error: getSafeErrorMessage(error) };
+  }
+}
+
+async function safelyUpdateSiteLeadDelivery(
+  input: Parameters<typeof updateSiteLeadDelivery>[0]
+): Promise<LeadStorageResult> {
+  try {
+    return await updateSiteLeadDelivery(input);
+  } catch (error) {
+    return { status: "failed", error: getSafeErrorMessage(error) };
+  }
 }
 
 function logLeadStorageFailure(stage: "insert" | "update", result: LeadStorageResult) {
@@ -110,7 +163,10 @@ async function readJsonSafely(request: NextRequest): Promise<LeadPayload | null>
 }
 
 export async function POST(request: NextRequest) {
+  let stage: LeadRouteStage = "unknown";
+
   try {
+    stage = "read_payload";
     const payload = await readJsonSafely(request);
 
     if (!payload) {
@@ -126,6 +182,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    stage = "validate";
     const honeypot = normalize(payload.website ?? payload.company_website_hidden, 200);
     if (honeypot) {
       return jsonResponse(
@@ -197,7 +254,8 @@ export async function POST(request: NextRequest) {
     };
 
     const contactType = getContactType(contact);
-    const storage = await storeSiteLeadPending({
+    stage = "storage_insert";
+    const storage = await safelyStoreSiteLeadPending({
       lead: sanitizedLead,
       contactType
     });
@@ -208,6 +266,7 @@ export async function POST(request: NextRequest) {
       email: "failed"
     };
 
+    stage = "notifications";
     try {
       delivery = await sendLeadNotifications(sanitizedLead);
     } catch {
@@ -220,7 +279,8 @@ export async function POST(request: NextRequest) {
 
     logFailedDeliveries(delivery);
     if (storage.status === "stored") {
-      const storageUpdate = await updateSiteLeadDelivery({
+      stage = "storage_update";
+      const storageUpdate = await safelyUpdateSiteLeadDelivery({
         id: storage.id,
         delivery,
         notificationStatus: getLeadNotificationStatus(delivery)
@@ -228,6 +288,7 @@ export async function POST(request: NextRequest) {
       logLeadStorageFailure("update", storageUpdate);
     }
 
+    stage = "accepted_response";
     logLeadAccepted({
       source,
       page,
@@ -246,7 +307,9 @@ export async function POST(request: NextRequest) {
       },
       200
     );
-  } catch {
+  } catch (error) {
+    logLeadRouteFailure(stage, error);
+
     return jsonResponse(
       {
         ok: false,
