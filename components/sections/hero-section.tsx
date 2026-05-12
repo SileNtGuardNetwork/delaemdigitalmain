@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 
-const routeItems = ["Оффер", "Сайт / Квиз", "Трафик", "Заявка"];
+const flowSignals = ["Источник", "Лендинг", "Заявка", "Передача"];
 
 export function HeroSection() {
   return (
@@ -23,21 +23,14 @@ export function HeroSection() {
             <a className="button button-primary" href="#contacts" data-analytics-event="cta_primary_click" data-analytics-label="hero_primary" data-analytics-value="#contacts">Разбор системы</a>
             <a className="button button-secondary" href={siteConfig.telegramChannelUrl} target="_blank" rel="noreferrer" data-analytics-event="telegram_channel_click" data-analytics-label="hero_telegram_channel" data-analytics-value={siteConfig.telegramChannelUrl}>Telegram-канал</a>
           </div>
-
-          <div className="hero-route" aria-label="Маршрут ClientFlow Аудита">
-            <div className="hero-route-title">ClientFlow Аудит</div>
-            <div className="hero-route-items">
-              {routeItems.map((item, index) => (
-                <div className="hero-route-part" key={item}>
-                  <span>{item}</span>
-                  {index < routeItems.length - 1 && <i aria-hidden="true" />}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         <div className="hero-stage">
+          <div className="hero-flow-signal" aria-label="Маршрут ClientFlow: источник, лендинг, заявка, передача">
+            {flowSignals.map((signal) => (
+              <span key={signal}>{signal}</span>
+            ))}
+          </div>
           <figure className="hero-founder" aria-label="Портрет Виталия Тимошенко">
             <div className="hero-scene-line hero-scene-line-top" aria-hidden="true" />
             <div className="hero-scene-line hero-scene-line-right" aria-hidden="true" />
