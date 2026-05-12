@@ -14,7 +14,7 @@ export function CookieBanner() {
   return (
     <div className="cookie-banner card" role="dialog" aria-label="Cookie">
       <p>
-        Мы используем cookie для корректной работы сайта и улучшения пользовательского опыта. <a href="/cookies" data-analytics-event="legal_link_click" data-analytics-label="cookie_notice_more" data-analytics-value="/cookies">Подробнее</a>.
+        Мы используем cookie и localStorage для корректной работы сайта, сохранения настроек и анализа посещений, если аналитика включена. <a href="/cookies" data-analytics-event="legal_link_click" data-analytics-label="cookie_notice_more" data-analytics-value="/cookies">Подробнее</a>.
       </p>
       <button
         className="button button-primary"
@@ -27,7 +27,7 @@ export function CookieBanner() {
           setVisible(false);
         }}
       >
-        Принять
+        Понятно
       </button>
     </div>
   );
