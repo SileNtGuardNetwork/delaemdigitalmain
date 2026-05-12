@@ -14,6 +14,16 @@ type LeadResponse = {
   fieldErrors?: FieldErrors;
 };
 
+type AttributionState = {
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_content: string;
+  utm_term: string;
+  referrer: string;
+  landing_path: string;
+};
+
 const serviceOptions = [
   "ClientFlow Аудит",
   "Делаем Сайт",
@@ -37,8 +47,22 @@ const pricingIntentToService: Record<string, (typeof serviceOptions)[number]> = 
   "delaem-system": serviceOptions[3]
 };
 
+const initialAttribution: AttributionState = {
+  utm_source: "",
+  utm_medium: "",
+  utm_campaign: "",
+  utm_content: "",
+  utm_term: "",
+  referrer: "",
+  landing_path: ""
+};
+
 function getSafeLeadSource(value: string | null) {
   return value === "pricing" ? "pricing" : "final-cta";
+}
+
+function getSafeAttributionValue(value: string | null, maxLength: number) {
+  return (value ?? "").replace(/\s+/g, " ").trim().slice(0, maxLength);
 }
 
 function getClientFieldErrors(fields: typeof initialFields, consent: boolean) {
@@ -64,6 +88,7 @@ export function ContactForm() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [statusMessage, setStatusMessage] = useState("");
   const [leadSource, setLeadSource] = useState("final-cta");
+  const [attribution, setAttribution] = useState<AttributionState>(initialAttribution);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -75,6 +100,15 @@ export function ContactForm() {
     }
 
     setLeadSource(getSafeLeadSource(params.get("source")));
+    setAttribution({
+      utm_source: getSafeAttributionValue(params.get("utm_source"), 180),
+      utm_medium: getSafeAttributionValue(params.get("utm_medium"), 180),
+      utm_campaign: getSafeAttributionValue(params.get("utm_campaign"), 180),
+      utm_content: getSafeAttributionValue(params.get("utm_content"), 180),
+      utm_term: getSafeAttributionValue(params.get("utm_term"), 180),
+      referrer: getSafeAttributionValue(document.referrer, 500),
+      landing_path: getSafeAttributionValue(`${window.location.pathname}${window.location.search}`, 500)
+    });
   }, []);
 
   function updateField(name: keyof typeof initialFields, value: string) {
@@ -123,7 +157,8 @@ export function ContactForm() {
           ...fields,
           consent,
           source: leadSource,
-          page: typeof window === "undefined" ? "/" : window.location.pathname
+          page: typeof window === "undefined" ? "/" : window.location.pathname,
+          ...attribution
         })
       });
 

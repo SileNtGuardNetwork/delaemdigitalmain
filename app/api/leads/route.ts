@@ -23,6 +23,13 @@ type LeadPayload = {
   company_website_hidden?: unknown;
   source?: unknown;
   page?: unknown;
+  utm_source?: unknown;
+  utm_medium?: unknown;
+  utm_campaign?: unknown;
+  utm_content?: unknown;
+  utm_term?: unknown;
+  referrer?: unknown;
+  landing_path?: unknown;
 };
 
 const MAX_BODY_LENGTH = 12_000;
@@ -80,10 +87,12 @@ function logLeadRouteFailure(stage: LeadRouteStage, error: unknown) {
 
 function logLeadAccepted(input: {
   source: string;
-  page: string;
   service: string;
   hasMessage: boolean;
   contactType: string;
+  hasAttribution: boolean;
+  hasUtm: boolean;
+  hasReferrer: boolean;
   receivedAt: string;
   storage: LeadStorageResult["status"];
   delivery: LeadNotificationResult;
@@ -91,10 +100,12 @@ function logLeadAccepted(input: {
   console.info("Lead accepted", {
     event: "lead_accepted",
     source: input.source,
-    page: input.page,
     service: input.service,
     hasMessage: input.hasMessage,
     contactType: input.contactType,
+    hasAttribution: input.hasAttribution,
+    hasUtm: input.hasUtm,
+    hasReferrer: input.hasReferrer,
     storage: input.storage,
     delivery: input.delivery,
     receivedAt: input.receivedAt,
@@ -201,6 +212,24 @@ export async function POST(request: NextRequest) {
     const message = normalize(payload.message, 1000);
     const source = normalize(payload.source, 80);
     const page = normalize(payload.page, 300);
+    const attribution = {
+      utmSource: normalize(payload.utm_source, 180),
+      utmMedium: normalize(payload.utm_medium, 180),
+      utmCampaign: normalize(payload.utm_campaign, 180),
+      utmContent: normalize(payload.utm_content, 180),
+      utmTerm: normalize(payload.utm_term, 180),
+      referrer: normalize(payload.referrer, 500),
+      landingPath: normalize(payload.landing_path, 500)
+    };
+    const hasUtm = [
+      attribution.utmSource,
+      attribution.utmMedium,
+      attribution.utmCampaign,
+      attribution.utmContent,
+      attribution.utmTerm
+    ].some(Boolean);
+    const hasReferrer = attribution.referrer.length > 0;
+    const hasAttribution = hasUtm || hasReferrer || attribution.landingPath.length > 0;
     const consent = payload.consent === true;
 
     const fieldErrors: FieldErrors = {};
@@ -250,6 +279,7 @@ export async function POST(request: NextRequest) {
       consent,
       source,
       page,
+      attribution,
       receivedAt: new Date().toISOString()
     };
 
@@ -291,10 +321,12 @@ export async function POST(request: NextRequest) {
     stage = "accepted_response";
     logLeadAccepted({
       source,
-      page,
       service,
       hasMessage: message.length > 0,
       contactType,
+      hasAttribution,
+      hasUtm,
+      hasReferrer,
       receivedAt: sanitizedLead.receivedAt,
       storage: storage.status,
       delivery
