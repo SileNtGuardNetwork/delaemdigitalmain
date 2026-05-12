@@ -23,11 +23,23 @@ export function generateMetadata({ params }: { params: PageParams }): Metadata {
     };
   }
 
+  const canonicalPath = item.seo?.canonicalPath ?? `/cases/${item.slug}`;
+  const title = item.seo?.title ?? item.title;
+  const description = item.seo?.description ?? item.excerpt;
+
   return {
     metadataBase: new URL(seoConfig.baseUrl),
-    title: item.seo?.title ?? item.title,
-    description: item.seo?.description ?? item.excerpt,
-    keywords: item.seo?.keywords
+    title,
+    description,
+    keywords: item.seo?.keywords,
+    alternates: {
+      canonical: canonicalPath
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${seoConfig.baseUrl}${canonicalPath}`
+    }
   };
 }
 

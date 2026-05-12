@@ -5,10 +5,21 @@ import { Footer } from "@/components/layout/footer";
 import { seoConfig } from "@/lib/seo";
 import { getPublishedArticles } from "@/lib/content";
 
+const articlesTitle = "Статьи";
+const articlesDescription = "Фонд будущих материалов о ClientFlow System, сайтах, трафике, Telegram, AI и управляемой системе привлечения клиентов.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(seoConfig.baseUrl),
-  title: "Статьи",
-  description: "Фонд будущих материалов о ClientFlow System, сайтах, трафике, Telegram, AI и управляемой системе привлечения клиентов."
+  title: articlesTitle,
+  description: articlesDescription,
+  alternates: {
+    canonical: "/articles"
+  },
+  openGraph: {
+    title: articlesTitle,
+    description: articlesDescription,
+    url: `${seoConfig.baseUrl}/articles`
+  }
 };
 
 export default function ArticlesPage() {

@@ -5,10 +5,21 @@ import { Footer } from "@/components/layout/footer";
 import { seoConfig } from "@/lib/seo";
 import { getPublishedCases } from "@/lib/content";
 
+const casesTitle = "Кейсы";
+const casesDescription = "Фонд будущих кейсов ClientFlow System. Материалы будут опубликованы после финальной упаковки и проверки.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(seoConfig.baseUrl),
-  title: "Кейсы",
-  description: "Фонд будущих кейсов ClientFlow System. Материалы будут опубликованы после финальной упаковки и проверки."
+  title: casesTitle,
+  description: casesDescription,
+  alternates: {
+    canonical: "/cases"
+  },
+  openGraph: {
+    title: casesTitle,
+    description: casesDescription,
+    url: `${seoConfig.baseUrl}/cases`
+  }
 };
 
 export default function CasesPage() {
