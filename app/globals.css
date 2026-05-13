@@ -6327,3 +6327,32 @@ section[id],
     letter-spacing: 0.055em;
   }
 }
+
+/* D3.2R-g hero portrait asset integration */
+.hero-founder img {
+  filter: saturate(0.98) contrast(1.04) brightness(1.03);
+  object-position: center top;
+}
+
+.hero-photo-aura {
+  background:
+    radial-gradient(circle at 58% 18%, rgba(180, 210, 245, 0.06), transparent 24%),
+    radial-gradient(circle at 76% 42%, rgba(95, 138, 190, 0.13), transparent 32%),
+    linear-gradient(90deg, rgba(6, 10, 17, 0.12), transparent 44%);
+}
+
+.hero-photo-fade {
+  height: 32%;
+  background:
+    linear-gradient(0deg, rgba(5, 8, 13, 0.72), rgba(5, 8, 13, 0.12) 68%, rgba(5, 8, 13, 0));
+}
+
+@media (max-width: 640px) {
+  .hero-founder img {
+    filter: saturate(0.98) contrast(1.035) brightness(1.06);
+  }
+
+  .hero-photo-fade {
+    height: 28%;
+  }
+}

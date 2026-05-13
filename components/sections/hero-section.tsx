@@ -36,7 +36,7 @@ export function HeroSection() {
             <div className="hero-scene-line hero-scene-line-right" aria-hidden="true" />
             <div className="hero-photo-aura" aria-hidden="true" />
             <Image
-              src="/images/vitaly-hero-dark.webp"
+              src="/images/vitaly-hero-cinematic.webp"
               alt="Виталий Тимошенко, основатель Делаем Диджитал"
               width={960}
               height={1200}
