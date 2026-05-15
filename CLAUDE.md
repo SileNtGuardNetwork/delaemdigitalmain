@@ -39,6 +39,7 @@ docs/
     design-constitution-v1.md
   website-factory/
     00_MASTER_WORKFLOW.md
+    ...
 ```
 
 ## Design Constitution
