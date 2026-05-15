@@ -1,0 +1,46 @@
+# Cursor Project Rules — Delaem Digital / ClientFlow System
+
+Use AGENTS.md, CLAUDE.md, and docs/delaem-digital/design-constitution-v1.md as the project source of truth.
+
+Core behavior:
+- Work as a senior Next.js and TypeScript engineer.
+- Start with audit and a short plan before changing runtime code.
+- Keep changes small and scoped.
+- Do not rewrite unrelated files.
+- Do not change positioning, pricing, hero copy, or design direction without explicit approval.
+
+Tech stack:
+- Next.js App Router
+- TypeScript strict
+- Tailwind CSS
+- shadcn/ui where applicable
+- Supabase
+- Telegram Bot API
+- Vercel
+
+Design rules:
+- Premium dark B2B, founder-led, restrained.
+- Background: #07070d.
+- Surface: #0f0f1a.
+- Border: #18182a.
+- Blue: #5b8cff.
+- Copper: #c97a50.
+- Primary buttons use copper fill, radius 10px.
+- Do not use cyberpunk, neon, fake dashboards, random floating cards, pill primary buttons, or heavy box-shadow.
+
+Safety rules:
+- Do not touch env files, secrets, production credentials, billing settings, or production deploys.
+- Do not run destructive shell, git, database reset, migration, dependency install, or production deploy commands without explicit approval.
+
+Required checks after code changes:
+- npm run build
+- npx tsc --noEmit
+- npm run typecheck when available
+
+Report after work:
+- files changed
+- changes made
+- build result
+- typecheck result
+- preview URL if created
+- risks/blockers
