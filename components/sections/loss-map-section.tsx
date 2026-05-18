@@ -15,13 +15,15 @@ export function LossMapSection() {
         <p className="section-text">
           Проблема не в инструменте. Проблема в маршруте.
         </p>
-        <div className="loss-grid">
+        <div className="loss-route" role="list">
           {route.map(([index, title, loss]) => (
-            <div className="route-card d1-route-card" key={title}>
-              <div className="route-index">{index}</div>
-              <div className="route-marker" aria-hidden="true" />
-              <div className="route-title">{title}</div>
-              <div className="route-loss">Утечка: {loss}</div>
+            <div className="loss-route-step route-card d1-route-card" key={title} role="listitem">
+              <span className="loss-route-dot" aria-hidden="true" />
+              <div className="loss-route-body">
+                <span className="route-index">{index}</span>
+                <span className="route-title">{title}</span>
+                <span className="route-loss">Утечка: {loss}</span>
+              </div>
             </div>
           ))}
         </div>

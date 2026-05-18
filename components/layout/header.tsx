@@ -5,9 +5,11 @@ export function Header() {
   return (
     <header className="header">
       <div className="container header-inner">
-        <a className="wordmark" href="#top" aria-label="Делаем Диджитал">
-          Делаем Диджитал
-        </a>
+        <div className="header-brand">
+          <a className="wordmark" href="#top" aria-label="Делаем Диджитал">
+            Делаем Диджитал
+          </a>
+        </div>
 
         <nav className="nav" aria-label="Основная навигация">
           {navigation.map((item) => (
