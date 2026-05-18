@@ -1,5 +1,17 @@
+import {
+  CopperCheckIcon,
+  DdContainer,
+  DdH2,
+  DdH3,
+  DdLabel,
+  DdSub,
+  FlowPath,
+  KickerLine,
+  SectionFrame,
+  SectionIndex
+} from "@/components/sections/dd-ui";
+
 const fragmentedTags = ["Сайт", "Реклама", "Telegram", "CRM", "Контент", "AI"] as const;
-const connectedTags = ["Сайт", "Реклама", "Telegram", "CRM", "AI"] as const;
 
 const fragmentedList = [
   "Стыки между каналами не описаны",
@@ -10,26 +22,18 @@ const fragmentedList = [
 const connectedList = [
   "Каждый стык описан и измеряем",
   "Один ответственный за результат",
-  "Клиент доходит до заявки, а не уходит к конкуренту"
+  "Клиент доходит до заявки — а не уходит к конкуренту"
 ] as const;
 
 const flowSteps = ["Внимание", "Доверие", "Заявка", "Обработка", "Аналитика", "Улучшение"] as const;
 
-function FlowArrow() {
+function TagArrow() {
   return (
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden className="shrink-0 opacity-70">
-      <path d="M0 4H8M8 4L5 1M8 4L5 7" stroke="var(--dd-action-copper)" strokeWidth="1" />
-    </svg>
-  );
-}
-
-function CopperCheck() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden className="mt-0.5 shrink-0">
+    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden className="shrink-0 text-[var(--dd-action-copper)] opacity-70">
       <path
-        d="M2.5 7.2L5.4 10.1L11.5 3.9"
-        stroke="var(--dd-action-copper)"
-        strokeWidth="1.4"
+        d="M0 4h8M5.5 1 9 4l-3.5 3"
+        stroke="currentColor"
+        strokeWidth="1.3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -39,126 +43,163 @@ function CopperCheck() {
 
 export function ContextSection() {
   return (
-    <section id="context" className="bg-[var(--dd-canvas-obsidian)] px-6 py-24 font-[family-name:var(--dd-font-primary)] md:px-[60px]">
-      <div className="mb-14 flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-        <div className="max-w-3xl">
-          <div className="mb-4 inline-flex items-center gap-3">
-            <span className="h-px w-[22px] bg-[var(--dd-action-copper)]" aria-hidden />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--dd-action-copper)]">
-              Контекст рынка
-            </span>
+    <SectionFrame id="context" bg="#080C12" fadeTo="#080C12" className="min-h-[900px]">
+      <DdContainer className="py-24">
+        <div className="mb-12 flex flex-col items-start justify-between gap-8 lg:flex-row">
+          <div className="flex max-w-[880px] flex-col gap-[22px]">
+            <KickerLine>Контекст рынка · § 02</KickerLine>
+            <DdH2 className="max-w-[900px]">
+              Digital-инструменты уже есть.
+              <br />
+              <span className="font-bold text-[var(--dd-text-secondary)]">Связанного пути клиента —</span>{" "}
+              <span className="text-[var(--dd-diagnostic-blue)]">часто нет</span>.
+            </DdH2>
+            <DdSub className="max-w-[560px]">
+              Бизнес запускает сайт, рекламу, Telegram, CRM, контент и нейросети. Но если эти элементы не соединены в
+              единый маршрут, клиент проходит между ними с потерями: увидел рекламу, не понял ценность, не оставил
+              заявку, написал в мессенджер, не получил вовремя ответ — и ушёл.
+            </DdSub>
           </div>
-          <h2 className="text-[clamp(32px,3.5vw,44px)] font-extrabold leading-[1.1] tracking-[-0.025em] text-[var(--dd-text-primary)]">
-            Digital-инструменты уже есть.
-            <br />
-            Связанного пути клиента — <span className="text-[#5f8ed8]">нет.</span>
-          </h2>
-          <p className="mt-5 max-w-[560px] text-[17px] leading-[1.6] text-[var(--dd-text-secondary)]">
-            Бизнес запускает сайт, рекламу, Telegram и CRM. Но без единого маршрута клиент теряется между ними — и
-            уходит к конкуренту.
-          </p>
+          <SectionIndex n={2} />
         </div>
-      </div>
 
-      <div className="mt-2 grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <article className="flex min-h-[320px] flex-col gap-5 rounded-[20px] border border-[var(--dd-border-steel)] bg-[rgba(8,12,18,0.55)] p-8">
-          <div className="flex items-start justify-between gap-4">
-            <span className="rounded-full border border-[rgba(214,106,106,0.25)] bg-[rgba(214,106,106,0.08)] px-3 py-1 text-xs font-semibold text-[#d66a6a]">
-              Как обычно
-            </span>
-            <span className="font-mono text-[11px] text-[var(--dd-text-muted)]">разрозненный digital</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {fragmentedTags.map((tag) => (
+        <div className="mt-2 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
+          <div
+            className="flex min-h-[360px] flex-col gap-[22px] p-8"
+            style={{
+              background: "rgba(8,12,18,.55)",
+              border: "1px solid var(--dd-border-steel)",
+              borderRadius: "var(--dd-radius-lg)"
+            }}
+          >
+            <div className="flex items-center justify-between">
               <span
-                key={tag}
-                className="rounded-[20px] border border-dashed border-[rgba(214,106,106,0.25)] bg-[rgba(8,12,18,0.6)] px-3 py-1.5 text-xs text-[var(--dd-text-secondary)]"
+                className="inline-flex items-center gap-2 rounded-full px-[11px] py-[5px] text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-danger)]"
+                style={{
+                  background: "rgba(214,106,106,.08)",
+                  border: "1px solid rgba(214,106,106,.28)"
+                }}
               >
-                {tag}
+                <span className="h-[5px] w-[5px] rounded-full bg-[var(--dd-danger)]" aria-hidden />
+                Как обычно
               </span>
-            ))}
-          </div>
-          <p className="mt-auto text-sm leading-[1.6] text-[var(--dd-text-secondary)]">
-            Каждый инструмент — отдельный подрядчик, отдельный отчёт. Между ними пустота, в которую утекает внимание
-            клиента.
-          </p>
-          <ul className="flex flex-col gap-2.5">
-            {fragmentedList.map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-sm text-[var(--dd-text-secondary)]">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#d66a6a]" aria-hidden />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </article>
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
+                config · disconnected
+              </span>
+            </div>
 
-        <article
-          className="flex min-h-[320px] flex-col gap-5 rounded-[20px] border border-[rgba(184,121,75,0.42)] p-8 shadow-[0_22px_58px_rgba(0,0,0,0.32)]"
-          style={{
-            background: "linear-gradient(rgba(20,14,9,0.55), rgba(14,22,34,0.65))"
-          }}
-        >
-          <div className="flex items-start justify-between gap-4">
-            <span className="rounded-full border border-[rgba(184,121,75,0.4)] bg-[rgba(184,121,75,0.1)] px-3 py-1 text-xs font-semibold text-[var(--dd-action-copper)]">
-              У нас
-            </span>
-            <span className="font-mono text-[11px] text-[var(--dd-text-muted)]">единый маршрут</span>
-          </div>
-          <div className="flex flex-wrap items-center gap-1.5">
-            {connectedTags.map((tag, index) => (
-              <span key={tag} className="inline-flex items-center gap-1.5">
-                <span className="rounded-[20px] border border-[rgba(184,121,75,0.4)] bg-[rgba(184,121,75,0.08)] px-3 py-1.5 text-xs font-semibold text-[var(--dd-text-primary)]">
+            <DdH3>Разрозненный digital</DdH3>
+
+            <div className="-mt-1 flex flex-wrap gap-2">
+              {fragmentedTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full px-3 py-[7px] text-xs font-medium text-[var(--dd-text-secondary)]"
+                  style={{
+                    border: "1px dashed rgba(214,106,106,.3)",
+                    background: "rgba(8,12,18,.6)"
+                  }}
+                >
                   {tag}
                 </span>
-                {index < connectedTags.length - 1 ? <FlowArrow /> : null}
-              </span>
-            ))}
-          </div>
-          <p className="mt-auto text-sm leading-[1.6] text-[var(--dd-text-secondary)]">
-            Те же инструменты, но в одном маршруте: от первого касания до заявки. Каждый стык описан. Один
-            ответственный за результат.
-          </p>
-          <ul className="flex flex-col gap-2.5">
-            {connectedList.map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-sm text-[var(--dd-text-secondary)]">
-                <CopperCheck />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </article>
-      </div>
+              ))}
+            </div>
 
-      <div className="mt-9 rounded-2xl border border-[var(--dd-border-cool)] bg-[rgba(14,22,34,0.55)] px-6 py-5">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dd-action-copper)]">
-            Связанный маршрут клиента
-          </p>
-          <span className="font-mono text-[11px] text-[var(--dd-text-muted)]">6 этапов · один путь</span>
-        </div>
-        <div className="mt-4 flex flex-wrap items-center gap-2">
-          {flowSteps.map((step, index) => (
-            <span key={step} className="inline-flex items-center gap-2">
+            <p className="mt-auto text-sm leading-[1.65] text-[var(--dd-text-secondary)]">
+              Каждый инструмент запущен отдельно: свой подрядчик, своя метрика, свой отчёт. Между ними — пустота, в
+              которую утекает внимание клиента.
+            </p>
+
+            <ul className="flex flex-col gap-2.5">
+              {fragmentedList.map((item) => (
+                <li key={item} className="flex gap-2.5 text-[13px] text-[var(--dd-text-secondary)]">
+                  <span
+                    className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-[var(--dd-danger)] opacity-85"
+                    aria-hidden
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div
+            className="relative flex min-h-[360px] flex-col gap-[22px] overflow-hidden p-8"
+            style={{
+              background: "linear-gradient(180deg, rgba(20,14,9,.55) 0%, rgba(14,22,34,.65) 100%)",
+              border: "1px solid rgba(184,121,75,.42)",
+              borderRadius: "var(--dd-radius-lg)",
+              boxShadow: "0 22px 58px rgba(0,0,0,.32)"
+            }}
+          >
+            <div className="flex items-center justify-between">
               <span
-                className={`inline-flex items-center gap-2 text-sm ${
-                  index < 2 ? "text-[var(--dd-text-primary)]" : "text-[var(--dd-text-muted)]"
-                }`}
+                className="inline-flex items-center gap-2 rounded-full px-[11px] py-[5px] text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-copper)]"
+                style={{
+                  background: "rgba(184,121,75,.1)",
+                  border: "1px solid rgba(184,121,75,.4)"
+                }}
               >
-                <span
-                  className={`h-1.5 w-1.5 rounded-full ${
-                    index < 2 ? "bg-[var(--dd-action-copper)]" : "bg-[rgba(148,163,184,0.35)]"
-                  }`}
-                  aria-hidden
-                />
-                {step}
+                <span className="h-[5px] w-[5px] rounded-full bg-[var(--dd-action-copper)]" aria-hidden />
+                У нас
               </span>
-              {index < flowSteps.length - 1 ? (
-                <span className="h-px w-6 bg-[rgba(184,121,75,0.4)]" aria-hidden />
-              ) : null}
-            </span>
-          ))}
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
+                config · linked
+              </span>
+            </div>
+
+            <DdH3>ClientFlow-подход</DdH3>
+
+            <div className="flex flex-wrap items-center gap-1.5">
+              {fragmentedTags.map((tag, index) => (
+                <div key={tag} className="inline-flex items-center gap-1.5">
+                  <span
+                    className="rounded-full px-3 py-[7px] text-xs font-semibold text-[var(--dd-text-primary)]"
+                    style={{
+                      border: "1px solid rgba(184,121,75,.4)",
+                      background: "rgba(184,121,75,.08)"
+                    }}
+                  >
+                    {tag}
+                  </span>
+                  {index < fragmentedTags.length - 1 ? <TagArrow /> : null}
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-auto text-sm leading-[1.65] text-[var(--dd-text-secondary)]">
+              Те же инструменты, но собраны в маршрут: от первого касания до заявки и дальше к сделке. Между шагами —
+              описанные регламенты и сквозная аналитика.
+            </p>
+
+            <ul className="flex flex-col gap-2.5">
+              {connectedList.map((item) => (
+                <li key={item} className="flex gap-2.5 text-[13px] text-[var(--dd-text-secondary)]">
+                  <CopperCheckIcon className="mt-1 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-    </section>
+
+        <div
+          className="mt-9 flex flex-col gap-3.5 p-5 md:p-6"
+          style={{
+            border: "1px solid var(--dd-border-cool)",
+            borderRadius: "var(--dd-radius-md)",
+            background: "rgba(14,22,34,.55)"
+          }}
+        >
+          <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+            <DdLabel className="tracking-[0.16em]">Связанный маршрут клиента</DdLabel>
+            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--dd-text-muted)]">
+              6 stages · single route
+            </span>
+          </div>
+          <FlowPath steps={flowSteps} activeIndex={1} />
+        </div>
+      </DdContainer>
+    </SectionFrame>
   );
 }

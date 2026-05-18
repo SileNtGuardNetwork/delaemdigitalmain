@@ -1,127 +1,200 @@
-import { CopperCheck, SectionKicker } from "@/components/sections/section-ui";
+"use client";
 
-const services = [
+import { useState } from "react";
+import {
+  CopperCheckIcon,
+  DdContainer,
+  DdH2,
+  DdLabel,
+  DdSub,
+  PrimaryBtn,
+  SectionFrame,
+  SectionIndex,
+  SteelCheckIcon
+} from "@/components/sections/dd-ui";
+
+type TierId = "site" | "flow" | "system";
+
+const tiers = [
   {
-    level: "Уровень 01",
+    id: "site" as const,
+    kicker: "Уровень 01",
     title: "Делаем Сайт",
-    tagline: "Одна посадочная под одну задачу.",
-    price: "от 150 000 ₽",
-    items: ["Оффер и структура", "Дизайн и адаптив", "Базовая аналитика и события", "Поддержка 30 дней"],
-    when: "Когда нужна быстрая точка приземления для одной кампании.",
+    subtitle: "Одна посадочная под одну задачу",
+    time: "3–4 недели",
+    from: "от 150 000 ₽",
+    includes: ["Оффер и структура", "Дизайн + вёрстка", "Базовая аналитика", "Тест на 1–2 каналах"],
+    fit: "Когда нужна быстрая точка приземления для одной кампании.",
     cta: "Обсудить сайт",
-    href: "?service=delaem-site&source=services#contacts",
-    featured: false
+    href: "?service=delaem-site&source=services#contacts"
   },
   {
-    level: "Уровень 02",
+    id: "flow" as const,
+    kicker: "Уровень 02 · Чаще выбирают",
     title: "Делаем Трафик",
-    tagline: "Связка трафик — посадочная с управляемым результатом.",
-    price: "от 250 000 ₽",
-    items: [
-      "Всё из «Делаем Сайт»",
+    subtitle: "Связка трафик → сайт → CRM",
+    time: "6–8 недель",
+    from: "от 250 000 ₽",
+    includes: [
+      "Всё из «Посадочной»",
       "Три канала трафика",
-      "Квалификация и скоринг",
-      "CRM-маршрут и стадии",
+      "Квалификация и CRM-маршрут",
       "Сквозная аналитика",
       "Серии дожима"
     ],
-    when: "Когда нужен предсказуемый объём заявок месяц-в-месяц.",
+    fit: "Когда нужен предсказуемый объём заявок месяц-в-месяц.",
     cta: "Обсудить трафик",
-    href: "?service=delaem-traffic&source=services#contacts",
-    featured: true
+    href: "?service=delaem-traffic&source=services#contacts"
   },
   {
-    level: "Уровень 03",
+    id: "system" as const,
+    kicker: "Уровень 03",
     title: "Делаем Систему",
-    tagline: "Все семь компонентов под ключ.",
-    price: "от 350 000 ₽",
-    items: [
-      "Всё из «Делаем Трафик»",
+    subtitle: "Все семь компонентов под ключ",
+    time: "10–14 недель",
+    from: "от 350 000 ₽",
+    includes: [
+      "Всё из «Потока»",
       "AI-квалификация заявок",
       "Регламенты и обучение продаж",
-      "Сборка и передача под ключ",
-      "Персональный аналитик на проекте",
+      "Спринт-цикл оптимизации",
       "Сопровождение 6 мес."
     ],
-    when: "Когда выручка зависит от системы привлечения целиком.",
+    fit: "Когда выручка зависит от системы привлечения целиком.",
     cta: "Собрать систему",
-    href: "?service=delaem-system&source=services#contacts",
-    featured: false
+    href: "?service=delaem-system&source=services#contacts"
   }
 ] as const;
 
 export function ServicesSection() {
-  return (
-    <section className="bg-[var(--dd-canvas-obsidian)] px-6 py-24 font-[family-name:var(--dd-font-primary)] md:px-[60px]">
-      <SectionKicker>Услуги</SectionKicker>
-      <h2 className="text-[clamp(32px,3.5vw,44px)] font-extrabold tracking-[-0.025em] text-[var(--dd-text-primary)]">
-        Три масштаба работы.
-      </h2>
-      <p className="mt-4 max-w-2xl text-[17px] text-[var(--dd-text-secondary)]">
-        Выбирайте уровень под задачу. Каждый следующий включает всё из предыдущего.
-      </p>
+  const [picked, setPicked] = useState<TierId>("flow");
+  const selected = tiers.find((t) => t.id === picked) ?? tiers[1];
 
-      <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {services.map((item) => (
-          <article
-            key={item.title}
-            className={
-              item.featured
-                ? "relative flex flex-col rounded-[20px] border-[1.5px] border-[var(--dd-action-copper)] p-8 shadow-[0_0_60px_rgba(184,121,75,0.12),0_22px_58px_rgba(0,0,0,0.4)]"
-                : "flex flex-col rounded-[20px] border border-[var(--dd-border-steel)] bg-[var(--dd-surface-obsidian)] p-8"
-            }
-            style={
-              item.featured
-                ? { background: "linear-gradient(145deg, rgba(20,14,9,0.85), rgba(12,17,25,0.9))" }
-                : undefined
-            }
-          >
-            {item.featured ? (
-              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-[20px] bg-[var(--dd-action-copper)] px-4 py-1 text-[11px] font-bold tracking-[0.08em] text-[#F5F7FB]">
-                Чаще выбирают
+  return (
+    <SectionFrame id="services" bg="#080C12" style={{ height: 880 }}>
+      <DdContainer className="py-24">
+        <div className="mb-14 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+          <div className="flex max-w-[760px] flex-col gap-[18px]">
+            <div className="inline-flex items-center gap-2.5">
+              <span className="h-px w-[18px] bg-[var(--dd-action-copper)]" aria-hidden />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
+                Услуги · § 06
               </span>
-            ) : null}
-            <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--dd-action-copper)]">
-              {item.level}
-            </span>
-            <h3
-              className={`mt-2 text-2xl font-bold ${item.featured ? "text-[var(--dd-action-copper)]" : "text-[var(--dd-text-primary)]"}`}
-            >
-              {item.title}
-            </h3>
-            <p className="mt-2 text-sm text-[var(--dd-text-secondary)]">{item.tagline}</p>
-            <p
-              className={`mt-5 text-[32px] font-extrabold ${item.featured ? "text-[var(--dd-action-copper)]" : "text-[var(--dd-text-primary)]"}`}
-            >
-              {item.price}
-            </p>
-            <p className="text-[11px] text-[var(--dd-text-muted)]">фиксированная стоимость</p>
-            <div className="my-5 h-px bg-[var(--dd-border-steel)]" />
-            <ul className="flex flex-col gap-2.5">
-              {item.items.map((line) => (
-                <li key={line} className="flex items-start gap-2 text-sm text-[var(--dd-text-secondary)]">
-                  <CopperCheck />
-                  {line}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-auto pt-5 text-[13px] leading-normal text-[var(--dd-text-muted)]">{item.when}</p>
-            <a
-              href={item.href}
-              className={
-                item.featured
-                  ? "mt-4 block w-full rounded-xl bg-[var(--dd-action-copper)] py-3.5 text-center text-sm font-bold text-[#F5F7FB] no-underline transition-colors hover:bg-[var(--dd-action-copper-hover)]"
-                  : "mt-4 block w-full rounded-xl border-[1.5px] border-[var(--dd-action-copper)] py-3.5 text-center text-sm font-semibold text-[var(--dd-action-copper)] no-underline transition-colors hover:bg-[rgba(184,121,75,0.08)]"
-              }
-              data-analytics-event="pricing_cta_click"
-              data-analytics-label={item.title}
-              data-analytics-value={item.price}
-            >
-              {item.cta}
-            </a>
-          </article>
-        ))}
-      </div>
-    </section>
+            </div>
+            <DdH2>
+              Три масштаба.
+              <br />
+              Один подход.
+            </DdH2>
+            <DdSub className="max-w-[620px]">
+              Заходим в проект ровно на тот объём, который сейчас закрывает узкое место. Расти можно поэтапно —
+              без переделок и без скрытых доплат.
+            </DdSub>
+          </div>
+          <SectionIndex n={6} />
+        </div>
+
+        <div className="grid grid-cols-1 gap-[18px] lg:grid-cols-3">
+          {tiers.map((tier) => {
+            const active = picked === tier.id;
+            return (
+              <button
+                key={tier.id}
+                type="button"
+                onClick={() => setPicked(tier.id)}
+                className="flex min-h-[540px] cursor-pointer flex-col gap-[22px] rounded-[var(--dd-radius-lg)] p-7 text-left font-[family-name:var(--dd-font-primary)] transition-[transform,background,border-color,box-shadow] duration-200 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--dd-action-copper)]"
+                style={{
+                  background: active ? "rgba(14,22,34,.85)" : "var(--dd-surface-obsidian)",
+                  border: active ? "1px solid rgba(184,121,75,.55)" : "1px solid var(--dd-border-steel)",
+                  boxShadow: active ? "0 16px 42px rgba(184,121,75,.18)" : "var(--dd-shadow-subtle)"
+                }}
+                aria-pressed={active}
+              >
+                <div className="flex items-center justify-between">
+                  <span
+                    className="text-[11px] font-semibold uppercase tracking-[0.14em]"
+                    style={{ color: active ? "var(--dd-action-copper)" : "var(--dd-text-muted)" }}
+                  >
+                    {tier.kicker}
+                  </span>
+                  <span
+                    className="inline-flex h-[18px] w-[18px] items-center justify-center rounded-full"
+                    style={{
+                      border: active
+                        ? "1.5px solid var(--dd-action-copper)"
+                        : "1.5px solid var(--dd-border-steel)"
+                    }}
+                    aria-hidden
+                  >
+                    {active ? (
+                      <span className="h-2 w-2 rounded-full bg-[var(--dd-action-copper)]" />
+                    ) : null}
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <div className="text-[30px] font-bold tracking-[-0.025em] text-[var(--dd-text-primary)]">
+                    {tier.title}
+                  </div>
+                  <p className="text-[15px] text-[var(--dd-text-secondary)]">{tier.subtitle}</p>
+                </div>
+
+                <div
+                  className="grid grid-cols-2 gap-3.5 border-y border-[var(--dd-border-steel)] py-3.5"
+                >
+                  <div className="flex flex-col gap-1">
+                    <DdLabel className="tracking-[0.14em]">срок</DdLabel>
+                    <span className="text-lg font-semibold text-[var(--dd-text-primary)]">{tier.time}</span>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <DdLabel className="tracking-[0.14em]">стоимость</DdLabel>
+                    <span className="text-lg font-semibold text-[var(--dd-text-primary)]">{tier.from}</span>
+                  </div>
+                </div>
+
+                <ul className="flex flex-1 flex-col gap-2.5">
+                  {tier.includes.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-2.5 text-sm text-[var(--dd-text-secondary)]"
+                    >
+                      {active ? <CopperCheckIcon /> : <SteelCheckIcon />}
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div
+                  className="rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-steel)] p-3 text-xs leading-normal text-[var(--dd-text-muted)]"
+                  style={{ background: "rgba(8,12,18,.55)" }}
+                >
+                  {tier.fit}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div
+          className="mt-7 flex flex-col items-start justify-between gap-4 rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-steel)] px-5 py-3.5 sm:flex-row sm:items-center"
+          style={{ background: "rgba(8,12,18,.5)" }}
+        >
+          <p className="text-[13px] text-[var(--dd-text-muted)]">
+            <span className="text-[var(--dd-text-secondary)]">Выбрано:</span>{" "}
+            <span className="font-semibold text-[var(--dd-action-copper)]">{selected.title}</span> — первый созвон
+            бесплатный, 40 минут.
+          </p>
+          <PrimaryBtn
+            href={selected.href}
+            className="shrink-0 px-6 py-3 text-sm"
+            data-analytics-event="services_cta_click"
+            data-analytics-label={selected.title}
+            data-analytics-value={selected.from}
+          >
+            {selected.cta}
+          </PrimaryBtn>
+        </div>
+      </DdContainer>
+    </SectionFrame>
   );
 }

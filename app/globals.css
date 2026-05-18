@@ -18,6 +18,13 @@
   --dd-radius-xs: 8px;
   --dd-radius-sm: 12px;
   --dd-font-primary: var(--font-onest), "Onest", "Manrope", system-ui, sans-serif;
+  --dd-diagnostic-blue: #5f8ed8;
+  --dd-success: #6fbf91;
+  --dd-danger: #d66a6a;
+  --dd-radius-md: 16px;
+  --dd-radius-lg: 20px;
+  --dd-shadow-subtle: 0 10px 28px rgba(0, 0, 0, 0.24);
+  --dd-shadow-panel: 0 22px 58px rgba(0, 0, 0, 0.32);
   --bg: #07090c;
   --bg-2: #0b0d11;
   --surface: #101216;

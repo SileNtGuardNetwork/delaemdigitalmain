@@ -1,136 +1,136 @@
-import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
+import {
+  BtnArrow,
+  DdContainer,
+  FlowPath,
+  PingDot,
+  PrimaryBtn,
+  RimLight,
+  SecondaryBtn,
+  SectionFrame
+} from "@/components/sections/dd-ui";
+
+const heroFlowSteps = [
+  "Трафик",
+  "Сайт",
+  "AI-квалификация",
+  "Заявка",
+  "Обработка",
+  "Аналитика",
+  "Улучшение"
+] as const;
 
 export function HeroSection() {
   return (
-    <section
-      id="top"
-      className="relative min-h-screen overflow-hidden bg-[var(--dd-canvas-graphite)] font-[family-name:var(--dd-font-primary)]"
-    >
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 600px 500px at 72% 30%, rgba(184,121,75,0.06) 0%, transparent 70%)"
-        }}
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`
-        }}
-        aria-hidden
-      />
+    <SectionFrame id="top" bg="#05070A" fadeTo="#080C12" className="min-h-[900px]">
+      <RimLight style={{ right: -260, top: -220 }} />
+      <RimLight style={{ left: -340, bottom: -300, opacity: 0.6 }} />
 
-      <div className="relative mx-auto grid min-h-screen max-w-[1360px] grid-cols-1 lg:grid-cols-[52%_48%]">
-        <div className="flex flex-col justify-center px-6 pb-20 pt-32 md:px-[60px] md:pb-[80px] md:pt-[160px]">
-          <div className="inline-flex items-center gap-3">
-            <span className="h-px w-[22px] bg-[var(--dd-action-copper)]" aria-hidden />
-            <span className="text-xs font-medium uppercase tracking-[0.1em] text-[var(--dd-action-copper)]">
-              Виталий Тимошенко · основатель Делаем Диджитал
-            </span>
-          </div>
-
-          <h1
-            className="mt-6 max-w-[560px] text-[clamp(44px,4.2vw,66px)] font-extrabold leading-[1.05] tracking-[-0.03em]"
-            aria-label="Собираю бизнесу управляемую систему привлечения клиентов"
-          >
-            <span className="block text-[var(--dd-text-primary)]">Собираю бизнесу</span>
-            <span className="block text-[var(--dd-text-primary)]">управляемую систему</span>
-            <span className="block text-[#5f8ed8]">привлечения клиентов.</span>
-          </h1>
-
-          <p className="mt-6 max-w-[480px] text-[17px] leading-[1.6] text-[var(--dd-text-secondary)]">
-            Для предпринимателей, которым нужен не набор digital-инструментов, а понятный маршрут от первого
-            касания до заявки.
-          </p>
-
-          <div className="mt-9 flex flex-col gap-3.5 sm:flex-row sm:gap-3.5">
-            <a
-              href="#contacts"
-              className="inline-flex items-center justify-center rounded-xl bg-[var(--dd-action-copper)] px-7 py-[15px] text-[15px] font-bold text-[#F5F7FB] no-underline transition-[background,box-shadow] duration-200 hover:bg-[var(--dd-action-copper-hover)] hover:shadow-[0_16px_42px_rgba(184,121,75,0.28)] sm:w-auto"
-              data-analytics-event="cta_primary_click"
-              data-analytics-label="hero_primary"
-              data-analytics-value="#contacts"
-            >
-              Разбор системы →
-            </a>
-            <a
-              href={siteConfig.telegramChannelUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-xl border-[1.5px] border-[var(--dd-action-steel-blue)] px-[26px] py-3.5 text-[15px] font-semibold text-[var(--dd-action-steel-blue)] no-underline transition-colors duration-200 hover:bg-[rgba(127,166,214,0.08)] sm:w-auto"
-              data-analytics-event="telegram_channel_click"
-              data-analytics-label="hero_telegram_channel"
-              data-analytics-value={siteConfig.telegramChannelUrl}
-            >
-              Telegram-канал
-            </a>
-          </div>
-
-          <div className="mt-10 w-full max-w-[560px] border-t border-[rgba(148,163,184,0.12)] pt-6">
-            <div className="flex flex-wrap gap-3">
-              <span className="rounded-[20px] border border-[rgba(148,163,184,0.12)] bg-[rgba(14,22,34,0.6)] px-3.5 py-1.5 text-xs text-[var(--dd-text-muted)]">
-                2 проекта в квартал · места есть
-              </span>
-              <span className="rounded-[20px] border border-[rgba(148,163,184,0.12)] bg-[rgba(14,22,34,0.6)] px-3.5 py-1.5 text-xs text-[var(--dd-text-muted)]">
-                ClientFlow System · с 2021
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative min-h-[280px] overflow-hidden lg:min-h-0">
-          <Image
-            src="/images/vitaly-hero-cinematic.webp"
-            alt="Виталий Тимошенко — основатель Делаем Диджитал"
-            fill
-            priority
-            className="object-cover object-top"
-            sizes="(max-width: 1024px) 100vw, 48vw"
-          />
-          <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[var(--dd-canvas-graphite)] via-transparent to-transparent"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[var(--dd-canvas-graphite)] to-transparent"
-            aria-hidden
-          />
-          <div className="pointer-events-none absolute inset-0 bg-[rgba(5,7,10,0.25)]" aria-hidden />
-
-          <svg
-            className="pointer-events-none absolute right-6 top-6"
-            width="120"
-            height="120"
-            viewBox="0 0 120 120"
-            fill="none"
-            aria-hidden
-          >
-            <path
-              d="M10 110 A 90 90 0 0 1 110 10"
-              stroke="rgba(184,121,75,0.35)"
-              strokeWidth="1"
-            />
-          </svg>
-
-          <div className="absolute bottom-20 left-8 rounded-xl border border-[rgba(184,121,75,0.3)] bg-[rgba(12,17,25,0.88)] px-[18px] py-3.5 backdrop-blur-[8px]">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
-              ClientFlow Score
-            </p>
-            <p className="mt-1 text-[22px] font-bold text-[var(--dd-text-primary)]">72 / 100</p>
-            <div className="mt-2 h-[3px] w-[120px] overflow-hidden rounded-sm bg-[rgba(148,163,184,0.15)]">
-              <span className="block h-full w-[72%] rounded-sm bg-[var(--dd-action-copper)]" />
-            </div>
-          </div>
-
-          <div className="absolute bottom-8 right-8 text-right">
-            <p className="text-[13px] font-semibold text-[var(--dd-text-primary)]">Виталий Тимошенко</p>
-            <p className="text-[11px] text-[var(--dd-text-muted)]">Архитектор цифровых систем</p>
-          </div>
-        </div>
+      <div className="absolute bottom-0 right-0 top-0 z-[1] w-[56%] overflow-hidden" aria-hidden>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/vitaly-hero-cinematic.webp"
+          alt="Виталий Тимошенко"
+          className="absolute inset-0 block h-full w-full object-cover object-[center_top]"
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(8,12,18,.22) 0%, rgba(8,12,18,.05) 32%, rgba(8,12,18,.55) 100%)",
+            mixBlendMode: "multiply"
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to right, #05070A 0%, #05070A 12%, rgba(5,7,10,.85) 32%, rgba(5,7,10,.4) 56%, transparent 90%)"
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,7,10,.55) 0%, transparent 22%, transparent 78%, rgba(5,7,10,.85) 100%)"
+          }}
+        />
       </div>
-    </section>
+
+      <DdContainer className="relative z-[2] pb-[72px] pt-[168px]" style={{ minHeight: 900 }}>
+        <div className="grid min-h-[660px] grid-cols-1 gap-20 lg:grid-cols-2 lg:gap-20">
+          <div className="flex flex-col justify-between gap-9">
+            <div className="flex flex-col gap-9">
+              <div className="inline-flex items-center gap-3">
+                <span className="h-px w-[22px] bg-[var(--dd-action-copper)]" aria-hidden />
+                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-copper)]">
+                  Виталий Тимошенко · основатель Делаем Диджитал
+                </span>
+              </div>
+
+              <h1 className="max-w-[620px] text-[clamp(44px,4.2vw,68px)] font-extrabold leading-[1.05] tracking-[-0.03em] text-[var(--dd-text-primary)]">
+                <div>Собираю бизнесу управляемую систему</div>
+                <div>
+                  <span className="text-[var(--dd-diagnostic-blue)]">привлечения клиентов.</span>
+                </div>
+              </h1>
+
+              <p className="max-w-[480px] text-[17px] leading-[1.6] text-[var(--dd-text-secondary)]">
+                Для предпринимателей, которым нужен не набор digital-инструментов, а понятный маршрут от первого
+                касания до заявки.
+              </p>
+
+              <div className="mt-2 flex flex-wrap items-center gap-[14px]">
+                <PrimaryBtn
+                  href="#contacts"
+                  data-analytics-event="cta_primary_click"
+                  data-analytics-label="hero_primary"
+                  data-analytics-value="#contacts"
+                >
+                  Разбор системы
+                  <BtnArrow />
+                </PrimaryBtn>
+                <SecondaryBtn
+                  href={siteConfig.telegramChannelUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  data-analytics-event="telegram_channel_click"
+                  data-analytics-label="hero_telegram_channel"
+                  data-analytics-value={siteConfig.telegramChannelUrl}
+                >
+                  Telegram-канал
+                </SecondaryBtn>
+              </div>
+
+              <div className="mt-2 flex flex-wrap items-center gap-6 text-[13px] text-[var(--dd-text-muted)]">
+                <span className="inline-flex items-center gap-2">
+                  <PingDot />
+                  Принимаем 2 проекта в квартал
+                </span>
+                <span className="hidden h-[14px] w-px bg-[var(--dd-border-steel)] sm:block" aria-hidden />
+                <span>Методология ClientFlow System</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--dd-text-muted)]">
+                Замкнутый маршрут
+              </span>
+              <FlowPath steps={heroFlowSteps} activeIndex={2} />
+            </div>
+          </div>
+
+          <div className="relative hidden min-h-[200px] lg:block">
+            <p className="absolute right-0 top-2 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
+              SYS · 01 / 12 · HERO
+            </p>
+            <div className="absolute bottom-2 right-0 text-right">
+              <p className="text-[14px] font-semibold text-[var(--dd-text-primary)]">Виталий Тимошенко</p>
+              <p className="text-[12px] tracking-[0.02em] text-[var(--dd-text-muted)]">основатель · ведёт каждый проект</p>
+            </div>
+          </div>
+        </div>
+      </DdContainer>
+    </SectionFrame>
   );
 }
