@@ -4,6 +4,7 @@ import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 import { seoConfig } from "@/lib/seo";
 import { YandexMetrica } from "@/components/analytics/yandex-metrica";
+import { PostHogProvider } from "@/components/analytics/posthog-provider";
 import { AnalyticsClickListener } from "@/components/analytics/analytics-click-listener";
 
 const manrope = Manrope({ subsets: ["cyrillic", "latin"], variable: "--font-manrope", display: "swap" });
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         {children}
         <YandexMetrica />
+        <PostHogProvider />
         <AnalyticsClickListener />
       </body>
     </html>
