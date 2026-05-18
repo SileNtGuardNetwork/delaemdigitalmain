@@ -1,26 +1,44 @@
 import { siteConfig } from "@/lib/site-config";
 
+const footerLinks = [
+  { label: "ClientFlow", href: "#system" },
+  { label: "Продукты", href: "#pricing" },
+  { label: "Тарифы", href: "#pricing" },
+  { label: "Web3", href: "#contacts" },
+  { label: "Контакты", href: "#contacts" }
+] as const;
+
 export function Footer() {
   return (
-    <footer className="footer">
-      <div className="container footer-grid">
+    <footer className="border-t border-[var(--dd-border-steel)] bg-[var(--dd-canvas-obsidian)] px-6 py-10 font-[family-name:var(--dd-font-primary)] md:px-[60px]">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <a
+          href="#top"
+          className="text-sm font-medium tracking-[0.06em] text-[var(--dd-text-muted)] transition-colors hover:text-[var(--dd-text-primary)]"
+        >
+          делаем диджитал
+        </a>
+        <nav className="flex flex-wrap gap-6" aria-label="Навигация в подвале">
+          {footerLinks.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="text-[13px] text-[var(--dd-text-muted)] transition-colors hover:text-[var(--dd-text-primary)]"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      <div className="mt-5 flex flex-col gap-4 border-t border-[var(--dd-border-steel)] pt-5 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <div className="wordmark">Делаем Диджитал</div>
-          <small>
-            © {new Date().getFullYear()} {siteConfig.operator.legalName}. ИНН {siteConfig.operator.inn}. ОГРНИП {siteConfig.operator.ogrnip}.
-          </small>
+          <p className="text-xs text-[var(--dd-text-muted)]">{siteConfig.operator.legalName}</p>
+          <p className="mt-1 text-[11px] text-[var(--dd-text-muted)] opacity-60">
+            ИНН: {siteConfig.operator.inn} · ОГРНИП: {siteConfig.operator.ogrnip}
+          </p>
         </div>
-        <div className="footer-links">
-          <a href={siteConfig.telegramChannelUrl} target="_blank" rel="noreferrer" data-analytics-event="telegram_channel_click" data-analytics-label="footer_telegram_channel" data-analytics-value={siteConfig.telegramChannelUrl}>Telegram-канал</a>
-          <a href={siteConfig.telegramContactUrl} target="_blank" rel="noreferrer" data-analytics-event="telegram_contact_click" data-analytics-label="footer_telegram_contact" data-analytics-value={siteConfig.telegramContactUrl}>Связаться</a>
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-          <a href="/en" data-analytics-event="legal_link_click" data-analytics-label="footer_en" data-analytics-value="/en">EN</a>
-          <a href="/cases" data-analytics-event="cta_secondary_click" data-analytics-label="footer_cases" data-analytics-value="/cases">Кейсы</a>
-          <a href="/articles" data-analytics-event="cta_secondary_click" data-analytics-label="footer_articles" data-analytics-value="/articles">Статьи</a>
-          <a href="/privacy" data-analytics-event="legal_link_click" data-analytics-label="footer_privacy" data-analytics-value="/privacy">Политика</a>
-          <a href="/consent" data-analytics-event="legal_link_click" data-analytics-label="footer_consent" data-analytics-value="/consent">Согласие</a>
-          <a href="/cookies" data-analytics-event="legal_link_click" data-analytics-label="footer_cookies" data-analytics-value="/cookies">Cookie</a>
-        </div>
+        <p className="text-xs text-[var(--dd-text-muted)]">© 2026 Делаем Диджитал. Все права защищены.</p>
       </div>
     </footer>
   );

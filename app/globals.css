@@ -1,5 +1,23 @@
+@import "tailwindcss";
+
 :root {
   color-scheme: dark;
+  --dd-canvas-graphite: #05070a;
+  --dd-canvas-obsidian: #080c12;
+  --dd-surface-obsidian: rgba(12, 17, 25, 0.82);
+  --dd-surface-control: rgba(14, 22, 34, 0.72);
+  --dd-border-steel: rgba(148, 163, 184, 0.16);
+  --dd-border-cool: rgba(113, 151, 198, 0.18);
+  --dd-text-primary: #f5f7fb;
+  --dd-text-secondary: #b8c1ce;
+  --dd-text-muted: #7f8b9c;
+  --dd-action-copper: #b8794b;
+  --dd-action-copper-hover: #d09a6e;
+  --dd-action-steel-blue: #7fa6d6;
+  --dd-shadow-copper-action: 0 16px 42px rgba(184, 121, 75, 0.24);
+  --dd-radius-xs: 8px;
+  --dd-radius-sm: 12px;
+  --dd-font-primary: var(--font-onest), "Onest", "Manrope", system-ui, sans-serif;
   --bg: #07090c;
   --bg-2: #0b0d11;
   --surface: #101216;
@@ -791,13 +809,13 @@ img { max-width: 100%; height: auto; }
 
 .price-card h3 { margin:0; font-family:var(--font-manrope); font-size:28px; letter-spacing:-.04em; }
 
-.price { margin-top:16px; font-size:26px; font-weight:850; color:var(--primary-highlight); }
+/* .price { margin-top:16px; font-size:26px; font-weight:850; color:var(--primary-highlight); } */
 
-.price-card p { color: var(--muted); line-height:1.65; }
+/* .price-card p { color: var(--muted); line-height:1.65; } */
 
 .price-card ul { padding:0; margin:18px 0 0; list-style:none; display:grid; gap:10px; color:var(--muted); }
 
-.price-card li::before { content:"•"; color:var(--copper); margin-right:8px; }
+/* .price-card li::before { content:"•"; color:var(--copper); margin-right:8px; } */
 
 .price-card .button { margin-top:auto; }
 
@@ -813,7 +831,7 @@ img { max-width: 100%; height: auto; }
   box-shadow: 0 26px 78px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08);
 }
 
-.pricing-section .price { color: var(--copper-soft); }
+/* .pricing-section .price { color: var(--copper-soft); } */
 
 .pricing-section .price-card .button { min-height:50px; border-radius:14px; }
 
@@ -1285,17 +1303,17 @@ img { max-width: 100%; height: auto; }
     linear-gradient(180deg, rgba(18,20,24,.98), rgba(8,10,13,.94));
 }
 
-.pricing-section .price-card.featured .button {
+/* .pricing-section .price-card.featured .button {
   background:
     linear-gradient(180deg, rgba(255,255,255,.12), transparent 42%),
     linear-gradient(135deg, #8f634a, #c18862 58%, #d8a77f);
   color:#fff8ee;
   border-color: rgba(231,198,175,.24);
-}
+} */
 
 /* v0.1.9 premium consistency + CTA system */
 
-.button-primary, .pricing-section .price-card .button, .form .button, .system-core .button, .audit-section .button-primary {
+.button-primary, .form .button, .system-core .button, .audit-section .button-primary {
   color:#fff8ee;
   border-color: rgba(231,198,175,.24);
   background:
@@ -1307,7 +1325,7 @@ img { max-width: 100%; height: auto; }
     inset 0 1px 0 rgba(255,255,255,.28);
 }
 
-.button-primary:hover, .pricing-section .price-card .button:hover, .form .button:hover, .system-core .button:hover, .audit-section .button-primary:hover {
+.button-primary:hover, .form .button:hover, .system-core .button:hover, .audit-section .button-primary:hover {
   border-color: rgba(231,198,175,.34);
   box-shadow:
     0 20px 54px rgba(0,0,0,.42),
@@ -1426,9 +1444,9 @@ img { max-width: 100%; height: auto; }
   box-shadow: 0 28px 80px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.055);
 }
 
-.pricing-section .price {
+/* .pricing-section .price {
   color: var(--copper-soft);
-}
+} */
 
 .pricing-section .price-card.featured {
   transform: translateY(-16px);
@@ -3083,14 +3101,14 @@ section[id], .legal-page {
   box-shadow: 0 22px 62px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.055);
 }
 
-.d1-system-core .button, .d1-audit-section .button-primary, .d1-price-card.featured .button, .d1-intake-form .button {
+.d1-system-core .button, .d1-audit-section .button-primary, .d1-intake-form .button {
   border-color: rgba(255, 255, 255, 0.11);
   background: var(--d1-copper);
   color: #fbf8f2;
   box-shadow: 0 12px 32px rgba(169, 106, 70, 0.18);
 }
 
-.d1-system-core .button:hover, .d1-audit-section .button-primary:hover, .d1-price-card.featured .button:hover, .d1-intake-form .button:hover {
+.d1-system-core .button:hover, .d1-audit-section .button-primary:hover, .d1-intake-form .button:hover {
   background: var(--d1-copper-bright);
   box-shadow: 0 16px 42px rgba(169, 106, 70, 0.23);
 }
@@ -3383,16 +3401,16 @@ section[id], .legal-page {
   font-size: 31px;
 }
 
-.d1-price-card.featured .price {
+/* .d1-price-card.featured .price {
   color: #f0c5a6;
   font-size: 30px;
-}
+} */
 
 .d1-price-card.featured p {
   color: color-mix(in srgb, var(--d1-ink) 76%, var(--d1-muted));
 }
 
-.d1-price-card:not(.featured) .button {
+/* .d1-price-card:not(.featured) .button {
   border-color: rgba(127, 150, 178, 0.42);
   background: linear-gradient(180deg, rgba(127, 150, 178, 0.14), rgba(127, 150, 178, 0.06));
   color: var(--d1-steel-soft);
@@ -3403,7 +3421,7 @@ section[id], .legal-page {
 .d1-price-card:not(.featured) .button:hover {
   border-color: rgba(168, 190, 216, 0.62);
   background: rgba(127, 150, 178, 0.14);
-}
+} */
 
 .d1-price-card .price-badge {
   color: var(--d1-copper-bright);
@@ -4208,56 +4226,6 @@ section[id], .legal-page {
   margin: 0 4px;
 }
 
-.hero-proof-row {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  margin-top: 28px;
-  background: rgba(12, 17, 25, 0.75);
-  border: 1px solid rgba(148, 163, 184, 0.12);
-  border-radius: 14px;
-  padding: 14px 24px;
-  backdrop-filter: blur(12px);
-  width: fit-content;
-}
-
-.hero-proof-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 0 20px;
-}
-
-.hero-proof-item:first-child {
-  padding-left: 0;
-}
-
-.hero-proof-item:last-child {
-  padding-right: 0;
-}
-
-.hero-proof-num {
-  font-size: 22px;
-  font-weight: 800;
-  color: #f5f7fb;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.hero-proof-txt {
-  font-size: 11px;
-  color: #7f8b9c;
-  letter-spacing: 0.02em;
-  margin-top: 3px;
-}
-
-.hero-proof-divider {
-  width: 1px;
-  height: 32px;
-  background: rgba(148, 163, 184, 0.15);
-  flex-shrink: 0;
-}
-
 @media (max-width: 768px) {
   .hero {
     height: auto;
@@ -4272,18 +4240,6 @@ section[id], .legal-page {
   }
   .hero-copy {
     max-width: 100%;
-  }
-  .hero-proof-row {
-    gap: 0;
-    padding: 12px 16px;
-    width: 100%;
-    justify-content: space-between;
-  }
-  .hero-proof-item {
-    padding: 0 12px;
-  }
-  .hero-proof-num {
-    font-size: 18px;
   }
 }
 
