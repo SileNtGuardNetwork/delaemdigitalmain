@@ -1,0 +1,48 @@
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeUp {
+  opacity: 0;
+  animation: heroFadeUp 0.5s ease forwards;
+}
+
+.delay0 {
+  animation-delay: 0s;
+}
+
+.delay1 {
+  animation-delay: 0.1s;
+}
+
+.delay2 {
+  animation-delay: 0.25s;
+}
+
+.delay3 {
+  animation-delay: 0.35s;
+}
+
+.delay4 {
+  animation-delay: 0.45s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fadeUp {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.primaryBtn:hover {
+  background: #d09a6e;
+  box-shadow: 0 16px 42px rgba(184, 121, 75, 0.24);
+}
