@@ -10,7 +10,7 @@ const metrics = [
 
 export function FounderSection() {
   return (
-    <SectionFrame bg="#080C12" fadeTo="#05070A" style={{ minHeight: 1000 }}>
+    <SectionFrame id="founder" bg="#080C12" fadeTo="#05070A" style={{ minHeight: 1000 }}>
       <div className="grid min-h-[1000px] grid-cols-1 lg:grid-cols-[45%_55%]">
         <div className="relative min-h-[360px] overflow-hidden bg-[#0b0e14] lg:min-h-[1000px]">
           <Image

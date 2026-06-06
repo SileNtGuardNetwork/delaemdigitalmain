@@ -1,6 +1,6 @@
 /**
- * Canonical header navigation — hero-factory-brief-v1.md §1.
- * Anchor map and mismatches: docs/design/CANONICAL_TOKENS_DECISION_v1.md (nav table).
+ * Canonical site navigation — hero-factory-brief-v1.md §1.
+ * Used by header and footer. Anchor map: docs/design/CANONICAL_TOKENS_DECISION_v1.md.
  */
 export const headerNavigation = [
   { label: "Подход", href: "#system" },

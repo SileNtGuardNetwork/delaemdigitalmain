@@ -1,7 +1,7 @@
 # Legacy CSS and Sections Inventory v1
 
-**Method:** grep-based audit (DD-STEP-1)  
-**Action:** Document only — **do not delete** in Step 1.
+**Method:** grep-based audit (DD-STEP-1, updated DD-STEP-2-A)  
+**Action:** Document only — **do not delete** orphan files until dedicated cleanup pass.
 
 ## Orphan section components (not imported by `app/page.tsx`)
 
@@ -52,14 +52,22 @@ Body background still uses legacy `--bg` / `--bg-2` gradients + grid noise (`bod
 | Cookie / contact form | Legacy `.button` classes |
 | globals.css | Tailwind import + 4000+ lines legacy |
 
-## Recommended cleanup order (Step 2+)
+## Shell consistency (DD-STEP-2-A — done)
 
-1. Add `id="founder"` to founder section (nav anchor)  
+| Item | Status |
+| --- | --- |
+| `id="founder"` on `founder-section.tsx` | **Done** — header/footer «Обо мне» anchor works |
+| Footer nav synced with `headerNavigation` | **Done** — `footer.tsx` imports `lib/navigation.ts` |
+| Container width decision documented | **Done** — flagship `1360px`; legacy `--container` 1180px unchanged |
+
+## Recommended cleanup order (Step 2-B+)
+
+1. ~~Add `id="founder"` to founder section~~ (done Step 2-A)  
 2. Wire `ContactForm` to final CTA (separate task)  
 3. Remove orphan section files after grep confirms zero imports  
 4. Strip unused `.hero` / `.header` blocks from `globals.css` in small PRs  
-5. Unify `--container` vs `1360px` hero width  
-6. Sync footer nav with `lib/navigation.ts`  
+5. Introduce `--dd-container-flagship: 1360px` and migrate rebuilt sections (after visual pass)  
+6. ~~Sync footer nav with `lib/navigation.ts`~~ (done Step 2-A)  
 7. Delete `header-controls.tsx` when theme toggle decision is made
 
 ## Grep commands used

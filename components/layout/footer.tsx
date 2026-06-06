@@ -1,12 +1,5 @@
 import { siteConfig } from "@/lib/site-config";
-
-const footerLinks = [
-  { label: "ClientFlow", href: "#system" },
-  { label: "Продукты", href: "#pricing" },
-  { label: "Тарифы", href: "#pricing" },
-  { label: "Web3", href: "#contacts" },
-  { label: "Контакты", href: "#contacts" }
-] as const;
+import { headerNavigation } from "@/lib/navigation";
 
 export function Footer() {
   return (
@@ -19,7 +12,7 @@ export function Footer() {
           делаем диджитал
         </a>
         <nav className="flex flex-wrap gap-6" aria-label="Навигация в подвале">
-          {footerLinks.map((item) => (
+          {headerNavigation.map((item) => (
             <a
               key={item.label}
               href={item.href}
