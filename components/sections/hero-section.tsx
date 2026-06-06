@@ -4,8 +4,6 @@ import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import styles from "@/components/sections/hero-section.module.css";
 
-const flowSteps = ["Трафик", "Сайт", "AI-квалификация", "Заявка", "Аналитика"] as const;
-
 export function HeroSection() {
   return (
     <section
@@ -40,22 +38,21 @@ export function HeroSection() {
           <p
             className={`${styles.fadeUp} ${styles.delay0} m-0 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#B8794B]`}
           >
-            Виталий Тимошенко · основатель Делаем Диджитал
+            Виталий Тимошенко · digital-архитектор · Делаем Диджитал
           </p>
 
           <h1
-            className={`${styles.fadeUp} ${styles.delay1} m-0 max-w-[560px] text-[clamp(36px,8vw,48px)] font-extrabold leading-[1.04] tracking-[-0.035em] md:text-[clamp(44px,4.2vw,68px)]`}
+            className={`${styles.fadeUp} ${styles.delay1} m-0 max-w-[600px] text-[clamp(32px,7vw,44px)] font-extrabold leading-[1.06] tracking-[-0.035em] md:text-[clamp(40px,3.8vw,56px)]`}
           >
-            <span className="block text-[#F5F7FB]">Собираю бизнесу</span>
-            <span className="block text-[#F5F7FB]">управляемую систему</span>
-            <span className="block text-[#5F8ED8]">привлечения клиентов</span>
+            <span className="block text-[#F5F7FB]">Premium digital that looks expensive</span>
+            <span className="block text-[#5F8ED8]">and brings leads</span>
           </h1>
 
           <p
-            className={`${styles.fadeUp} ${styles.delay2} m-0 max-w-[480px] text-base font-normal leading-[1.6] text-[#B8C1CE]`}
+            className={`${styles.fadeUp} ${styles.delay2} m-0 max-w-[520px] text-base font-normal leading-[1.6] text-[#B8C1CE]`}
           >
-            Для владельцев бизнеса и экспертов, которым нужен не набор digital-инструментов, а понятный маршрут от
-            первого касания до заявки.
+            Проектирую сайты и digital-системы для бизнеса, которому нужен не просто дизайн, а управляемый вход в
+            продажи: сайт, заявки, AI, Telegram и аналитика.
           </p>
 
           <div className={`${styles.fadeUp} ${styles.delay3} flex flex-wrap items-center gap-3.5`}>
@@ -81,44 +78,11 @@ export function HeroSection() {
             </a>
           </div>
 
-          <div
-            className={`${styles.fadeUp} ${styles.delay4} flex flex-wrap items-center gap-0`}
-            aria-label="Маршрут: Трафик, Сайт, AI-квалификация, Заявка, Аналитика"
+          <p
+            className={`${styles.fadeUp} ${styles.delay4} m-0 max-w-[480px] text-[13px] leading-[1.55] text-[#7F8B9C]`}
           >
-            {flowSteps.map((label, index) => {
-              const isActive = index === 0;
-
-              return (
-                <span key={label} className="inline-flex items-center">
-                  <span className="inline-flex items-center gap-2">
-                    <span
-                      className="block h-2.5 w-2.5 shrink-0 rounded-full"
-                      style={
-                        isActive
-                          ? {
-                              background: "#5F8ED8",
-                              boxShadow: "0 0 0 4px rgba(95,142,216,0.2)"
-                            }
-                          : {
-                              background: "transparent",
-                              border: "1.5px solid rgba(148,163,184,0.3)"
-                            }
-                      }
-                      aria-hidden
-                    />
-                    <span className="text-xs text-[#7F8B9C]">{label}</span>
-                  </span>
-                  {index < flowSteps.length - 1 ? (
-                    <span
-                      className="mx-2 block h-px w-6 shrink-0 md:w-8"
-                      style={{ background: "rgba(95,142,216,0.4)" }}
-                      aria-hidden
-                    />
-                  ) : null}
-                </span>
-              );
-            })}
-          </div>
+            Лично отвечаю за архитектуру, визуальный уровень и связку сайта с обработкой заявок.
+          </p>
         </div>
 
         {/* Right grid cell — photo sits behind (absolute) */}

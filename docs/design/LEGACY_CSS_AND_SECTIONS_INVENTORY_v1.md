@@ -14,11 +14,15 @@
 
 **Safe to remove:** After Step 2 confirms no imports (currently zero TS/TSX imports).
 
-## Active section files (homepage)
+## Active section files (homepage) — DD-V2-1
 
-All imported from `app/page.tsx`. Rebuild planned Step 2+; do not delete.
+Imported from `app/page.tsx` (8-section V2 skeleton):
 
-`hero-section.tsx`, `context-section.tsx`, `system-section.tsx`, `assembly-section.tsx`, `audit-section.tsx`, `services-section.tsx`, `process-section.tsx`, `why-section.tsx`, `audience-section.tsx`, `leads-section.tsx`, `pricing-section.tsx`, `founder-section.tsx`, `final-cta-section.tsx`
+`hero-section.tsx`, `what-i-build-section.tsx`, `why-it-works-section.tsx`, `internal-proof-section.tsx`, `product-ladder-v2-section.tsx`, `process-v2-section.tsx`, `founder-section.tsx`, `final-cta-section.tsx`
+
+## V1 homepage sections (unlinked, kept in repo)
+
+`context-section.tsx`, `system-section.tsx`, `assembly-section.tsx`, `audit-section.tsx`, `services-section.tsx`, `process-section.tsx`, `why-section.tsx`, `audience-section.tsx`, `leads-section.tsx`, `pricing-section.tsx`
 
 Shared: `dd-ui.tsx`, `section-ui.tsx` (partial overlap — `section-ui` lightly used)
 

@@ -42,7 +42,7 @@ export function FounderSection() {
           />
           <div className="absolute bottom-10 left-10 z-[2] flex flex-col gap-1.5">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--dd-text-muted)]">
-              Frame 12 / 13 · founder
+              Frame 07 / 08 · founder
             </p>
             <p className="text-sm text-[var(--dd-text-secondary)]">Студия · 2026</p>
           </div>
@@ -55,10 +55,10 @@ export function FounderSection() {
           <div className="flex items-center gap-3">
             <span className="h-px w-[22px] bg-[var(--dd-action-copper)]" aria-hidden />
             <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-copper)]">
-              Основатель · § 12
+              Основатель · § 07
             </span>
             <span className="flex-1" />
-            <SectionIndex n={12} />
+            <SectionIndex n={7} />
           </div>
 
           <div className="flex flex-col gap-2">

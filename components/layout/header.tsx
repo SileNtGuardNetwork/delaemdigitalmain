@@ -32,7 +32,7 @@ export function Header() {
           href={headerCta.href}
           className="shrink-0 rounded-[10px] border border-[var(--dd-action-copper)] bg-transparent px-5 py-2.5 text-[14px] font-semibold text-[var(--dd-action-copper)] transition-colors hover:bg-[rgba(184,121,75,0.08)] hover:text-[var(--dd-action-copper-hover)]"
           data-analytics-event="cta_primary_click"
-          data-analytics-label="header_discuss_project"
+          data-analytics-label="header_v2_primary_cta"
           data-analytics-value={headerCta.href}
         >
           {headerCta.label}

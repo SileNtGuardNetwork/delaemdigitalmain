@@ -1,16 +1,11 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { HeroSection } from "@/components/sections/hero-section";
-import { ContextSection } from "@/components/sections/context-section";
-import { SystemSection } from "@/components/sections/system-section";
-import { AssemblySection } from "@/components/sections/assembly-section";
-import { AuditSection } from "@/components/sections/audit-section";
-import { ServicesSection } from "@/components/sections/services-section";
-import { ProcessSection } from "@/components/sections/process-section";
-import { WhySection } from "@/components/sections/why-section";
-import { AudienceSection } from "@/components/sections/audience-section";
-import { LeadsSection } from "@/components/sections/leads-section";
-import { PricingSection } from "@/components/sections/pricing-section";
+import { WhatIBuildSection } from "@/components/sections/what-i-build-section";
+import { WhyItWorksSection } from "@/components/sections/why-it-works-section";
+import { InternalProofSection } from "@/components/sections/internal-proof-section";
+import { ProductLadderV2Section } from "@/components/sections/product-ladder-v2-section";
+import { ProcessV2Section } from "@/components/sections/process-v2-section";
 import { FounderSection } from "@/components/sections/founder-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { CookieBanner } from "@/components/ui-custom/cookie-banner";
@@ -21,16 +16,11 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <ContextSection />
-        <SystemSection />
-        <AssemblySection />
-        <AuditSection />
-        <ServicesSection />
-        <ProcessSection />
-        <WhySection />
-        <AudienceSection />
-        <LeadsSection />
-        <PricingSection />
+        <WhatIBuildSection />
+        <WhyItWorksSection />
+        <InternalProofSection />
+        <ProductLadderV2Section />
+        <ProcessV2Section />
         <FounderSection />
         <FinalCtaSection />
       </main>

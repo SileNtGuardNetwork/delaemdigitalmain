@@ -1,17 +1,17 @@
 /**
- * Canonical site navigation — hero-factory-brief-v1.md §1.
- * Used by header and footer. Anchor map: docs/design/CANONICAL_TOKENS_DECISION_v1.md.
+ * V2 homepage navigation — docs/design/DD_SITE_V2_BLUEPRINT.md
+ * Used by header and footer.
  */
 export const headerNavigation = [
-  { label: "Подход", href: "#system" },
-  { label: "Услуги", href: "#services" },
-  { label: "Кейсы", href: "/cases" },
+  { label: "Что делаю", href: "#build" },
+  { label: "Подход", href: "#why" },
+  { label: "Продукты", href: "#products" },
   { label: "Обо мне", href: "#founder" },
   { label: "Контакты", href: "#contacts" }
 ] as const;
 
 export const headerCta = {
-  label: "Обсудить проект",
+  label: "Разбор системы",
   href: "#contacts"
 } as const;
 
