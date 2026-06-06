@@ -18,7 +18,7 @@
 
 Imported from `app/page.tsx` (8-section V2 skeleton):
 
-`hero-section.tsx` (V2-2), `what-i-build-section.tsx` (V2-3), `why-it-works-section.tsx` (V2-3), `internal-proof-section.tsx` (V2-4), `product-ladder-v2-section.tsx` (V2-4), `process-v2-section.tsx`, `founder-section.tsx`, `final-cta-section.tsx`
+`hero-section.tsx` (V2-2), `what-i-build-section.tsx` (V2-3), `why-it-works-section.tsx` (V2-3), `internal-proof-section.tsx` (V2-4), `product-ladder-v2-section.tsx` (V2-4), `process-v2-section.tsx` (V2-5), `founder-section.tsx` (V2-5), `final-cta-section.tsx`
 
 ## V1 homepage sections (unlinked, kept in repo)
 

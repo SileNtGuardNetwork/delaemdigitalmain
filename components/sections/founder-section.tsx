@@ -1,124 +1,97 @@
 import Image from "next/image";
-import { siteConfig } from "@/lib/site-config";
-import { DdLabel, SectionFrame, SectionIndex } from "@/components/sections/dd-ui";
+import {
+  DdH2,
+  DdSub,
+  FlagshipContainer,
+  KickerLine,
+  PrimaryBtn,
+  SectionFrame
+} from "@/components/sections/dd-ui";
 
-const metrics = [
-  { v: "10+", l: "проектов собрано" },
-  { v: "4", l: "ниши экспертизы" },
-  { v: "2 / квартал", l: "новых клиента" }
+const responsibilityBlocks = [
+  "Основатель Делаем Диджитал",
+  "Digital-архитектор",
+  "Собирает сайты, ботов, AI-инструменты и системы привлечения клиентов",
+  "Отвечает за стратегию, визуальный уровень и связку продукта с обработкой заявок"
 ] as const;
 
 export function FounderSection() {
   return (
-    <SectionFrame id="founder" bg="#080C12" fadeTo="#05070A" style={{ minHeight: 1000 }}>
-      <div className="grid min-h-[1000px] grid-cols-1 lg:grid-cols-[45%_55%]">
-        <div className="relative min-h-[360px] overflow-hidden bg-[#0b0e14] lg:min-h-[1000px]">
-          <Image
-            src="/images/vitaly-founder-light.webp"
-            alt="Виталий Тимошенко"
-            fill
-            className="object-cover object-top"
-            sizes="(max-width: 1024px) 100vw, 45vw"
-            priority={false}
-          />
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(8,12,18,.18) 0%, rgba(8,12,18,0) 30%, rgba(8,12,18,.45) 100%)",
-              mixBlendMode: "multiply"
-            }}
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{ background: "linear-gradient(to right, transparent 70%, #080C12 100%)" }}
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{ background: "linear-gradient(to bottom, rgba(8,12,18,.35) 0%, transparent 22%)" }}
-            aria-hidden
-          />
-          <div className="absolute bottom-10 left-10 z-[2] flex flex-col gap-1.5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--dd-text-muted)]">
-              Frame 07 / 08 · founder
-            </p>
-            <p className="text-sm text-[var(--dd-text-secondary)]">Студия · 2026</p>
-          </div>
-          <p className="absolute right-14 top-10 z-[2] text-right font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
-            Σ · ClientFlow System
-          </p>
-        </div>
-
-        <div className="flex max-w-[780px] flex-col gap-8 px-6 pb-20 pt-24 md:px-20 lg:px-20 lg:pb-20 lg:pt-[300px]">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-[22px] bg-[var(--dd-action-copper)]" aria-hidden />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-copper)]">
-              Основатель · § 07
-            </span>
-            <span className="flex-1" />
-            <SectionIndex n={7} />
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h2 className="text-[clamp(48px,5vw,64px)] font-extrabold leading-[0.98] tracking-[-0.04em] text-[var(--dd-text-primary)]">
-              Виталий
-              <br />
-              Тимошенко.
-            </h2>
-            <p className="mt-2 text-base text-[var(--dd-text-secondary)]">
-              Основатель «Делаем&nbsp;Диджитал» · ведёт каждый проект лично.
-            </p>
-          </div>
-
-          <blockquote className="m-0 max-w-[560px] border-l-2 border-[var(--dd-action-copper)] pl-[22px] text-[22px] font-medium leading-[1.35] tracking-[-0.015em] text-[var(--dd-text-primary)]">
-            «Клиенты теряются не в инструментах — а между ними. Моя задача: собрать маршрут, который довозит человека
-            до заявки, а не просто создаёт трафик.»
-          </blockquote>
-
-          <p className="max-w-[560px] text-base leading-[1.7] text-[var(--dd-text-secondary)]">
-            До «Делаем Диджитал» — опыт в digital-маркетинге и IT-продуктах. Специализация: B2B-сегмент, услуги с
-            высоким чеком, сложные ниши. Методология ClientFlow System — собственная разработка на основе реальных
-            проектов.
-          </p>
-
-          <div className="grid max-w-[560px] grid-cols-1 gap-8 border-y border-[var(--dd-border-steel)] py-6 sm:grid-cols-3">
-            {metrics.map((s) => (
-              <div key={s.l} className="flex flex-col gap-1">
-                <span className="text-[28px] font-bold tracking-[-0.025em] text-[var(--dd-text-primary)]">{s.v}</span>
-                <DdLabel className="normal-case tracking-[0.04em]">{s.l}</DdLabel>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex max-w-[560px] flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
-            <div className="flex flex-col gap-1">
-              <DdLabel className="tracking-[0.14em]">написать лично</DdLabel>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="border-b border-[var(--dd-action-copper)] pb-0.5 text-base font-medium text-[var(--dd-text-primary)] no-underline"
-                data-analytics-event="email_contact_click"
-                data-analytics-label="founder_email"
-                data-analytics-value={siteConfig.email}
-              >
-                {siteConfig.email}
-              </a>
-            </div>
-            <svg width="120" height="48" viewBox="0 0 120 48" className="opacity-70" aria-hidden>
-              <path
-                d="M4 32 C 12 8, 22 8, 28 28 C 32 38, 40 36, 42 22 C 44 10, 52 8, 56 22 S 70 38, 78 22 C 82 14, 92 12, 100 24 L 116 24"
-                stroke="var(--dd-action-copper)"
-                strokeWidth="1.4"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+    <SectionFrame id="founder" bg="#080C12" fadeTo="#05070A" className="min-h-0">
+      <FlagshipContainer className="py-20 md:py-24">
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,42%)_1fr] lg:gap-14">
+          <div className="relative mx-auto w-full max-w-[480px] overflow-hidden rounded-[14px] border border-[var(--dd-border-cool)] bg-[#0b0e14] lg:mx-0 lg:max-w-none">
+            <div className="relative aspect-[4/5] w-full max-h-[520px] lg:max-h-[600px]">
+              <Image
+                src="/images/vitaly-founder-light.webp"
+                alt="Виталий Тимошенко — основатель Делаем Диджитал"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 90vw, 40vw"
+                priority={false}
               />
-              <path d="M88 36 L 104 36" stroke="var(--dd-action-copper)" strokeWidth="1.4" strokeLinecap="round" />
-            </svg>
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(8,12,18,.12) 0%, rgba(8,12,18,0) 35%, rgba(8,12,18,.5) 100%)"
+                }}
+                aria-hidden
+              />
+            </div>
+          </div>
+
+          <div className="flex min-w-0 flex-col gap-7 md:gap-8">
+            <div className="flex max-w-[640px] flex-col gap-5">
+              <KickerLine>Кто отвечает за систему</KickerLine>
+              <DdH2>За архитектуру и результат отвечает Виталий Тимошенко.</DdH2>
+              <DdSub>
+                Делаем Диджитал — это не потоковая сборка шаблонов. Каждый проект проходит через архитектуру оффера,
+                визуальный уровень, техническую связку и проверку маршрута к заявке.
+              </DdSub>
+            </div>
+
+            <ul className="m-0 grid max-w-[640px] list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2">
+              {responsibilityBlocks.map((item, index) => (
+                <li
+                  key={item}
+                  className="flex gap-3 rounded-[12px] border border-[var(--dd-border-cool)] px-4 py-3.5"
+                  style={{ background: "rgba(8,12,18,.55)" }}
+                >
+                  <span
+                    className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[8px] font-mono text-[11px] font-semibold text-[var(--dd-diagnostic-blue)]"
+                    style={{
+                      border: "1px solid rgba(95,142,216,.35)",
+                      background: "rgba(95,142,216,0.08)"
+                    }}
+                    aria-hidden
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[14px] leading-[1.5] text-[var(--dd-text-secondary)]">{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <blockquote className="m-0 max-w-[600px] border-l-2 border-[var(--dd-action-copper)] pl-5 text-[17px] font-medium leading-[1.45] tracking-[-0.01em] text-[var(--dd-text-primary)] md:text-[18px]">
+              Я не продаю «просто сайт». Я смотрю, как человек попадает в вашу систему, где он теряет доверие, как
+              оставляет заявку и что происходит после этого.
+            </blockquote>
+
+            <div>
+              <PrimaryBtn
+                href="#contacts"
+                className="px-7 py-3.5 text-[15px]"
+                data-analytics-event="cta_primary_click"
+                data-analytics-label="founder_discuss_system"
+                data-analytics-value="#contacts"
+              >
+                Обсудить систему
+              </PrimaryBtn>
+            </div>
           </div>
         </div>
-      </div>
+      </FlagshipContainer>
     </SectionFrame>
   );
 }
