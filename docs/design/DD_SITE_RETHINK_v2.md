@@ -1,6 +1,6 @@
 # DD Site Rethink v2
 
-**Status:** Active — reset / strategic pivot  
+**Status:** Active — reset / strategic pivot (hero offer updated DD-V2-OFFER-FIX)  
 **Date:** May 2026  
 **Project:** Delaem Digital / ClientFlow System  
 **Mode:** Documentation only — **no runtime changes in this pass**
@@ -99,9 +99,11 @@ Likely issues (hypothesis for owner validation):
 
 ### Working direction
 
-**Founder-led Premium Digital Architect**
+**Company-led Premium Digital System Builder** *(hero)* + **Founder trust layer** *(§7)*
 
-Delaem Digital is not explained as a methodology deck. It is presented as a **high-ticket founder practice** that builds premium client-acquisition systems — sites, traffic, AI, integrations — with direct accountability.
+> **Update (DD-V2-OFFER-FIX):** Earlier “Founder-led Premium Digital Architect” applied to **hero** — **rejected**. Hero speaks as **Делаем Диджитал** (company/product). Виталий — портрет и личная ответственность в секции Founder, не в hero.
+
+Delaem Digital is not explained as a methodology deck. It is presented as a **high-ticket company** that builds premium client-acquisition systems — sites, traffic, AI, integrations — with founder accountability **below the fold**.
 
 The site should feel:
 
@@ -110,12 +112,13 @@ The site should feel:
 | Premium | High-ticket, restrained, no template noise |
 | Confident | Clear claims; less hedging and less “audit score” theater |
 | Direct | What we build, for whom, what it costs, what to do next |
-| Personal | Виталий as architect, not anonymous agency |
-| Modern | Strong typography and photography; not schematic dashboards |
-| Visually strong | Editorial composition; fewer diagram sections |
+| Company-led (hero) | Делаем Диджитал as product/team offer |
+| Personal (§7) | Виталий as architect — trust section, not hero |
+| Modern | Strong typography; technology/system visual in hero |
+| Visually strong | Command layer + editorial founder photo in §7 only |
 | Less verbose | Half the words per screen; one idea per section |
 | Less methodological | ClientFlow as **how we work**, not **what the page is about** |
-| System-based under the hood | Integrations, AI, analytics remain true — not the headline |
+| System-based under the hood | Integrations, AI, analytics remain true — hero headline |
 
 **Primary CTA (unchanged until owner says otherwise):** Разбор системы  
 **Commercial frame:** Делаем Сайт / Делаем Трафик / Делаем Систему — from `lib/pricing.ts`
@@ -128,7 +131,7 @@ Recommend a **tighter 8-section homepage** (down from 13):
 
 | # | Section | Purpose | Replaces / absorbs |
 | ---: | --- | --- | --- |
-| 1 | **Hero** — strong founder-led offer | One-screen positioning + CTA + proof strip | Current hero (revise copy/design in v2 pass, not in reset) |
+| 1 | **Hero** — strong **company-led** offer | One-screen positioning + CTA + **flow strip**; no founder portrait | Current hero (revise in V2-2 per `DD_SITE_V2_BLUEPRINT.md` §4) |
 | 2 | **What I Build** — сайт / заявки / система | Three outcomes, not methodology | Context + System + Assembly (compressed) |
 | 3 | **Why It Works** — strategy + design + AI + integrations | Credibility without route maps | Why + partial Audit |
 | 4 | **Internal Proof** — first we build it for ourselves | Show, don’t diagram | Leads / cases rhythm |
@@ -149,31 +152,28 @@ Recommend a **tighter 8-section homepage** (down from 13):
 
 ## 6. Copy direction v2
 
-Do **not** overwrite locked hero or live components in this document. Three **alternative hero concepts** for owner choice:
+### Superseded hero concepts (rejected DD-V2-OFFER-FIX)
 
-### A. Direct commercial
+Earlier alternatives A (Direct commercial), B (Founder architect), C (Premium system builder), Hybrid A+B — **rejected for hero**. See `DD_SITE_V2_BLUEPRINT.md` §4 archive.
 
-**Kicker:** Виталий Тимошенко · Делаем Диджитал  
-**H1:** Собираю систему, которая приводит заявки — не просто сайт.  
-**Sub:** Сайт, трафик, AI-квалификация и обработка лидов в одном контуре. Для бизнеса, где заявка дорогая и важна скорость.  
-**CTA:** Разбор системы · Telegram-канал  
-**Tone:** Short, offer-first, minimal jargon.
+### Approved hero copy (LOCKED)
 
-### B. Founder architect
+**Kicker:** Делаем Диджитал · сайты, заявки, AI-интеграции
 
-**Kicker:** Виталий Тимошенко · digital-архитектор  
-**H1:** Проектирую путь клиента от первого касания до заявки.  
-**Sub:** Не подряд на страницы — личная сборка premium-систем под ваш продукт, трафик и продажи.  
-**CTA:** Разбор системы · Кейсы  
-**Tone:** Personal authority, “I build”, high-ticket studio.
+**H1:**
+```
+Собираем для бизнеса
+управляемую систему
+привлечения клиентов
+```
 
-### C. Premium system builder
+**Sub:** Соединяем сайт, оффер, заявки, Telegram/CRM, AI-квалификацию и аналитику в понятный маршрут от первого касания до обращения.
 
-**Kicker:** Делаем Диджитал · ClientFlow  
-**H1:** Управляемая система привлечения клиентов под ключ.  
-**Sub:** Посадочная, реклама, Telegram, AI и аналитика — связаны в один маршрут. Запускаем только когда система готова к трафику.  
-**CTA:** Разбор системы · Продукты  
-**Tone:** System promise with restraint; one ClientFlow mention, not a glossary.
+**CTA:** Разбор системы · Как это работает (or Telegram-канал)
+
+**Flow strip:** Трафик → Сайт → AI-квалификация → Заявка → Обработка
+
+**Rules:** Hero verb = **Собираем** (not «Соберём» in H1). No Vitaly portrait in hero.
 
 ---
 
@@ -185,19 +185,18 @@ Three visual directions for owner choice. None implemented in code yet.
 
 | Field | Direction |
 | --- | --- |
-| **Mood** | Magazine-like dark editorial; portrait-led; generous whitespace |
-| **Hero composition** | Large founder portrait, asymmetric type, single copper CTA; minimal diagram |
-| **Visual risks** | Can feel “personal blog” if typography weak; needs strong photography |
-| **Why it may work** | Matches founder-led premium; reduces schematic feel; mobbin/curation-friendly |
+| **Mood** | Magazine-like dark editorial; **§7 portrait-led**; generous whitespace |
+| **Hero composition** | ~~Large founder portrait~~ — **REJECTED for hero**; use in Founder section only |
+| **Status** | Founder photo **not in hero** per DD-V2-OFFER-FIX |
 
 ### B. Premium Command System
 
 | Field | Direction |
 | --- | --- |
 | **Mood** | Controlled command center — but **not** fake dashboard; real artifacts (site frames, Telegram card, form) |
-| **Hero composition** | Split: founder left, one real system artifact right (not 6-step route) |
+| **Hero composition** | **APPROVED for hero:** copy + system/technology visual + flow strip (5 steps) |
 | **Visual risks** | Slips into SaaS UI if over-designed; needs strict “no fake metrics” rule |
-| **Why it may work** | Keeps system credibility without methodology scroll; good for B2B buyers |
+| **Why it may work** | Matches company-led offer; technology + managed system emphasis |
 
 ### C. Minimal High-Ticket Studio
 
@@ -223,7 +222,8 @@ Three visual directions for owner choice. None implemented in code yet.
 | `ComparisonColumn`, `FitCard`, `FitFilterPanel` | maybe | Only if fit/comparison stays on homepage |
 | `RouteStageCard`, `FlowPath` | rethink | Likely too schematic for v2 homepage |
 | Header/footer shell + `lib/navigation.ts` | yes | Adjust labels/targets after structure lock |
-| Hero assets (webp) | yes | Recompose in new art direction |
+| `vitaly-founder-light.webp` | yes | §7 Founder only |
+| `vitaly-hero-cinematic.webp` | no in hero | Retired from hero; company-led visual instead |
 | `/api/leads`, legal, quiz, analytics | yes | No changes without explicit task |
 | Frozen hero TSX (current) | rethink | Copy/structure may change in v2 hero pass |
 
@@ -247,9 +247,9 @@ Three visual directions for owner choice. None implemented in code yet.
 
 Short decision list before any v2 implementation:
 
-1. **Hero concept** — A Direct commercial / B Founder architect / C Premium system builder (or hybrid).
-2. **Visual direction** — A Dark Editorial / B Premium Command / C Minimal Studio (or hybrid).
-3. **Brand mode** — More **personal brand** (Виталий) vs **agency/product** (Делаем Диджитал / ClientFlow).
+1. **Hero concept** — **LOCKED:** Company-led / Product-led (`DD_SITE_V2_BLUEPRINT.md` §4).
+2. **Visual direction** — **Hero:** Premium Command + Dark Editorial (no portrait). **§7:** founder portrait.
+3. **Brand mode** — **LOCKED:** Company/product in hero; **Виталий** in §7 Founder.
 4. **ClientFlow terminology** — High (methodology brand) / Medium (footer + one section) / Low (hero sub only).
 5. **Homepage length** — **8 sections** (recommended) vs keep **13** vs custom count.
 6. **Approve reset** — Confirm section rebuild wave is frozen; no more 2-H commits without v2 spec.

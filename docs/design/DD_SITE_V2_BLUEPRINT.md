@@ -1,7 +1,7 @@
 # DD Site V2 Blueprint
 
-**Status:** Source of truth for next implementation pass (pending owner approval)  
-**Date:** May 2026  
+**Status:** Source of truth for next implementation pass  
+**Date:** May 2026 (updated DD-V2-OFFER-FIX)  
 **Project:** Delaem Digital / ClientFlow System  
 **Predecessor:** `docs/design/DD_SITE_RETHINK_v2.md` (`2f2dfb7`)  
 **Mode:** Documentation only — no runtime changes until V2 implementation is approved
@@ -12,13 +12,15 @@
 
 | Decision | Choice |
 | --- | --- |
-| Site direction | **Founder-led Premium Digital Architect** |
-| Hero concept | **Hybrid A+B** — Direct Commercial + Founder Architect |
-| Visual direction | **Hybrid A+B** — Dark Editorial Founder + Premium Command System |
-| Brand emphasis | **Vitaly** as architect; **Делаем Диджитал** as production system behind him |
+| Site direction | **Company-led Premium Digital System Builder** |
+| Hero concept | **Company-led / Product-led** — **APPROVED** (see §4) |
+| Hero concept (rejected) | ~~Founder-led hero~~ · ~~Hybrid A+B~~ · ~~Founder portrait in hero~~ |
+| Visual direction | **Dark Editorial + Premium Command** — product/technology emphasis in hero |
+| Brand emphasis | **Делаем Диджитал** as company/product offer in hero; **Виталий** as trust layer in §7 Founder |
 | ClientFlow terminology | **Low / Medium** — supporting concept, not homepage methodology |
 | Homepage length | **8 sections** (not 13) |
-| Core principle | **Strong image + clear offer first**, then system — not methodology first |
+| Core principle | **Clear company offer + managed system first**, then proof → products → process → founder → CTA |
+| Hero verb | **Собираем** (not «Соберём» in H1) |
 
 ---
 
@@ -40,10 +42,11 @@ The section-by-section rebuild program (Steps 2-A through 2-G) is **frozen**. No
 
 ### v2 must
 
-- Be **simpler, stronger, more founder-led, less methodological**.
+- Be **simpler, stronger, company-led in hero, less methodological**.
 - **Sell a premium outcome** — expensive-looking sites and manageable lead systems — not explain internal methodology on scroll.
 - Use ClientFlow as **how work is done**, mentioned sparingly (footer, one product card, optional subline).
-- Lead with **image + offer**, then show **what is built** and **why it works**, then **proof → products → process → founder → CTA**.
+- Lead with **company offer + system visual**, then show **what is built** and **why it works**, then **proof → products → process → founder (personal trust) → CTA**.
+- **Hero speaks as Делаем Диджитал** — not from Vitaly personally; founder photo and accountability move to §7.
 
 ---
 
@@ -51,7 +54,7 @@ The section-by-section rebuild program (Steps 2-A through 2-G) is **frozen**. No
 
 ### One-line positioning
 
-**Виталий Тимошенко / Делаем Диджитал** помогает бизнесу собрать premium-сайты и системы привлечения клиентов: они выглядят дорого, собирают заявки и остаются управляемыми после запуска.
+**Делаем Диджитал** собирает для бизнеса premium-сайты и управляемые системы привлечения клиентов: технология, качество, заявки и аналитика в одном маршруте. **Виталий Тимошенко** — основатель и ответственный архитектор; личное доверие — в секции Founder (§7), не в hero.
 
 ### What we sell (outcome, not deliverable list)
 
@@ -84,17 +87,23 @@ B2B owners, experts, local high-ticket businesses — fit is shown through copy 
 | Direct | Hype / superlatives |
 | Confident | Academic / textbook |
 | Premium | Cheap / mass-market |
-| Founder-led (я / собираю) | Anonymous «мы как агентство» |
+| Company-led in hero (мы / собираем) | Founder-led hero (я / собираю в H1) |
+| Founder-led in §7 only (личная ответственность) | Anonymous «мы как агентство» без лица ниже |
 | Commercial clarity | System-heavy jargon |
 | Concrete outcomes | Abstract «экосистемы» |
 
 ### Allowed language (direction)
 
-- «Делаю сайты и digital-системы, которые выглядят дорого и приводят заявки.»
-- «Собираю не страницу, а управляемый вход в продажи.»
-- «Сайт должен не просто выглядеть современно. Он должен помогать бизнесу получать и обрабатывать обращения.»
+**Hero (company voice):**
+
+- «Собираем для бизнеса управляемую систему привлечения клиентов.»
+- «Соединяем сайт, оффер, заявки, Telegram/CRM, AI и аналитику в один маршрут.»
 - «Сначала разбор. Потом сборка. Потом запуск под трафик.»
+
+**Founder section (personal voice):**
+
 - «Отвечаю за результат целиком — не за отдельный макет.»
+- «Лично веду стратегию, дизайн-направление и запуск.»
 
 ### Forbidden language (homepage)
 
@@ -118,66 +127,46 @@ B2B owners, experts, local high-ticket businesses — fit is shown through copy 
 
 ## 4. Hero v2
 
-Three alternatives for reference. **Owner choice: Hybrid A+B (recommended below).**
+### Rejected directions (do not implement)
 
-### A. Direct Commercial
+| Direction | Status | Reason |
+| --- | --- | --- |
+| **Founder-led hero** (Vitaly kicker, «Собираю», portrait-primary) | **REJECTED** | Owner: hero must speak as company/team |
+| **Hybrid A+B** (commercial + founder architect in hero) | **REJECTED** | Superseded by company-led lock |
+| **Founder portrait in hero** (`vitaly-hero-cinematic.webp` as primary visual) | **REJECTED** | Portrait moves to §7 Founder only |
+| **EN H1 placeholder** (skeleton Offer D) | **REJECTED** | Canonical RU company offer locked |
+| **«Соберём» in hero H1** | **FORBIDDEN** | Future tense reserved for CTA/sales copy (§8), not main offer |
 
-| Field | Copy direction |
+### Approved direction: **Company-led / Product-led Hero**
+
+Hero communicates: **technology · quality · managed client acquisition system · company/product-level offer**.
+
+| Field | Canonical copy |
 | --- | --- |
-| **Kicker** | Виталий Тимошенко · Делаем Диджитал |
-| **Headline** | Собираю сайты и системы, которые **приводят заявки** — не просто выглядят современно. |
-| **Subheadline** | Premium-посадочная, заявки, Telegram и аналитика в одном контуре. Для бизнеса, где обращение дорогое и важна скорость. |
+| **Kicker** | Делаем Диджитал · сайты, заявки, AI-интеграции |
+| **Headline** | Собираем для бизнеса / управляемую систему / привлечения клиентов |
+| **Headline (alt)** | Собираем бизнесу / управляемую систему / привлечения клиентов |
+| **Subheadline** | Соединяем сайт, оффер, заявки, Telegram/CRM, AI-квалификацию и аналитику в понятный маршрут от первого касания до обращения. |
 | **Primary CTA** | Разбор системы |
-| **Secondary CTA** | Telegram-канал |
-| **Trust marker** | Сайт · Заявки · AI · Telegram · Аналитика |
-| **Visual** | Strong offer left; subtle product proof right — no route diagram |
-| **Why it works** | Fast commercial clarity |
-| **Risk** | Can feel less personal if portrait is weak |
+| **Secondary CTA** | Как это работает → `#why` or `#process` **or** Telegram-канал |
+| **Flow strip** | Трафик → Сайт → AI-квалификация → Заявка → Обработка |
+| **Visual** | **No Vitaly portrait.** Product/technology emphasis: system artifact, site frame, integration UI, or abstract command layer — Dark Editorial + Premium Command |
+| **Hero verb** | **Собираем** only |
 
-### B. Founder Architect
+### Positioning rules (hero)
 
-| Field | Copy direction |
-| --- | --- |
-| **Kicker** | Виталий Тимошенко · digital-архитектор |
-| **Headline** | Проектирую **путь клиента** от первого касания до заявки. |
-| **Subheadline** | Личная сборка premium digital под ваш продукт: стратегия, дизайн, сайт, интеграции и запуск. Не подряд на страницы. |
-| **Primary CTA** | Разбор системы |
-| **Secondary CTA** | Кейсы / Telegram |
-| **Trust marker** | 10+ проектов · founder-led · high-ticket |
-| **Visual** | Large editorial portrait; asymmetric type; minimal UI chrome |
-| **Why it works** | Authority and trust for high-ticket |
-| **Risk** | Can under-sell product ladder if too abstract |
+1. Company-led, not Vitaly-led.
+2. No founder portrait as primary hero visual.
+3. Visual = technology, quality, managed system.
+4. Founder photo + personal trust = §7 only.
+5. Primary CTA unchanged: **Разбор системы**.
+6. Flow strip **approved** for hero (5 steps, plain labels).
 
-### C. Premium System Builder
+### Reference only (superseded alternatives)
 
-| Field | Copy direction |
-| --- | --- |
-| **Kicker** | Делаем Диджитал |
-| **Headline** | **Управляемая система** привлечения клиентов под ключ. |
-| **Subheadline** | Посадочная, реклама, AI, Telegram и аналитика — связаны до запуска трафика. |
-| **Primary CTA** | Разбор системы |
-| **Secondary CTA** | Продукты |
-| **Trust marker** | Делаем Сайт · Трафик · Система |
-| **Visual** | One real artifact (form/Telegram card) — not fake dashboard |
-| **Why it works** | System buyers see production depth |
-| **Risk** | Drifts toward v1 methodology tone if over-designed |
+Earlier concepts A (Direct Commercial), B (Founder Architect), C (Premium System Builder), Hybrid A+B — archived in `DD_SITE_V2_PROTOTYPE.md` revision history; **not for implementation**.
 
-### Recommended winner: **Hybrid A+B**
-
-Combine **commercial clarity (A)** with **founder authority (B)**.
-
-| Field | Hybrid A+B recommendation |
-| --- | --- |
-| **Kicker** | Виталий Тимошенко · digital-архитектор · Делаем Диджитал |
-| **Headline** | Собираю бизнесу **premium digital**, который выглядит дорого и **приводит заявки**. |
-| **Subheadline** | Не отдельная страница — управляемый вход в продажи: сайт, заявки, AI, Telegram и аналитика. Личная ответственность за сборку и запуск. |
-| **Primary CTA** | Разбор системы |
-| **Secondary CTA** | Telegram-канал |
-| **Trust marker** | 3–5 слов: Сайт · Заявки · AI · Telegram · Аналитика (no route dots row) |
-| **Visual** | **Dark Editorial:** large portrait (existing `vitaly-hero-cinematic.webp`), left copy column. **Command layer:** one restrained artifact (e.g. lead card or site frame) — not 5-step flow path |
-| **Rationale** | Offer first + face + accountability; avoids v1 flow-path hero |
-
-**Note:** This does not overwrite runtime `hero-section.tsx` until V2-2 implementation pass.
+**Note:** Runtime `hero-section.tsx` still reflects V2-1 skeleton; update in V2-2 per this section.
 
 ---
 
@@ -191,15 +180,15 @@ Exactly **8 sections**. Map from current `app/page.tsx` components at implementa
 
 | Field | Direction |
 | --- | --- |
-| **Goal** | In 3 seconds: who, what outcome, what to do next |
-| **User question** | «Кто это и что я получу?» |
-| **Headline** | Hybrid A+B (§4) |
-| **Content blocks** | Kicker, H1, sub, dual CTA, short trust strip |
-| **Visual** | Editorial portrait + optional single artifact; 1360px; no flow diagram |
-| **CTA** | Разбор системы · Telegram |
-| **Avoid** | 5-step flow path, SYS labels, long subparagraph |
+| **Goal** | In 5 seconds: what company offers, what system does, what to do next |
+| **User question** | «Что это за продукт и что я получу?» |
+| **Headline** | Company-led canonical H1 (§4) — **Собираем** |
+| **Content blocks** | Kicker, H1, sub, dual CTA, **flow strip** (5 steps) |
+| **Visual** | Technology/system artifact — **no founder portrait**; 1360px |
+| **CTA** | Разбор системы · Как это работает or Telegram |
+| **Avoid** | Vitaly kicker, «Собираю/Соберём» in H1, portrait-led layout, SYS labels |
 
-**Runtime (future):** replace `hero-section.tsx` in V2-2.
+**Runtime (future):** replace `hero-section.tsx` in V2-2; remove `vitaly-hero-cinematic.webp` from hero.
 
 ---
 
@@ -209,7 +198,7 @@ Exactly **8 sections**. Map from current `app/page.tsx` components at implementa
 | --- | --- |
 | **Goal** | Show three outcomes: сайты / заявки / система — not methodology |
 | **User question** | «Что конкретно вы делаете?» |
-| **Headline** | Три вещи, которые я собираю для бизнеса |
+| **Headline** | Три вещи, которые мы собираем для бизнеса |
 | **Content blocks** | 3 pillars: **Premium-сайт** (доверие + конверсия) · **Поток заявок** (формы, квиз, AI, Telegram) · **Управляемая система** (интеграции + аналитика после запуска) |
 | **Visual** | 3 strong cards or editorial columns; blue accents; no module grid of 6–7 |
 | **CTA** | Optional text link → Product Ladder anchor |
@@ -345,7 +334,8 @@ Old section files remain in repo until deletion approved; not imported after V2-
 | Header/footer + `lib/navigation.ts` | Keep shell; update anchors after v2 `id`s locked |
 | `/api/leads`, legal, quiz, analytics | Untouched until V2-8 |
 | `lib/pricing.ts` | **Only** price source |
-| `vitaly-hero-cinematic.webp`, `vitaly-founder-light.webp` | Reuse in new art direction |
+| `vitaly-founder-light.webp` | §7 Founder only |
+| `vitaly-hero-cinematic.webp` | **Not in hero** — retired from hero per company-led lock |
 | `DD_SITE_RETHINK_v2.md`, design constitution docs | Reference; constitution hero copy superseded by this blueprint when approved |
 
 ---
@@ -374,15 +364,15 @@ Old section files remain in repo until deletion approved; not imported after V2-
 
 ## 8. Visual direction v2
 
-### Chosen system: Hybrid — Dark Editorial Founder + Premium Command System
+### Chosen system: Dark Editorial + Premium Command (company-led hero)
 
 | Layer | Rule |
 | --- | --- |
-| **Mood** | Premium dark B2B, founder-led, confident, not schematic |
-| **Hero composition** | ~45% copy / portrait right or asymmetric editorial; **no** multi-step flow strip |
+| **Mood** | Premium dark B2B, company/product-led in hero; founder trust in §7 |
+| **Hero composition** | Copy + system/technology visual; **flow strip** below CTAs; **no founder portrait** |
 | **Background** | `#05070A` / `#080C12` bands; subtle gradient fades between sections |
 | **Typography** | Onest; large H1; short subheads; fewer labels |
-| **Image usage** | Hero cinematic portrait; founder section portrait; proof artifacts — real only |
+| **Image usage** | **No portrait in hero.** `vitaly-founder-light.webp` in §7 only; proof artifacts — real only |
 | **Command/system layer** | At most **one** artifact per section (lead card, site frame, Telegram snippet) — never fake KPI dashboard |
 | **Card density** | Max 3 cards per row; prefer 2–3 pillars over 6–9 modules |
 | **Color discipline** | Copper = kicker + primary CTA; blue = subtle system cue; no red danger; no neon |
@@ -408,7 +398,7 @@ Old section files remain in repo until deletion approved; not imported after V2-
 | Step | Scope | Deliverable |
 | --- | --- | --- |
 | **V2-1** | New homepage skeleton | `app/page.tsx` imports 8 new section stubs; old sections unlinked; build pass |
-| **V2-2** | Hero | Hybrid A+B hero per §4 |
+| **V2-2** | Hero | Company-led hero per §4 (no portrait; flow strip) |
 | **V2-3** | What I Build + Why It Works | §2–3 content + visuals |
 | **V2-4** | Product Ladder + Process | §5–6; `lib/pricing.ts`; 5-step process |
 | **V2-5** | Founder + Final CTA | §7–8; `id="founder"`, `id="contacts"` |
@@ -428,7 +418,7 @@ Explicit sign-off needed before implementation:
 
 | # | Decision | Options / status |
 | --- | --- | --- |
-| 1 | **Approve hero winner** | Hybrid A+B (recommended) — or pure A / B / C |
+| 1 | **Approve hero winner** | **Company-led / Product-led** — **LOCKED** (§4) |
 | 2 | **Approve 8-section structure** | As §5 — or request changes |
 | 3 | **Approve tone of voice** | As §3 |
 | 4 | **Approve visual direction** | Hybrid Editorial + Command — as §8 |
@@ -442,7 +432,7 @@ Explicit sign-off needed before implementation:
 ```
 Approved by: ___
 Date: ___
-Hero: Hybrid A+B / other: ___
+Hero: Company-led / Product-led (LOCKED) / other: ___
 Structure: 8 sections / other: ___
 Start V2-1: YES / NO
 ```
@@ -457,4 +447,4 @@ Start V2-1: YES / NO
 - Pricing source: `lib/pricing.ts`
 - Current homepage (frozen): `app/page.tsx` — 13 sections until V2-1
 
-**Blueprint status:** DRAFT — awaiting owner approval in §10.
+**Blueprint status:** Hero offer **LOCKED** (company-led) — DD-V2-OFFER-FIX. Other §10 items may still need sign-off.

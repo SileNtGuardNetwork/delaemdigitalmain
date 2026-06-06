@@ -1,10 +1,10 @@
 # DD Site V2 Prototype — Full Pre-Code Homepage
 
-**Status:** Awaiting owner approval — documentation only  
+**Status:** Hero offer **LOCKED** (company-led) — DD-V2-OFFER-FIX  
 **Date:** May 2026  
 **Project:** Delaem Digital / ClientFlow System  
 **Repository:** SileNtGuardNetwork/delaemdigitalmain  
-**Baseline:** V2-1 skeleton (`2163367`)  
+**Baseline:** V2-1 skeleton (`2163367`) · prototype doc (`d554b49`)  
 **Mode:** Prototype before code — **no runtime changes until approved**
 
 **Source hierarchy:**
@@ -25,17 +25,19 @@
 
 ### What the website must communicate
 
-**Делаем Диджитал** — это founder-led практика Виталия Тимошенко, которая собирает для бизнеса **premium digital**: сайты и системы, которые **выглядят дорого**, **собирают заявки** и **остаются управляемыми** после запуска.
+**Делаем Диджитал** — компания, которая собирает для бизнеса **premium digital** и **управляемые системы привлечения клиентов**: технология, качество, заявки, AI-интеграции и аналитика в одном маршруте.
 
 Сайт не продаёт «дизайн» и не объясняет внутреннюю методологию на каждом экране. Он отвечает на три вопроса:
 
-1. **Кто отвечает** — конкретный человек, не безликое агентство.
+1. **Что предлагает компания** — управляемая система привлечения клиентов, не набор услуг.
 2. **Что получит бизнес** — доверие, заявки, управляемый контур.
 3. **С чего начать** — разбор, продукт, процесс, контакт.
 
+**Личное доверие** (Виталий Тимошенко, ответственность, портрет) — **секция 7 Founder**, не hero.
+
 ### Sharpened thesis (one paragraph)
 
-> Виталий Тимошенко проектирует и собирает premium-сайты и digital-системы для бизнеса, где обращение дорогое и важна скорость. Не отдельная страница — **управляемый вход в продажи**: оффер, доверие, захват заявки, AI/Telegram/CRM и аналитика. Сначала разбор. Потом сборка. Потом запуск под трафик. Личная ответственность за архитектуру, визуальный уровень и связку сайта с обработкой заявок.
+> Делаем Диджитал собирает для бизнеса управляемую систему привлечения клиентов: premium-сайт, оффер, заявки, Telegram/CRM, AI-квалификация и аналитика в понятном маршруте от первого касания до обращения. Hero говорит от лица компании и продукта. Основатель Виталий Тимошенко — слой доверия ниже по странице: личная ответственность за архитектуру, визуальный уровень и запуск.
 
 ### What the site is NOT
 
@@ -77,63 +79,41 @@ Fit показывается **тоном, продуктами и ценами*
 
 ## 3. Main Offer
 
-Five hero-ready formulations. Each must read in **5 seconds**, be commercial, not hype, not methodological.
+### Rejected hero offers (DD-V2-OFFER-FIX)
 
-### Offer A — Direct outcome
-
-**Собираю сайты и системы, которые приводят заявки — не просто выглядят современно.**
-
-*Sub one-liner:* Premium-посадочная, заявки, Telegram и аналитика в одном контуре.
-
-| Pro | Con |
+| Offer | Status |
 | --- | --- |
-| Максимально ясно | Меньше личного «архитектора» |
+| Offer A–E (founder «Собираю», Hybrid A+B, EN hook) | **REJECTED** for hero |
+| Founder-led hero with Vitaly kicker/portrait | **REJECTED** |
+| «Соберём» in hero H1 | **FORBIDDEN** |
 
-### Offer B — Founder architect
+### Approved winner: **Company-led / Product-led (canonical)**
 
-**Проектирую путь клиента от первого касания до заявки.**
+**H1 (canonical):**
 
-*Sub one-liner:* Личная сборка premium digital под ваш продукт — не подряд на страницы.
+```
+Собираем для бизнеса
+управляемую систему
+привлечения клиентов
+```
 
-| Pro | Con |
-| --- | --- |
-| Доверие, authority | Может звучать абстрактно без commercial hook |
+**H1 (accepted alternative):**
 
-### Offer C — Premium system
+```
+Собираем бизнесу
+управляемую систему
+привлечения клиентов
+```
 
-**Управляемая система привлечения клиентов под ключ.**
+**Kicker:** Делаем Диджитал · сайты, заявки, AI-интеграции
 
-*Sub one-liner:* Посадочная, реклама, AI, Telegram и аналитика — связаны до запуска трафика.
+**Subheadline:** Соединяем сайт, оффер, заявки, Telegram/CRM, AI-квалификацию и аналитику в понятный маршрут от первого касания до обращения.
 
-| Pro | Con |
-| --- | --- |
-| Сильно для system-buyers | Риск сдвига в methodology tone |
+**Flow strip:** Трафик → Сайт → AI-квалификация → Заявка → Обработка
 
-### Offer D — Visual + commercial (EN hook)
+**Hero verb rule:** **Собираем** only in H1. «Соберём» allowed in Final CTA (§8) and sales microcopy, not in main company offer.
 
-**Premium digital that looks expensive and brings leads.**
-
-*Sub one-liner (RU):* Проектирую сайты и digital-системы для бизнеса, которому нужен управляемый вход в продажи.
-
-| Pro | Con |
-| --- | --- |
-| Запоминается, international tone | EN H1 на RU-рынке — решение owner; skeleton placeholder only |
-
-### Offer E — Hybrid A+B (recommended)
-
-**Собираю бизнесу premium digital, который выглядит дорого и приводит заявки.**
-
-*Sub one-liner:* Не отдельная страница — управляемый вход в продажи: сайт, заявки, AI, Telegram и аналитика. Личная ответственность за сборку и запуск.
-
-| Pro | Con |
-| --- | --- |
-| Commercial + founder + outcome | Длиннее одной строки — нужна типографика |
-
-### Recommended winner: **Offer E (Hybrid A+B)**
-
-**Rationale:** Совмещает commercial clarity (A), personal accountability (B) и system depth (C) без перегруза jargon. Соответствует blueprint §4 и направлению Founder-led Premium Digital Architect.
-
-**Alternative if owner prefers shorter H1:** Offer A as H1 + Offer B trust line под subheadline.
+**Rationale:** Company/product-level clarity in 5 seconds; technology and managed system; founder trust deferred to §7.
 
 ---
 
@@ -144,7 +124,8 @@ Five hero-ready formulations. Each must read in **5 seconds**, be commercial, no
 | Attribute | Example |
 | --- | --- |
 | Direct | «Сначала разбор. Потом сборка.» |
-| Founder-led | «Собираю», «Проектирую», «Отвечаю лично» |
+| Company-led (hero) | «Собираем», «Соединяем», «Делаем Диджитал» |
+| Founder-led (§7 only) | «Отвечаю лично», «Веду каждый проект» |
 | Confident | «Premium digital», «управляемый вход в продажи» |
 | Commercial | «от 150 000 ₽», «три уровня входа» |
 | Clear | Короткие предложения, один смысл на блок |
@@ -161,7 +142,8 @@ Five hero-ready formulations. Each must read in **5 seconds**, be commercial, no
 | «6 этапов / 9 этапов / единый маршрут» как повторяющийся мотив | v1 overload |
 | Fake metrics (scores, uptime, latency) | Trust damage |
 | § NN / Frame NN section labels | Internal playbook |
-| Anonymous «мы как агентство» без лица | Loses founder-led |
+| Founder-led hero (я / Собираю в H1) | Owner rejected — hero is company voice |
+| «Соберём» in hero H1 | Future tense — CTA/sales only |
 
 ### ClientFlow terminology rule
 
@@ -180,9 +162,9 @@ Primary conversion path: **Разбор системы** → `#contacts` (form w
 | CTA | Type | Where it appears | Links to | User expects after click |
 | --- | --- | --- | --- | --- |
 | **Разбор системы** | Primary | Hero, Header nav CTA, Process, Final CTA, Product cards (variant) | `#contacts` | Скролл к финальному блоку; позже — форма заявки на разбор |
-| **Telegram-канал** | Secondary | Hero, Final CTA, Founder (optional) | `https://t.me/delaemdigital` | Открытие Telegram; контент, процесс, кейсы |
+| **Как это работает** | Secondary | Hero (preferred), Why It Works (optional) | `#why` or `#process` | Понимание подхода или 5 шагов процесса |
+| **Telegram-канал** | Secondary (alt) | Hero, Final CTA, Founder (optional) | `https://t.me/delaemdigital` | Открытие Telegram; контент, процесс, кейсы |
 | **Посмотреть продукты** | Additional | Hero (optional text link), What I Build (optional) | `#products` | Три продукта с ценами и входом |
-| **Как это работает** | Additional | Hero (optional), Why It Works (optional) | `#why` or `#process` | Понимание подхода или 5 шагов |
 | **ClientFlow Аудит** | Additional | Final CTA secondary (optional), footer | `/diagnostic` or `#audit` if page exists | Диагностика системы до разговора — не главный путь |
 | **Смотреть кейсы** | Additional | Internal Proof | `/cases` | Реальные проекты |
 | **Начать с разбора** | Additional | Process | `#contacts` | Same as primary |
@@ -214,47 +196,51 @@ Primary conversion path: **Разбор системы** → `#contacts` (form w
 | **Number** | 01 |
 | **Name** | Hero |
 | **Anchor** | `#top` (implicit) |
-| **Goal** | Offer clear in 5 seconds; position Vitaly as responsible architect |
-| **User question** | «Кто это и что я получу?» |
+| **Goal** | Offer clear in 5 seconds; position **Делаем Диджитал** as company/product; communicate technology + managed system |
+| **User question** | «Что это за продукт и что я получу?» |
 
-**Kicker:** Виталий Тимошенко · digital-архитектор · Делаем Диджитал
+**Kicker:** Делаем Диджитал · сайты, заявки, AI-интеграции
 
-**Headline (recommended):** Собираю бизнесу premium digital, который выглядит дорого и приводит заявки.
+**Headline (canonical):** Собираем для бизнеса / управляемую систему / привлечения клиентов
 
-**Subheadline:** Не отдельная страница — управляемый вход в продажи: сайт, заявки, AI, Telegram и аналитика. Лично отвечаю за архитектуру, визуальный уровень и связку с обработкой заявок.
+**Headline (alt):** Собираем бизнесу / управляемую систему / привлечения клиентов
+
+**Subheadline:** Соединяем сайт, оффер, заявки, Telegram/CRM, AI-квалификацию и аналитику в понятный маршрут от первого касания до обращения.
 
 **Content blocks:**
 
 - Kicker (copper rule + uppercase label)
-- H1 (2–3 lines; last line or key phrase in diagnostic blue)
-- Subheadline (max 2 sentences)
+- H1 (3 lines; key phrase «управляемую систему» in diagnostic blue)
+- Subheadline (one sentence)
 - Primary CTA: Разбор системы
-- Secondary CTA: Telegram-канал
-- Trust marker (text strip, NOT flow diagram): `Сайт · Заявки · AI · Telegram · Аналитика`
-- Optional: one restrained artifact (lead card or site frame) beside portrait
+- Secondary CTA: Как это работает → `#why` or `#process` **or** Telegram-канал
+- **Flow strip:** Трафик → Сайт → AI-квалификация → Заявка → Обработка
+- System/technology visual (artifact, site frame, integration UI) — **no founder portrait**
 
-**CTA:** Разбор системы · Telegram-канал
+**CTA:** Разбор системы · Как это работает or Telegram-канал
 
 **Visual direction:**
 
-- Dark Editorial: large cinematic portrait (`vitaly-hero-cinematic.webp`), copy left ~45%
-- Premium Command: at most one real artifact — no 5-step flow path
+- Dark Editorial + Premium Command: copy left; **technology/system visual** right or full-bleed background
+- **No** `vitaly-hero-cinematic.webp` in hero
+- Flow strip with blue dots/connectors (approved)
 - FlagshipContainer 1360px; min-height ~100vh
-- Copper kicker + primary button; blue accent on H1 highlight only
+- Copper kicker + primary button; blue accent on H1 highlight
 
 **What to avoid:**
 
-- 5-step flow strip, route dots, SYS labels
+- Founder portrait, Vitaly kicker, «Собираю» / «Соберём» in H1
 - Fake dashboard, neon, purple gradients
-- Long subparagraphs, methodology before offer
-- English H1 unless owner explicitly approves Offer D
+- ClientFlow map, § index, SYS labels
+- English H1 (skeleton placeholder)
 
 **Acceptance criteria:**
 
-- [ ] Visitor names outcome (premium + leads) in 5 seconds
-- [ ] Vitaly visible as person responsible
+- [ ] Visitor names **managed client acquisition system** in 5 seconds
+- [ ] Hero reads as **company/product**, not personal founder page
+- [ ] **No** Vitaly portrait in hero
+- [ ] Flow strip present with 5 canonical steps
 - [ ] Primary CTA visible above fold on 1440px and 390px
-- [ ] No ClientFlow map or § index in hero
 
 ---
 
@@ -268,7 +254,7 @@ Primary conversion path: **Разбор системы** → `#contacts` (form w
 | **Goal** | Three outcomes: site / leads route / managed system |
 | **User question** | «Что конкретно вы делаете?» |
 
-**Kicker:** Что я собираю
+**Kicker:** Что мы собираем
 
 **Headline:** Три результата вместо набора разрозненных услуг
 
@@ -605,24 +591,24 @@ Readable copy-doc — all headings, cards, CTAs, microcopy for approval.
 
 ### §01 Hero
 
-**Kicker:** Виталий Тимошенко · digital-архитектор · Делаем Диджитал
+**Kicker:** Делаем Диджитал · сайты, заявки, AI-интеграции
 
 **H1:**
-Собираю бизнесу premium digital,
-который выглядит дорого
-и приводит заявки.
+Собираем для бизнеса
+управляемую систему
+привлечения клиентов
 
-**Sub:** Не отдельная страница — управляемый вход в продажи: сайт, заявки, AI, Telegram и аналитика. Лично отвечаю за архитектуру, визуальный уровень и связку с обработкой заявок.
+**Sub:** Соединяем сайт, оффер, заявки, Telegram/CRM, AI-квалификацию и аналитику в понятный маршрут от первого касания до обращения.
 
 **CTA primary:** Разбор системы  
-**CTA secondary:** Telegram-канал  
-**Trust marker:** Сайт · Заявки · AI · Telegram · Аналитика  
+**CTA secondary:** Как это работает *(or Telegram-канал)*  
+**Flow strip:** Трафик → Сайт → AI-квалификация → Заявка → Обработка  
 
 ---
 
 ### §02 What I Build
 
-**Kicker:** Что я собираю  
+**Kicker:** Что мы собираем  
 **H2:** Три результата вместо набора разрозненных услуг  
 **Sub:** Не отдельный лендинг и не «ещё один инструмент» — связанный digital-контур под заявки и управление после запуска.
 
@@ -660,7 +646,7 @@ Premium-посадочная: оффер, визуальный уровень и
 **H2:** Сначала собираем систему для себя — потом для клиентов  
 **Sub:** Не продаём то, чего нет. Собственный сайт, продукты и процесс — тот же стандарт, что предлагаем бизнесу.
 
-**Делаем Диджитал** — Этот сайт — живой пример: founder-led offer, продуктовая лестница, диагностика и сборка под заявки.  
+**Делаем Диджитал** — Этот сайт — живой пример: company-led offer, продуктовая лестница, диагностика и сборка под заявки.  
 **Build in public** — Показываем процесс и артефакты — не обещания на слайдах. Кейсы и подход — в открытом доступе.
 
 **CTA:** Смотреть кейсы
@@ -744,7 +730,7 @@ No final implementation — layout intent only.
 
 | Section | Desktop | Mobile | Image / portrait | Motion (later) |
 | --- | --- | --- | --- | --- |
-| **Hero** | 45% copy / 55% portrait right; CTAs row | Portrait below or cropped top; stack copy | `vitaly-hero-cinematic.webp` + optional artifact | CSS fadeUp stagger; respect reduced-motion |
+| **Hero** | Copy left + system/tech visual right (or full-bleed); CTAs + flow strip | Stack copy → flow strip → visual; no portrait | **No portrait.** System artifact / site frame / integration UI | CSS fadeUp stagger; respect reduced-motion |
 | **What I Build** | 3-col equal cards | 1-col stack, gap 16px | No photo | Subtle card fade on scroll (V2-7) |
 | **Why It Works** | 2×2 grid | 1-col | Optional Telegram snippet mock (one only) | None required |
 | **Internal Proof** | 2-col cards | 1-col | Browser frame when asset ready | None |
@@ -765,7 +751,8 @@ No final implementation — layout intent only.
 
 ### Reference mood (from REFERENCE_PACK)
 
-- Editorial founder photography (Rembrandt lighting, dark studio)
+- Founder photography **§7 only** (Rembrandt lighting, dark studio)
+- Hero: product/technology/command layer — not portrait-led
 - Restrained command UI (real form/Telegram card, not KPI wall)
 - Premium dark B2B — not cyberpunk, not generic SaaS purple
 
@@ -795,7 +782,8 @@ No final implementation — layout intent only.
 - Repeated comparison sections (context / why / audience)
 - Dense audit/report blocks with scores
 - Fake dashboards and metric cards
-- 5-step hero flow strip (skeleton already removed)
+- Founder portrait in hero (`vitaly-hero-cinematic.webp`)
+- Vitaly kicker in hero
 - Over-explaining diagrams on scroll
 - `Σ · ClientFlow System` decorative labels
 
@@ -843,24 +831,26 @@ Before starting V2-2+ implementation, owner confirms:
 | ---: | --- | :---: |
 | 1 | **Site thesis** (§1) | ☐ |
 | 2 | **Audience** — for / not for (§2) | ☐ |
-| 3 | **Main offer** — Hybrid A+B / Offer E (§3) | ☐ |
-| 4 | **Hero copy** — §7 §01 (RU H1 recommended) | ☐ |
+| 3 | **Main offer** — Company-led canonical H1 (§3) | ☑ LOCKED |
+| 4 | **Hero copy** — §7 §01 (company-led, flow strip) | ☑ LOCKED |
 | 5 | **8 sections** — order and goals (§6) | ☐ |
 | 6 | **Full draft copy** (§7) | ☐ |
 | 7 | **CTA map** (§5) | ☐ |
 | 8 | **Visual direction** (§8) | ☐ |
 | 9 | **What to delete/collapse** (§9) | ☐ |
 | 10 | **ClientFlow Аудит** — tertiary CTA only vs hidden | ☐ |
-| 11 | **English H1** — reject (use Offer E RU) vs keep EN hook | ☐ |
-| 12 | **Start implementation** — green-light V2-2 Hero | ☐ |
+| 11 | **Hero visual** — no portrait; technology/system emphasis | ☐ |
+| 12 | **Secondary hero CTA** — Как это работает vs Telegram | ☐ |
+| 13 | **Start implementation** — green-light V2-2 Hero | ☐ |
 
 ### Sign-off block
 
 ```
 Approved by: ___
 Date: ___
-Main offer: Offer E (Hybrid A+B) / other: ___
-Hero H1 language: RU / EN / ___
+Main offer: Company-led / Product-led (LOCKED) / other: ___
+Hero H1: Собираем для бизнеса… (canonical) / alt: Собираем бизнесу…
+Hero portrait: NO (founder §7 only)
 Structure: 8 sections approved: YES / NO
 CTAs approved: YES / NO
 Visual direction approved: YES / NO
@@ -875,10 +865,11 @@ Notes: ___
 
 | Item | V2-1 skeleton (`2163367`) | This prototype |
 | --- | --- | --- |
-| Hero H1 | EN placeholder (Offer D) | **RU Offer E recommended** |
-| Hero trust | Text paragraph | Trust marker strip preferred |
-| Final CTA headline | Matches prototype | Aligned |
-| Founder | Legacy Frame labels | Remove in V2-5 |
+| Hero H1 | EN placeholder / founder «Собираю» | **Company-led canonical H1 (LOCKED)** |
+| Hero visual | Portrait (`vitaly-hero-cinematic.webp`) | **No portrait — system/tech visual** |
+| Hero flow strip | Removed in V2-1 skeleton | **Restored — 5 steps (LOCKED)** |
+| Final CTA headline | Matches prototype | Aligned («Начнём…» — «Соберём» OK in §8) |
+| Founder | Legacy Frame labels | Portrait + trust **§7 only** |
 | Form | Placeholder mailto | Wire in V2-8 |
 
-**Next pass after approval:** V2-2 — Final Hero (Hybrid A+B visual + approved copy).
+**Next pass:** V2-2 — Company-led Hero (canonical copy + flow strip + no portrait).
