@@ -1,123 +1,68 @@
 import {
-  DdContainer,
+  DdEyebrow,
   DdH2,
   DdSub,
+  FlagshipContainer,
   KickerLine,
-  PingDot,
   RimLight,
+  RouteStageCard,
   SectionFrame,
   SectionIndex
 } from "@/components/sections/dd-ui";
 
-type SysNodeData = {
-  i: number;
-  k: string;
-  t: string;
-  d: string;
-  tools: string;
-  s: "live" | "tune";
-};
-
-const nodes: SysNodeData[] = [
+const stages = [
   {
-    i: 1,
-    k: "ATN",
-    t: "Внимание",
-    d: "Реклама, контент, охват — поводы заметить компанию там, где есть аудитория.",
-    tools: "Контекст · Таргет · SEO · Контент",
-    s: "live"
+    title: "Внимание",
+    description: "Реклама, контент, охват — поводы заметить компанию там, где есть аудитория.",
+    tools: "Контекст · Таргет · SEO · Контент"
   },
   {
-    i: 2,
-    k: "TRU",
-    t: "Доверие",
-    d: "Посадочная, прогрев, кейсы — доказательство, что вы решаете задачу клиента.",
-    tools: "Посадочная · Telegram · Кейсы",
-    s: "live"
+    title: "Доверие",
+    description: "Посадочная, прогрев, кейсы — доказательство, что вы решаете задачу клиента.",
+    tools: "Посадочная · Telegram · Кейсы"
   },
   {
-    i: 3,
-    k: "REQ",
-    t: "Заявка",
-    d: "Оффер, форма, лид-магнит — момент, в который интерес превращается в обращение.",
-    tools: "Оффер · Форма · Лид-магнит",
-    s: "live"
+    title: "Заявка",
+    description: "Оффер, форма, лид-магнит — момент, в который интерес превращается в обращение.",
+    tools: "Оффер · Форма · Лид-магнит"
   },
   {
-    i: 4,
-    k: "PRC",
-    t: "Обработка",
-    d: "Менеджер, скрипт, скорость ответа — фиксируем обращение, не теряем тёплый контакт.",
-    tools: "CRM · Регламент · Скрипт",
-    s: "live"
+    title: "Обработка",
+    description: "Менеджер, скрипт, скорость ответа — фиксируем обращение, не теряем тёплый контакт.",
+    tools: "CRM · Регламент · Скрипт"
   },
   {
-    i: 5,
-    k: "BIQ",
-    t: "Аналитика",
-    d: "Сквозной отчёт по каналу, источнику, менеджеру — видно, где маршрут работает, а где нет.",
-    tools: "CAC · LTV · Сквозной отчёт",
-    s: "live"
+    title: "Аналитика",
+    description: "Сквозной отчёт по каналу, источнику, менеджеру — видно, где маршрут работает, а где нет.",
+    tools: "CAC · LTV · Сквозной отчёт"
   },
   {
-    i: 6,
-    k: "OPT",
-    t: "Улучшение",
-    d: "Спринт-цикл оптимизации: раз в две недели чиним самую узкую точку маршрута.",
-    tools: "AB-тесты · Спринты · Гипотезы",
-    s: "tune"
+    title: "Улучшение",
+    description: "Спринт-цикл оптимизации: раз в две недели чиним самую узкую точку маршрута.",
+    tools: "AB-тесты · Спринты · Гипотезы"
   }
-];
+] as const;
 
-function SysNode({ n, arrow, reverse }: { n: SysNodeData; arrow?: boolean; reverse?: boolean }) {
-  const isTune = n.s === "tune";
+function RouteConnector({ vertical }: { vertical?: boolean }) {
+  if (vertical) {
+    return (
+      <div className="flex justify-start pl-[13px] lg:hidden" aria-hidden>
+        <div className="h-6 w-px" style={{ background: "rgba(95,142,216,.35)" }} />
+      </div>
+    );
+  }
 
   return (
-    <div className="relative">
-      <div
-        className="flex min-h-[200px] flex-col gap-3 p-5"
-        style={{
-          background: "rgba(8,12,18,.66)",
-          border: "1px solid var(--dd-border-cool)",
-          borderRadius: "var(--dd-radius-sm)"
-        }}
-      >
-        <div className="flex items-center justify-between">
-          <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-steel-blue)]">
-            {String(n.i).padStart(2, "0")} · {n.k}
-          </span>
-          <span
-            className="h-1.5 w-1.5 shrink-0 rounded-full"
-            style={{
-              background: isTune ? "var(--dd-action-copper)" : "var(--dd-success)",
-              boxShadow: isTune ? "0 0 0 4px rgba(184,121,75,.18)" : "0 0 0 4px rgba(111,191,145,.16)"
-            }}
-            aria-hidden
-          />
-        </div>
-        <div className="text-xl font-bold tracking-[-0.02em] text-[var(--dd-text-primary)]">{n.t}</div>
-        <p className="text-[13px] leading-[1.55] text-[var(--dd-text-secondary)]">{n.d}</p>
-        <p className="mt-auto border-t border-[rgba(148,163,184,0.08)] pt-2.5 font-mono text-[11px] tracking-[0.04em] text-[var(--dd-text-muted)]">
-          {n.tools}
-        </p>
-      </div>
-      {arrow ? (
-        <div
-          className="absolute top-1/2 z-[2] flex h-[18px] w-[18px] -translate-y-1/2 items-center justify-center text-[rgba(127,166,214,.55)]"
-          style={{ right: -16, transform: `translateY(-50%) ${reverse ? "rotate(180deg)" : ""}` }}
-          aria-hidden
-        >
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-            <path
-              d="M0 5h12M8.5 1 13 5l-4.5 4"
-              stroke="currentColor"
-              strokeWidth="1.4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
-      ) : null}
+    <div className="hidden items-center justify-center lg:flex" aria-hidden>
+      <svg width="24" height="10" viewBox="0 0 24 10" fill="none" className="text-[rgba(95,142,216,.45)]">
+        <path
+          d="M0 5h18M14 1.5 20 5l-6 3.5"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
     </div>
   );
 }
@@ -125,90 +70,107 @@ function SysNode({ n, arrow, reverse }: { n: SysNodeData; arrow?: boolean; rever
 export function SystemSection() {
   return (
     <SectionFrame id="system" bg="#080C12" fadeTo="#080C12" className="min-h-[940px]">
-      <RimLight style={{ left: "50%", top: -340, transform: "translateX(-50%)", opacity: 0.5 }} />
+      <RimLight style={{ left: "50%", top: -340, transform: "translateX(-50%)", opacity: 0.4 }} />
 
-      <DdContainer className="relative py-24">
-        <div className="mb-[18px] flex items-center justify-between">
-          <KickerLine>Новый стандарт · § 03</KickerLine>
+      <FlagshipContainer className="relative py-20 md:py-24">
+        <div className="mb-6 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <KickerLine>ClientFlow System · § 03</KickerLine>
           <SectionIndex n={3} />
         </div>
 
-        <div className="mb-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
-          <DdH2 className="max-w-[760px]">
+        <div className="mb-12 grid grid-cols-1 items-end gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+          <DdH2 className="max-w-[780px]">
             Новый стандарт digital —
             <br />
             проектировать не страницы,
             <br />
             а <span className="text-[var(--dd-diagnostic-blue)]">путь клиента</span>.
           </DdH2>
-          <DdSub className="max-w-[460px]">
-            Сайт, реклама, Telegram, AI и аналитика должны работать как единая система: привлечь внимание,
-            создать доверие, довести до заявки, зафиксировать обращение и показать, что улучшать дальше.
+          <DdSub className="max-w-[480px]">
+            Сайт, реклама, Telegram, AI и аналитика должны работать как единая система: привлечь внимание, создать
+            доверие, довести до заявки, зафиксировать обращение и показать, что улучшать дальше.
           </DdSub>
         </div>
 
         <div
-          className="relative rounded-[var(--dd-radius-lg)] border border-[var(--dd-border-cool)] p-7"
-          style={{
-            background: "var(--dd-surface-control)",
-            boxShadow: "var(--dd-shadow-panel)"
-          }}
+          className="rounded-[var(--dd-radius-lg)] border border-[var(--dd-border-cool)] p-5 md:p-7"
+          style={{ background: "rgba(8,12,18,.5)" }}
         >
-          <div className="mb-6 flex flex-col gap-4 border-b border-[var(--dd-border-cool)] pb-[18px] sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex flex-wrap items-center gap-4">
-              <span className="inline-flex items-center gap-2">
-                <PingDot />
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--dd-text-secondary)]">
-                  ClientFlow System · LIVE
-                </span>
-              </span>
-              <span className="hidden h-3 w-px bg-[var(--dd-border-cool)] sm:block" aria-hidden />
+          <div className="mb-6 flex flex-col gap-3 border-b border-[var(--dd-border-cool)] pb-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap items-center gap-3">
+              <DdEyebrow tone="steel">Архитектура маршрута</DdEyebrow>
               <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--dd-text-muted)]">
-                6 · stages
-              </span>
-              <span className="hidden h-3 w-px bg-[var(--dd-border-cool)] sm:block" aria-hidden />
-              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--dd-text-muted)]">
-                single · route
+                6 этапов · единая система
               </span>
             </div>
-            <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-[var(--dd-text-muted)]">
-              latency 9m · uptime 99.4%
-            </span>
+            <p className="max-w-[320px] text-[12px] leading-[1.5] text-[var(--dd-text-muted)]">
+              Не сайт и не рекламная кампания — связанная ClientFlow System.
+            </p>
           </div>
 
-          <div className="relative grid grid-cols-1 gap-4 md:grid-cols-3">
-            {nodes.slice(0, 3).map((node, index) => (
-              <SysNode key={node.k} n={node} arrow={index < 2} />
-            ))}
+          {/* Desktop: horizontal stepped route (2 rows of 3) */}
+          <div className="hidden lg:block">
+            <div className="flex items-stretch gap-2">
+              {stages.slice(0, 3).map((stage, index) => (
+                <div key={stage.title} className="flex min-w-0 flex-1 items-stretch">
+                  <RouteStageCard
+                    index={index + 1}
+                    title={stage.title}
+                    description={stage.description}
+                    tools={stage.tools}
+                  />
+                  {index < 2 ? <RouteConnector /> : null}
+                </div>
+              ))}
+            </div>
+
+            <div className="my-4 flex items-center gap-3 px-2" aria-hidden>
+              <div className="h-px flex-1" style={{ background: "rgba(95,142,216,.2)" }} />
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
+                цикл улучшения
+              </span>
+              <div className="h-px flex-1" style={{ background: "rgba(95,142,216,.2)" }} />
+            </div>
+
+            <div className="flex items-stretch gap-2">
+              {stages.slice(3, 6).map((stage, index) => (
+                <div key={stage.title} className="flex min-w-0 flex-1 items-stretch">
+                  <RouteStageCard
+                    index={index + 4}
+                    title={stage.title}
+                    description={stage.description}
+                    tools={stage.tools}
+                  />
+                  {index < 2 ? <RouteConnector /> : null}
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="my-2.5 flex items-center gap-3 text-[11px] tracking-[0.14em] text-[var(--dd-text-muted)]">
-            <div className="h-px flex-1" style={{ background: "rgba(113,151,198,.18)" }} aria-hidden />
-            <span className="font-mono uppercase">↩ Loop · OPT → ATN</span>
-            <div className="h-px flex-1" style={{ background: "rgba(113,151,198,.18)" }} aria-hidden />
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {nodes.slice(3, 6).map((node, index, arr) => (
-              <SysNode key={node.k} n={node} arrow={index < arr.length - 1} reverse />
+          {/* Mobile: vertical timeline */}
+          <div className="flex flex-col lg:hidden">
+            {stages.map((stage, index) => (
+              <div key={stage.title}>
+                <RouteStageCard
+                  index={index + 1}
+                  title={stage.title}
+                  description={stage.description}
+                  tools={stage.tools}
+                />
+                {index < stages.length - 1 ? <RouteConnector vertical /> : null}
+              </div>
             ))}
           </div>
         </div>
 
-        <div
-          className="mt-7 px-6 py-5"
-          style={{
-            borderLeft: "2px solid var(--dd-action-copper)",
-            background: "rgba(184,121,75,.04)",
-            borderRadius: "0 var(--dd-radius-sm) var(--dd-radius-sm) 0"
-          }}
+        <p
+          className="mt-8 max-w-[920px] border-l-2 py-1 pl-5 text-[15px] font-medium leading-[1.6] text-[var(--dd-text-primary)] md:mt-10 md:text-base"
+          style={{ borderColor: "var(--dd-action-steel-blue)" }}
         >
-          <p className="max-w-[900px] text-base font-medium leading-[1.55] tracking-[-0.005em] text-[var(--dd-text-primary)]">
-            ClientFlow System строится вокруг этого маршрута. Не вокруг отдельных услуг, а{" "}
-            <span className="text-[var(--dd-action-copper)]">вокруг движения клиента к заявке</span>.
-          </p>
-        </div>
-      </DdContainer>
+          ClientFlow System строится вокруг этого маршрута — не вокруг отдельных услуг, а вокруг движения клиента от
+          первого касания до заявки и дальше.
+        </p>
+      </FlagshipContainer>
     </SectionFrame>
   );
 }

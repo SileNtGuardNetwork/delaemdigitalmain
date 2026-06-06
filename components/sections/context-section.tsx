@@ -1,52 +1,52 @@
 import {
-  CopperCheckIcon,
-  DdContainer,
+  DdEyebrow,
   DdH2,
   DdH3,
-  DdLabel,
   DdSub,
+  FlagshipContainer,
   FlowPath,
   KickerLine,
   SectionFrame,
-  SectionIndex
+  SectionIndex,
+  SteelCheckIcon
 } from "@/components/sections/dd-ui";
 
-const fragmentedTags = ["Сайт", "Реклама", "Telegram", "CRM", "Контент", "AI"] as const;
-
-const fragmentedList = [
-  "Стыки между каналами не описаны",
-  "Никто не отвечает за результат целиком",
-  "Заявка теряется на полпути"
-] as const;
-
-const connectedList = [
-  "Каждый стык описан и измеряем",
-  "Один ответственный за результат",
-  "Клиент доходит до заявки — а не уходит к конкуренту"
-] as const;
+const fragmentedTools = ["Сайт", "Реклама", "Telegram", "CRM", "Контент", "AI"] as const;
 
 const flowSteps = ["Внимание", "Доверие", "Заявка", "Обработка", "Аналитика", "Улучшение"] as const;
 
-function TagArrow() {
+const fragmentedNotes = [
+  "Каналы запускаются отдельно — без общего маршрута",
+  "Между инструментами нет описанных стыков",
+  "Клиент теряется между касаниями"
+] as const;
+
+const connectedNotes = [
+  "Один маршрут от первого касания до заявки",
+  "Каждый стык описан и измеряем",
+  "Инструменты работают как система, а не набор"
+] as const;
+
+function FragmentedToolCard({ label, offset }: { label: string; offset?: boolean }) {
   return (
-    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden className="shrink-0 text-[var(--dd-action-copper)] opacity-70">
-      <path
-        d="M0 4h8M5.5 1 9 4l-3.5 3"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <div
+      className={`flex items-center justify-center rounded-[var(--dd-radius-sm)] border border-dashed px-4 py-3.5 text-[13px] font-medium text-[var(--dd-text-secondary)] ${offset ? "translate-x-1" : ""}`}
+      style={{
+        borderColor: "rgba(148,163,184,.22)",
+        background: "rgba(8,12,18,.5)"
+      }}
+    >
+      {label}
+    </div>
   );
 }
 
 export function ContextSection() {
   return (
     <SectionFrame id="context" bg="#080C12" fadeTo="#080C12" className="min-h-[900px]">
-      <DdContainer className="py-24">
+      <FlagshipContainer className="py-20 md:py-24">
         <div className="mb-12 flex flex-col items-start justify-between gap-8 lg:flex-row">
-          <div className="flex max-w-[880px] flex-col gap-[22px]">
+          <div className="flex max-w-[880px] flex-col gap-5">
             <KickerLine>Контекст рынка · § 02</KickerLine>
             <DdH2 className="max-w-[900px]">
               Digital-инструменты уже есть.
@@ -54,67 +54,45 @@ export function ContextSection() {
               <span className="font-bold text-[var(--dd-text-secondary)]">Связанного пути клиента —</span>{" "}
               <span className="text-[var(--dd-diagnostic-blue)]">часто нет</span>.
             </DdH2>
-            <DdSub className="max-w-[560px]">
-              Бизнес запускает сайт, рекламу, Telegram, CRM, контент и нейросети. Но если эти элементы не соединены в
-              единый маршрут, клиент проходит между ними с потерями: увидел рекламу, не понял ценность, не оставил
-              заявку, написал в мессенджер, не получил вовремя ответ — и ушёл.
+            <DdSub className="max-w-[600px]">
+              Бизнес запускает сайт, рекламу, Telegram, CRM, контент и AI. Но если элементы не соединены в единый
+              маршрут, клиент проходит между ними с потерями — и не доходит до заявки.
             </DdSub>
           </div>
           <SectionIndex n={2} />
         </div>
 
-        <div className="mt-2 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
+          {/* Fragmented — first on mobile */}
           <div
-            className="flex min-h-[360px] flex-col gap-[22px] p-8"
-            style={{
-              background: "rgba(8,12,18,.55)",
-              border: "1px solid var(--dd-border-steel)",
-              borderRadius: "var(--dd-radius-lg)"
-            }}
+            className="flex flex-col gap-6 rounded-[var(--dd-radius-lg)] border border-[var(--dd-border-steel)] p-6 md:p-8"
+            style={{ background: "rgba(8,12,18,.55)" }}
           >
-            <div className="flex items-center justify-between">
-              <span
-                className="inline-flex items-center gap-2 rounded-full px-[11px] py-[5px] text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-danger)]"
-                style={{
-                  background: "rgba(214,106,106,.08)",
-                  border: "1px solid rgba(214,106,106,.28)"
-                }}
-              >
-                <span className="h-[5px] w-[5px] rounded-full bg-[var(--dd-danger)]" aria-hidden />
-                Как обычно
-              </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
-                config · disconnected
+            <div className="flex items-center justify-between gap-4">
+              <DdEyebrow tone="muted">Как обычно</DdEyebrow>
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
+                disconnected
               </span>
             </div>
 
             <DdH3>Разрозненный digital</DdH3>
 
-            <div className="-mt-1 flex flex-wrap gap-2">
-              {fragmentedTags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full px-3 py-[7px] text-xs font-medium text-[var(--dd-text-secondary)]"
-                  style={{
-                    border: "1px dashed rgba(214,106,106,.3)",
-                    background: "rgba(8,12,18,.6)"
-                  }}
-                >
-                  {tag}
-                </span>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {fragmentedTools.map((tool, index) => (
+                <FragmentedToolCard key={tool} label={tool} offset={index % 2 === 1} />
               ))}
             </div>
 
-            <p className="mt-auto text-sm leading-[1.65] text-[var(--dd-text-secondary)]">
-              Каждый инструмент запущен отдельно: свой подрядчик, своя метрика, свой отчёт. Между ними — пустота, в
-              которую утекает внимание клиента.
+            <p className="text-[14px] leading-[1.65] text-[var(--dd-text-secondary)]">
+              Каждый инструмент живёт своей жизнью: свой подрядчик, своя метрика, свой отчёт. Между ними — разрывы, в
+              которые утекает внимание клиента.
             </p>
 
             <ul className="flex flex-col gap-2.5">
-              {fragmentedList.map((item) => (
+              {fragmentedNotes.map((item) => (
                 <li key={item} className="flex gap-2.5 text-[13px] text-[var(--dd-text-secondary)]">
                   <span
-                    className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-[var(--dd-danger)] opacity-85"
+                    className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-[var(--dd-text-muted)] opacity-70"
                     aria-hidden
                   />
                   {item}
@@ -123,59 +101,42 @@ export function ContextSection() {
             </ul>
           </div>
 
+          {/* ClientFlow — second on mobile */}
           <div
-            className="relative flex min-h-[360px] flex-col gap-[22px] overflow-hidden p-8"
+            className="flex flex-col gap-6 rounded-[var(--dd-radius-lg)] border p-6 md:p-8"
             style={{
-              background: "linear-gradient(180deg, rgba(20,14,9,.55) 0%, rgba(14,22,34,.65) 100%)",
-              border: "1px solid rgba(184,121,75,.42)",
-              borderRadius: "var(--dd-radius-lg)",
-              boxShadow: "0 22px 58px rgba(0,0,0,.32)"
+              borderColor: "rgba(113,151,198,.28)",
+              background: "linear-gradient(165deg, rgba(14,22,34,.72) 0%, rgba(8,12,18,.65) 100%)"
             }}
           >
-            <div className="flex items-center justify-between">
-              <span
-                className="inline-flex items-center gap-2 rounded-full px-[11px] py-[5px] text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-copper)]"
-                style={{
-                  background: "rgba(184,121,75,.1)",
-                  border: "1px solid rgba(184,121,75,.4)"
-                }}
-              >
-                <span className="h-[5px] w-[5px] rounded-full bg-[var(--dd-action-copper)]" aria-hidden />
-                У нас
-              </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
-                config · linked
+            <div className="flex items-center justify-between gap-4">
+              <DdEyebrow tone="steel">ClientFlow-подход</DdEyebrow>
+              <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
+                linked route
               </span>
             </div>
 
-            <DdH3>ClientFlow-подход</DdH3>
+            <DdH3>Связанный маршрут</DdH3>
 
-            <div className="flex flex-wrap items-center gap-1.5">
-              {fragmentedTags.map((tag, index) => (
-                <div key={tag} className="inline-flex items-center gap-1.5">
-                  <span
-                    className="rounded-full px-3 py-[7px] text-xs font-semibold text-[var(--dd-text-primary)]"
-                    style={{
-                      border: "1px solid rgba(184,121,75,.4)",
-                      background: "rgba(184,121,75,.08)"
-                    }}
-                  >
-                    {tag}
-                  </span>
-                  {index < fragmentedTags.length - 1 ? <TagArrow /> : null}
-                </div>
-              ))}
+            <div
+              className="rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-cool)] p-4 md:p-5"
+              style={{ background: "rgba(8,12,18,.45)" }}
+            >
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
+                Маршрут клиента
+              </p>
+              <FlowPath steps={flowSteps} activeIndex={5} variant="blue" />
             </div>
 
-            <p className="mt-auto text-sm leading-[1.65] text-[var(--dd-text-secondary)]">
-              Те же инструменты, но собраны в маршрут: от первого касания до заявки и дальше к сделке. Между шагами —
-              описанные регламенты и сквозная аналитика.
+            <p className="text-[14px] leading-[1.65] text-[var(--dd-text-secondary)]">
+              Те же инструменты — сайт, реклама, Telegram, CRM, контент, AI — но собраны в последовательность: от
+              внимания до заявки, обработки и улучшения маршрута.
             </p>
 
             <ul className="flex flex-col gap-2.5">
-              {connectedList.map((item) => (
+              {connectedNotes.map((item) => (
                 <li key={item} className="flex gap-2.5 text-[13px] text-[var(--dd-text-secondary)]">
-                  <CopperCheckIcon className="mt-1 shrink-0" />
+                  <SteelCheckIcon className="mt-1 shrink-0" />
                   {item}
                 </li>
               ))}
@@ -183,23 +144,19 @@ export function ContextSection() {
           </div>
         </div>
 
-        <div
-          className="mt-9 flex flex-col gap-3.5 p-5 md:p-6"
+        <blockquote
+          className="mt-8 rounded-[var(--dd-radius-md)] border-l-2 px-5 py-5 md:mt-10 md:px-7"
           style={{
-            border: "1px solid var(--dd-border-cool)",
-            borderRadius: "var(--dd-radius-md)",
-            background: "rgba(14,22,34,.55)"
+            borderColor: "var(--dd-diagnostic-blue)",
+            background: "rgba(14,22,34,.45)"
           }}
         >
-          <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
-            <DdLabel className="tracking-[0.16em]">Связанный маршрут клиента</DdLabel>
-            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--dd-text-muted)]">
-              6 stages · single route
-            </span>
-          </div>
-          <FlowPath steps={flowSteps} activeIndex={1} />
-        </div>
-      </DdContainer>
+          <p className="max-w-[960px] text-[15px] font-medium leading-[1.65] text-[var(--dd-text-primary)] md:text-base">
+            Проблема не в том, что бизнесу нужен ещё один инструмент. Проблема в том, что уже существующие инструменты
+            часто не собраны в систему.
+          </p>
+        </blockquote>
+      </FlagshipContainer>
     </SectionFrame>
   );
 }

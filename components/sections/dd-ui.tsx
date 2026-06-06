@@ -54,6 +54,58 @@ export function DdContainer({
   );
 }
 
+/** Flagship 1360px width for rebuilt sections — does not change global --container. */
+export function FlagshipContainer({
+  children,
+  className = "",
+  style
+}: {
+  children: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+}) {
+  return (
+    <div className={`relative mx-auto w-full max-w-[1360px] px-6 md:px-[60px] ${className}`} style={style}>
+      {children}
+    </div>
+  );
+}
+
+export function DdEyebrow({
+  children,
+  tone = "steel"
+}: {
+  children: ReactNode;
+  tone?: "steel" | "copper" | "muted";
+}) {
+  const styles = {
+    steel: {
+      color: "var(--dd-action-steel-blue)",
+      border: "1px solid rgba(113,151,198,.28)",
+      background: "rgba(14,22,34,.5)"
+    },
+    copper: {
+      color: "var(--dd-action-copper)",
+      border: "1px solid rgba(184,121,75,.32)",
+      background: "rgba(184,121,75,.06)"
+    },
+    muted: {
+      color: "var(--dd-text-muted)",
+      border: "1px solid var(--dd-border-steel)",
+      background: "rgba(8,12,18,.45)"
+    }
+  }[tone];
+
+  return (
+    <span
+      className="inline-flex items-center rounded-[10px] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em]"
+      style={styles}
+    >
+      {children}
+    </span>
+  );
+}
+
 export function RimLight({ style }: { style?: CSSProperties }) {
   return (
     <div
@@ -128,11 +180,15 @@ export function DdLabel({ children, className = "" }: { children: ReactNode; cla
 
 export function FlowPath({
   steps,
-  activeIndex = 2
+  activeIndex = 2,
+  variant = "copper"
 }: {
   steps: readonly string[];
   activeIndex?: number;
+  variant?: "copper" | "blue";
 }) {
+  const accent = variant === "blue" ? "var(--dd-diagnostic-blue)" : "var(--dd-action-copper)";
+
   return (
     <div className="flex flex-wrap items-center gap-2" style={{ rowGap: 10 }}>
       {steps.map((step, index) => {
@@ -148,7 +204,7 @@ export function FlowPath({
               <span
                 className="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
                 style={{
-                  background: isActive ? "var(--dd-action-copper)" : "var(--dd-border-steel)"
+                  background: isActive ? accent : "var(--dd-border-steel)"
                 }}
                 aria-hidden
               />
@@ -159,7 +215,7 @@ export function FlowPath({
                 aria-hidden
                 className="inline-block h-px w-6 shrink-0"
                 style={{
-                  background: lineActive ? "var(--dd-action-copper)" : "var(--dd-border-steel)"
+                  background: lineActive ? accent : "var(--dd-border-steel)"
                 }}
               />
             ) : null}
@@ -167,6 +223,50 @@ export function FlowPath({
         );
       })}
     </div>
+  );
+}
+
+export function RouteStageCard({
+  index,
+  title,
+  description,
+  tools,
+  variant = "blue"
+}: {
+  index: number;
+  title: string;
+  description: string;
+  tools?: string;
+  variant?: "blue" | "copper";
+}) {
+  const marker = variant === "blue" ? "var(--dd-diagnostic-blue)" : "var(--dd-action-copper)";
+
+  return (
+    <article
+      className="relative flex flex-col gap-3 rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-cool)] p-5"
+      style={{ background: "rgba(8,12,18,.55)" }}
+    >
+      <div className="flex items-center gap-3">
+        <span
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[8px] font-mono text-[11px] font-semibold"
+          style={{
+            color: marker,
+            border: `1px solid rgba(95,142,216,.35)`,
+            background: "rgba(14,22,34,.65)"
+          }}
+          aria-hidden
+        >
+          {String(index).padStart(2, "0")}
+        </span>
+        <h3 className="text-lg font-bold tracking-[-0.02em] text-[var(--dd-text-primary)]">{title}</h3>
+      </div>
+      <p className="text-[14px] leading-[1.6] text-[var(--dd-text-secondary)]">{description}</p>
+      {tools ? (
+        <p className="mt-auto border-t border-[rgba(148,163,184,0.08)] pt-3 font-mono text-[11px] tracking-[0.04em] text-[var(--dd-text-muted)]">
+          {tools}
+        </p>
+      ) : null}
+    </article>
   );
 }
 

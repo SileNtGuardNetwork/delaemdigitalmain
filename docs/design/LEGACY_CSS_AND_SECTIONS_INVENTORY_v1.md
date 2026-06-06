@@ -52,6 +52,16 @@ Body background still uses legacy `--bg` / `--bg-2` gradients + grid noise (`bod
 | Cookie / contact form | Legacy `.button` classes |
 | globals.css | Tailwind import + 4000+ lines legacy |
 
+## Visual rebuild (DD-STEP-2-B — partial)
+
+| Section | Status |
+| --- | --- |
+| `context-section.tsx` | **Rebuilt** — FlagshipContainer 1360px, comparison layout |
+| `system-section.tsx` | **Rebuilt** — route map, no fake dashboard metrics |
+| `dd-ui.tsx` | Added `FlagshipContainer`, `DdEyebrow`, `RouteStageCard`, `FlowPath` blue variant |
+
+Sections 4–13 remain on legacy `DdContainer` (1180px) until their rebuild pass.
+
 ## Shell consistency (DD-STEP-2-A — done)
 
 | Item | Status |
