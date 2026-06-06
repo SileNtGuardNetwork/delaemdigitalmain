@@ -43,7 +43,7 @@ function FragmentedToolCard({ label, offset }: { label: string; offset?: boolean
 
 export function ContextSection() {
   return (
-    <SectionFrame id="context" bg="#080C12" fadeTo="#080C12" className="min-h-[900px]">
+    <SectionFrame id="context" bg="#080C12" fadeTo="#080C12" className="min-h-0 md:min-h-[900px]">
       <FlagshipContainer className="py-20 md:py-24">
         <div className="mb-12 flex flex-col items-start justify-between gap-8 lg:flex-row">
           <div className="flex max-w-[880px] flex-col gap-5">
@@ -125,7 +125,7 @@ export function ContextSection() {
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
                 Маршрут клиента
               </p>
-              <FlowPath steps={flowSteps} activeIndex={5} variant="blue" />
+              <FlowPath steps={flowSteps} activeIndex={5} variant="blue" stackOnMobile />
             </div>
 
             <p className="text-[14px] leading-[1.65] text-[var(--dd-text-secondary)]">

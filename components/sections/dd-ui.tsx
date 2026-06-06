@@ -54,7 +54,7 @@ export function DdContainer({
   );
 }
 
-/** Flagship 1360px width for rebuilt sections — does not change global --container. */
+/** Flagship width for rebuilt sections — uses --dd-container-flagship, not legacy --container. */
 export function FlagshipContainer({
   children,
   className = "",
@@ -65,7 +65,10 @@ export function FlagshipContainer({
   style?: CSSProperties;
 }) {
   return (
-    <div className={`relative mx-auto w-full max-w-[1360px] px-6 md:px-[60px] ${className}`} style={style}>
+    <div
+      className={`relative mx-auto w-full max-w-[var(--dd-container-flagship)] px-6 md:px-[60px] ${className}`}
+      style={style}
+    >
       {children}
     </div>
   );
@@ -181,47 +184,68 @@ export function DdLabel({ children, className = "" }: { children: ReactNode; cla
 export function FlowPath({
   steps,
   activeIndex = 2,
-  variant = "copper"
+  variant = "copper",
+  stackOnMobile = false
 }: {
   steps: readonly string[];
   activeIndex?: number;
   variant?: "copper" | "blue";
+  /** Vertical list below md — clearer on 390/430 viewports */
+  stackOnMobile?: boolean;
 }) {
   const accent = variant === "blue" ? "var(--dd-diagnostic-blue)" : "var(--dd-action-copper)";
 
+  const renderStep = (step: string, index: number, vertical?: boolean) => {
+    const isActive = index <= activeIndex;
+    const lineActive = index < activeIndex;
+
+    return (
+      <span key={step} className={vertical ? "flex items-center gap-2.5" : "inline-flex items-center gap-2"}>
+        <span
+          className={`inline-flex items-center gap-2 text-[13px] ${
+            isActive ? "text-[var(--dd-text-primary)]" : "text-[var(--dd-text-muted)]"
+          }`}
+        >
+          <span
+            className="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
+            style={{
+              background: isActive ? accent : "var(--dd-border-steel)"
+            }}
+            aria-hidden
+          />
+          {step}
+        </span>
+        {!vertical && index < steps.length - 1 ? (
+          <span
+            aria-hidden
+            className="inline-block h-px w-6 shrink-0"
+            style={{
+              background: lineActive ? accent : "var(--dd-border-steel)"
+            }}
+          />
+        ) : null}
+      </span>
+    );
+  };
+
+  if (stackOnMobile) {
+    return (
+      <>
+        <ol className="flex flex-col gap-2 md:hidden">
+          {steps.map((step, index) => (
+            <li key={step}>{renderStep(step, index, true)}</li>
+          ))}
+        </ol>
+        <div className="hidden flex-wrap items-center gap-2 md:flex" style={{ rowGap: 10 }}>
+          {steps.map((step, index) => renderStep(step, index))}
+        </div>
+      </>
+    );
+  }
+
   return (
     <div className="flex flex-wrap items-center gap-2" style={{ rowGap: 10 }}>
-      {steps.map((step, index) => {
-        const isActive = index <= activeIndex;
-        const lineActive = index < activeIndex;
-        return (
-          <span key={step} className="inline-flex items-center gap-2">
-            <span
-              className={`inline-flex items-center gap-2 text-[13px] ${
-                isActive ? "text-[var(--dd-text-primary)]" : "text-[var(--dd-text-muted)]"
-              }`}
-            >
-              <span
-                className="inline-block h-1.5 w-1.5 shrink-0 rounded-full"
-                style={{
-                  background: isActive ? accent : "var(--dd-border-steel)"
-                }}
-                aria-hidden
-              />
-              {step}
-            </span>
-            {index < steps.length - 1 ? (
-              <span
-                aria-hidden
-                className="inline-block h-px w-6 shrink-0"
-                style={{
-                  background: lineActive ? accent : "var(--dd-border-steel)"
-                }}
-              />
-            ) : null}
-          </span>
-        );
-      })}
+      {steps.map((step, index) => renderStep(step, index))}
     </div>
   );
 }
@@ -243,7 +267,7 @@ export function RouteStageCard({
 
   return (
     <article
-      className="relative flex flex-col gap-3 rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-cool)] p-5"
+      className="relative flex min-w-0 flex-col gap-2.5 rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-cool)] p-4 md:gap-3 md:p-5"
       style={{ background: "rgba(8,12,18,.55)" }}
     >
       <div className="flex items-center gap-3">

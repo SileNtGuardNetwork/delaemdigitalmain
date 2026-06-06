@@ -46,14 +46,14 @@ const stages = [
 function RouteConnector({ vertical }: { vertical?: boolean }) {
   if (vertical) {
     return (
-      <div className="flex justify-start pl-[13px] lg:hidden" aria-hidden>
+      <div className="flex justify-start pl-[13px] xl:hidden" aria-hidden>
         <div className="h-6 w-px" style={{ background: "rgba(95,142,216,.35)" }} />
       </div>
     );
   }
 
   return (
-    <div className="hidden items-center justify-center lg:flex" aria-hidden>
+    <div className="hidden shrink-0 items-center justify-center xl:flex" aria-hidden>
       <svg width="24" height="10" viewBox="0 0 24 10" fill="none" className="text-[rgba(95,142,216,.45)]">
         <path
           d="M0 5h18M14 1.5 20 5l-6 3.5"
@@ -69,7 +69,7 @@ function RouteConnector({ vertical }: { vertical?: boolean }) {
 
 export function SystemSection() {
   return (
-    <SectionFrame id="system" bg="#080C12" fadeTo="#080C12" className="min-h-[940px]">
+    <SectionFrame id="system" bg="#080C12" fadeTo="#080C12" className="min-h-0 md:min-h-[940px]">
       <RimLight style={{ left: "50%", top: -340, transform: "translateX(-50%)", opacity: 0.4 }} />
 
       <FlagshipContainer className="relative py-20 md:py-24">
@@ -109,7 +109,7 @@ export function SystemSection() {
           </div>
 
           {/* Desktop: horizontal stepped route (2 rows of 3) */}
-          <div className="hidden lg:block">
+          <div className="hidden xl:block">
             <div className="flex items-stretch gap-2">
               {stages.slice(0, 3).map((stage, index) => (
                 <div key={stage.title} className="flex min-w-0 flex-1 items-stretch">
@@ -148,7 +148,7 @@ export function SystemSection() {
           </div>
 
           {/* Mobile: vertical timeline */}
-          <div className="flex flex-col lg:hidden">
+          <div className="flex flex-col xl:hidden">
             {stages.map((stage, index) => (
               <div key={stage.title}>
                 <RouteStageCard

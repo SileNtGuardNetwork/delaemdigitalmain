@@ -27,6 +27,7 @@
 ## Section rebuild (Step 2+)
 
 - [ ] Matches `DD_VISUAL_SYSTEM_v1.md` tokens (`--dd-*`)
+- [ ] Rebuilt sections use `FlagshipContainer` / `--dd-container-flagship` (not global `--container`)
 - [ ] Mobile checked at 390px and 430px width
 - [ ] Text readable over imagery (gradient overlays if needed)
 - [ ] Motion respects `prefers-reduced-motion`

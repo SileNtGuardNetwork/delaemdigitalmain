@@ -56,9 +56,10 @@ Body background still uses legacy `--bg` / `--bg-2` gradients + grid noise (`bod
 
 | Section | Status |
 | --- | --- |
-| `context-section.tsx` | **Rebuilt** — FlagshipContainer 1360px, comparison layout |
-| `system-section.tsx` | **Rebuilt** — route map, no fake dashboard metrics |
-| `dd-ui.tsx` | Added `FlagshipContainer`, `DdEyebrow`, `RouteStageCard`, `FlowPath` blue variant |
+| `context-section.tsx` | **Rebuilt + QA** — FlagshipContainer, comparison layout, FlowPath `stackOnMobile` |
+| `system-section.tsx` | **Rebuilt + QA** — route map, `xl` horizontal grid, mobile timeline |
+| `dd-ui.tsx` | `FlagshipContainer` → `--dd-container-flagship`, `FlowPath` stackOnMobile, `RouteStageCard` mobile padding |
+| `app/globals.css` | `--dd-container-flagship: 1360px` token (DD-STEP-2-B.1) |
 
 Sections 4–13 remain on legacy `DdContainer` (1180px) until their rebuild pass.
 

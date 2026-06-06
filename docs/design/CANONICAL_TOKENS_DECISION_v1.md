@@ -50,9 +50,13 @@ Header CTA: **Обсудить проект** → `#contacts` (hero-factory-brie
 - Header inner: `max-w-[var(--container)]` → `1180px` via `--container` in `globals.css`
 - Sections 2–13 (`dd-ui` `SectionInner`): `max-w-[var(--container)]` → `1180px`
 
-**Rule for rebuild passes:** New and rebuilt sections adopt `1360px` (or a new `--dd-container-flagship: 1360px` token when introduced). Do **not** change global `--container: 1180px` in a mass pass — legacy `.container` rules and unrebuilt sections depend on it.
+**Runtime token (DD-STEP-2-B.1):** `--dd-container-flagship: 1360px` in `app/globals.css`. Consumed by `FlagshipContainer` in `dd-ui.tsx`.
 
-**Unification:** Planned for dedicated layout pass after section rebuilds (Step 2-B+).
+**Rule for rebuild passes:** New and rebuilt sections use `FlagshipContainer` / `--dd-container-flagship`. Do **not** change global `--container: 1180px` in a mass pass — legacy `.container` rules and unrebuilt sections depend on it.
+
+**Known width jump:** Sections 2–3 at 1360px; section 4+ (`DdContainer`) at 1180px — visible at system → assembly boundary until Step 2-C rebuilds assembly.
+
+**Unification:** Planned when sections 4+ migrate to `FlagshipContainer`.
 
 ## Shell navigation source of truth
 
