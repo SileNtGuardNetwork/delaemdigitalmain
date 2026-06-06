@@ -1,39 +1,44 @@
 import {
-  DdContainer,
   DdH2,
-  DdH3,
-  DdLabel,
+  DdSub,
+  FitCard,
+  FitFilterPanel,
+  FlagshipContainer,
   KickerLine,
+  PrimaryBtn,
+  SecondaryBtn,
   SectionFrame,
   SectionIndex
 } from "@/components/sections/dd-ui";
 
-const groups = [
+const goodFit = [
   {
-    tag: "для собственников",
-    title: "Владельцам бизнеса",
-    sub: "5–50 человек, оборот от 30 М/год",
-    body: "Когда команда «делает маркетинг», а сделок предсказуемо не прибавляется. Хотите видеть систему целиком — от рубля в трафик до рубля в кассе.",
-    points: [
-      "Сквозной отчёт собственнику",
-      "Один контракт — одна ответственность",
-      "KPI завязан на выручку, не на клики"
-    ]
+    title: "Владельцы бизнеса",
+    description: "Уже есть продукт, услуга или экспертность, но digital работает фрагментами."
   },
   {
-    tag: "для экспертов",
-    title: "Экспертам и консультантам",
-    sub: "индивидуальная практика, средний чек от 300 ₽",
-    body: "Когда работаете на сарафане и хочется управляемого потока, не теряя позиционирования. Не «инфобиз», а спокойный B2B-канал заявок.",
-    points: ["Оффер под высокий чек", "Квалификация до созвона", "Поток без перегруза календаря"]
+    title: "Эксперты и консультанты",
+    description: "Нужна упаковка личного бренда, доверия и заявок."
   },
   {
-    tag: "для команд",
-    title: "Маркетинг-командам",
-    sub: "in-house маркетолог + 1–2 подрядчика",
-    body: "Когда внутри есть руки, но нет системы. Собираем маршрут, регламенты и аналитику — дальше команда ведёт сама, мы остаёмся на сопровождении.",
-    points: ["Сборка + передача", "Регламенты и обучение", "Сопровождение на 6 мес."]
+    title: "B2B-услуги",
+    description: "Важны доверие, квалификация, быстрый контакт и понятная обработка лида."
+  },
+  {
+    title: "Локальные компании с дорогой заявкой",
+    description: "Сайт и реклама должны работать как связанный маршрут, а не отдельные активности."
+  },
+  {
+    title: "Проекты, готовые к трафику",
+    description: "Нужно подготовить систему, чтобы не сливать рекламный бюджет в слабый маршрут."
   }
+] as const;
+
+const notFit = [
+  "Нужен просто дешёвый сайт.",
+  "Нет понятного продукта или экономики заявки.",
+  "Нет готовности обрабатывать лиды.",
+  "Ожидается гарантия заявок без участия, данных и нормального предложения."
 ] as const;
 
 type AudienceSectionProps = {
@@ -42,62 +47,54 @@ type AudienceSectionProps = {
 
 export function AudienceSection({ id }: AudienceSectionProps) {
   return (
-    <SectionFrame id={id} bg="#080C12" fadeTo="#100A04" style={{ minHeight: 720 }}>
-      <DdContainer className="py-24">
-        <div className="mb-14 flex flex-col items-end justify-between gap-8 sm:flex-row">
-          <div className="flex max-w-[760px] flex-col gap-[18px]">
+    <SectionFrame id={id} bg="#080C12" fadeTo="#100A04" className="min-h-0 md:min-h-[720px]">
+      <FlagshipContainer className="py-20 md:py-24">
+        <div className="mb-12 flex flex-col items-start justify-between gap-8 lg:flex-row">
+          <div className="flex max-w-[840px] flex-col gap-5">
             <KickerLine>Кому подходит · § 09</KickerLine>
             <DdH2>
-              Кому это подходит.
-              <br />
-              А кому — нет.
+              Для бизнеса, которому нужен не ещё один инструмент, а{" "}
+              <span className="text-[var(--dd-diagnostic-blue)]">управляемый путь клиента</span>
             </DdH2>
+            <DdSub className="max-w-[640px]">
+              ClientFlow System имеет смысл там, где уже есть продукт, аудитория и задача превратить разрозненный
+              digital в понятный маршрут к заявке.
+            </DdSub>
           </div>
           <SectionIndex n={9} />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3">
-          {groups.map((group, index) => (
-            <article
-              key={group.title}
-              className="flex flex-col gap-[18px] border-[var(--dd-border-steel)] px-7 py-1 lg:border-r lg:px-7"
-              style={{
-                borderLeft: index === 0 ? "1px solid var(--dd-border-steel)" : undefined
-              }}
-            >
-              <div className="flex flex-col gap-3">
-                <DdLabel className="text-[var(--dd-action-copper)]">{group.tag}</DdLabel>
-                <DdH3>{group.title}</DdH3>
-                <p className="text-[13px] text-[var(--dd-text-muted)]">{group.sub}</p>
-              </div>
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.65fr_1fr] lg:gap-10">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {goodFit.map((item, index) => (
+              <FitCard key={item.title} index={index + 1} title={item.title} description={item.description} />
+            ))}
+          </div>
 
-              <p className="text-[15px] leading-[1.65] text-[var(--dd-text-secondary)]">{group.body}</p>
-
-              <hr className="border-0 border-t border-[var(--dd-border-steel)]" />
-
-              <ul className="flex flex-col gap-2.5">
-                {group.points.map((point) => (
-                  <li key={point} className="flex gap-2.5 text-[13px] text-[var(--dd-text-secondary)]">
-                    <span
-                      className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-[var(--dd-action-steel-blue)]"
-                      aria-hidden
-                    />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+          <FitFilterPanel label="Не подойдёт, если" items={notFit} />
         </div>
 
-        <div className="mt-9 flex flex-col items-start gap-4 rounded-[var(--dd-radius-sm)] border border-dashed border-[var(--dd-border-steel)] bg-[rgba(8,12,18,0.5)] px-[22px] py-4 sm:flex-row sm:items-center sm:gap-[18px]">
-          <DdLabel className="shrink-0 text-[var(--dd-text-muted)]">Не подойдём, если</DdLabel>
-          <span className="hidden h-4 w-px shrink-0 bg-[var(--dd-border-steel)] sm:block" aria-hidden />
-          <p className="text-[13px] text-[var(--dd-text-secondary)]">
-            бюджет на маркетинг до 300 ₽/мес · ждёте «волшебной кнопки» · нужен SMM-контент или дизайн без системы
+        <blockquote
+          className="mt-8 rounded-[var(--dd-radius-md)] border-l-2 px-5 py-5 md:mt-10 md:px-7"
+          style={{
+            borderColor: "var(--dd-diagnostic-blue)",
+            background: "rgba(14,22,34,.4)"
+          }}
+        >
+          <p className="max-w-[960px] text-[15px] font-medium leading-[1.65] text-[var(--dd-text-primary)] md:text-base">
+            Если не уверены, подходит ли вам такой формат, начните с Разбора системы или ClientFlow Аудита.
           </p>
+        </blockquote>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <PrimaryBtn href="#contacts" className="px-6 py-3 text-[14px]">
+            Разбор системы
+          </PrimaryBtn>
+          <SecondaryBtn href="#audit" className="px-6 py-3 text-[14px]">
+            ClientFlow Аудит
+          </SecondaryBtn>
         </div>
-      </DdContainer>
+      </FlagshipContainer>
     </SectionFrame>
   );
 }

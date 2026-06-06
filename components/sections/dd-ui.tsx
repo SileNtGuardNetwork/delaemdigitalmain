@@ -344,6 +344,72 @@ export function DiagnosticReportRow({
   );
 }
 
+/** Good-fit audience card */
+export function FitCard({
+  index,
+  title,
+  description
+}: {
+  index: number;
+  title: string;
+  description: string;
+}) {
+  return (
+    <article
+      className="flex min-w-0 flex-col gap-3 rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-cool)] p-4 md:p-5"
+      style={{ background: "rgba(8,12,18,.55)" }}
+    >
+      <div className="flex items-start gap-3">
+        <span
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[8px] font-mono text-[11px] font-semibold text-[var(--dd-diagnostic-blue)]"
+          style={{
+            border: "1px solid rgba(95,142,216,.35)",
+            background: "rgba(14,22,34,.65)"
+          }}
+          aria-hidden
+        >
+          {String(index).padStart(2, "0")}
+        </span>
+        <h3 className="text-[15px] font-bold leading-[1.35] tracking-[-0.02em] text-[var(--dd-text-primary)] md:text-base">
+          {title}
+        </h3>
+      </div>
+      <p className="text-[13px] leading-[1.6] text-[var(--dd-text-secondary)]">{description}</p>
+    </article>
+  );
+}
+
+/** Compact not-fit filter panel */
+export function FitFilterPanel({
+  label,
+  items
+}: {
+  label: string;
+  items: readonly string[];
+}) {
+  return (
+    <aside
+      className="rounded-[var(--dd-radius-md)] border border-[var(--dd-border-steel)] p-5 md:p-6"
+      style={{ background: "rgba(8,12,18,.45)" }}
+    >
+      <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dd-text-muted)]">
+        {label}
+      </p>
+      <ul className="flex flex-col gap-3">
+        {items.map((item) => (
+          <li key={item} className="flex gap-2.5 text-[13px] leading-[1.55] text-[var(--dd-text-secondary)]">
+            <span
+              className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-[var(--dd-text-muted)] opacity-60"
+              aria-hidden
+            />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
+
 /** Differentiation comparison column — why section */
 export function ComparisonColumn({
   label,
