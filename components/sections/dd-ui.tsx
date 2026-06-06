@@ -344,6 +344,63 @@ export function DiagnosticReportRow({
   );
 }
 
+/** Differentiation comparison column — why section */
+export function ComparisonColumn({
+  label,
+  items,
+  variant = "ordinary"
+}: {
+  label: string;
+  items: readonly { title: string; description: string }[];
+  variant?: "ordinary" | "clientflow";
+}) {
+  const isSystem = variant === "clientflow";
+
+  return (
+    <article
+      className={`flex flex-col gap-5 rounded-[var(--dd-radius-lg)] border p-6 md:gap-6 md:p-8 ${
+        isSystem ? "border-[rgba(113,151,198,.28)]" : "border-[var(--dd-border-steel)]"
+      }`}
+      style={{
+        background: isSystem
+          ? "linear-gradient(165deg, rgba(14,22,34,.72) 0%, rgba(8,12,18,.65) 100%)"
+          : "rgba(8,12,18,.55)"
+      }}
+    >
+      <DdEyebrow tone={isSystem ? "steel" : "muted"}>{label}</DdEyebrow>
+
+      <ol className="flex flex-col gap-4">
+        {items.map((item, index) => (
+          <li
+            key={item.title}
+            className="flex flex-col gap-2 border-t border-[rgba(148,163,184,.08)] pt-4 first:border-0 first:pt-0"
+          >
+            <div className="flex items-start gap-3">
+              <span
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-[7px] font-mono text-[10px] font-semibold"
+                style={{
+                  color: isSystem ? "var(--dd-diagnostic-blue)" : "var(--dd-text-muted)",
+                  border: isSystem
+                    ? "1px solid rgba(95,142,216,.35)"
+                    : "1px solid var(--dd-border-steel)",
+                  background: "rgba(8,12,18,.45)"
+                }}
+                aria-hidden
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="text-[15px] font-bold leading-[1.35] tracking-[-0.02em] text-[var(--dd-text-primary)] md:text-base">
+                {item.title}
+              </h3>
+            </div>
+            <p className="pl-9 text-[13px] leading-[1.6] text-[var(--dd-text-secondary)]">{item.description}</p>
+          </li>
+        ))}
+      </ol>
+    </article>
+  );
+}
+
 /** Process pipeline step — production board */
 export function ProcessStepCard({
   index,
