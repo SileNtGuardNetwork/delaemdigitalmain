@@ -1,0 +1,76 @@
+# Legacy CSS and Sections Inventory v1
+
+**Method:** grep-based audit (DD-STEP-1)  
+**Action:** Document only — **do not delete** in Step 1.
+
+## Orphan section components (not imported by `app/page.tsx`)
+
+| File | Notes |
+| --- | --- |
+| `components/sections/loss-map-section.tsx` | Legacy Screen 2 “Loss Map”; uses `.section`, `.button-primary` |
+| `components/sections/clientflow-system-section.tsx` | Duplicate of system concept; `id="system"` conflicts if ever mounted twice |
+| `components/sections/homepage-structure-sections.tsx` | Old monolithic sections export; legacy CSS classes |
+| `components/layout/header-controls.tsx` | Theme toggle + mobile panel; imports deprecated `navigation` from `lib/navigation.ts` |
+
+**Safe to remove:** After Step 2 confirms no imports (currently zero TS/TSX imports).
+
+## Active section files (homepage)
+
+All imported from `app/page.tsx`. Rebuild planned Step 2+; do not delete.
+
+`hero-section.tsx`, `context-section.tsx`, `system-section.tsx`, `assembly-section.tsx`, `audit-section.tsx`, `services-section.tsx`, `process-section.tsx`, `why-section.tsx`, `audience-section.tsx`, `leads-section.tsx`, `pricing-section.tsx`, `founder-section.tsx`, `final-cta-section.tsx`
+
+Shared: `dd-ui.tsx`, `section-ui.tsx` (partial overlap — `section-ui` lightly used)
+
+## Legacy CSS in `app/globals.css`
+
+Approximate grep hits for legacy class roots:
+
+| Pattern | ~Matches | Still used by |
+| --- | ---: | --- |
+| `.header` | 64+ rules | **Not** current `header.tsx` (Tailwind-only). Orphan rules for old header |
+| `.button` / `.button-primary` / `.button-secondary` | Many | `cookie-banner.tsx`, `contact-form.tsx`, orphan `header-controls`, orphan legacy sections |
+| `.hero` | Present | **Not** current hero (inline/module CSS) |
+| `.pricing-section` / `.price` | Present | Partially superseded by `pricing-section.tsx` Tailwind |
+| `.form` | Present | `contact-form.tsx` legacy classes |
+| `[data-theme="light"]` | Present | Theme toggle in unused `header-controls` |
+
+**Dual token blocks in `:root`:**
+
+- Modern: `--dd-*` (canonical)
+- Legacy: `--bg`, `--surface`, `--copper`, `--container`, etc.
+
+Body background still uses legacy `--bg` / `--bg-2` gradients + grid noise (`body::before`, `body::after`).
+
+## Styling system split (risk)
+
+| Area | System |
+| --- | --- |
+| Hero | Inline styles + `hero-section.module.css` |
+| Header | Tailwind + `--dd-*` |
+| Sections 2–13 | `dd-ui` + Tailwind |
+| Cookie / contact form | Legacy `.button` classes |
+| globals.css | Tailwind import + 4000+ lines legacy |
+
+## Recommended cleanup order (Step 2+)
+
+1. Add `id="founder"` to founder section (nav anchor)  
+2. Wire `ContactForm` to final CTA (separate task)  
+3. Remove orphan section files after grep confirms zero imports  
+4. Strip unused `.hero` / `.header` blocks from `globals.css` in small PRs  
+5. Unify `--container` vs `1360px` hero width  
+6. Sync footer nav with `lib/navigation.ts`  
+7. Delete `header-controls.tsx` when theme toggle decision is made
+
+## Grep commands used
+
+```bash
+# Orphan imports (expect: docs only for loss-map, clientflow-system, homepage-structure)
+rg "loss-map-section|homepage-structure|clientflow-system-section|header-controls" --glob "*.{tsx,ts}"
+
+# Legacy class usage in components
+rg "className=\"(hero|header|button)" components/
+
+# navigation consumers
+rg "from \"@/lib/navigation\"" 
+```
