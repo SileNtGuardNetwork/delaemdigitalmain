@@ -34,6 +34,10 @@
   animation-delay: 0.45s;
 }
 
+.delay5 {
+  animation-delay: 0.55s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fadeUp {
     animation: none;
@@ -45,4 +49,19 @@
 .primaryBtn:hover {
   background: #d09a6e;
   box-shadow: 0 16px 42px rgba(184, 121, 75, 0.24);
+}
+
+.commandPanel {
+  background: rgba(8, 12, 18, 0.72);
+  border: 1px solid rgba(24, 32, 48, 0.9);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.moduleRowActive {
+  border-color: rgba(95, 142, 216, 0.45);
+  background: rgba(95, 142, 216, 0.08);
+}
+
+.signalLine {
+  background: linear-gradient(90deg, rgba(95, 142, 216, 0.15) 0%, rgba(95, 142, 216, 0.55) 50%, rgba(95, 142, 216, 0.15) 100%);
 }

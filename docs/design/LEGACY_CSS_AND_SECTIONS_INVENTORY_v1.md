@@ -50,7 +50,7 @@ Body background still uses legacy `--bg` / `--bg-2` gradients + grid noise (`bod
 
 | Area | System |
 | --- | --- |
-| Hero | Inline styles + `hero-section.module.css` |
+| Hero | `hero-section.tsx` + module CSS — **V2-2 company-led** (no portrait; command panel) |
 | Header | Tailwind + `--dd-*` |
 | Sections 2–13 | `dd-ui` + Tailwind |
 | Cookie / contact form | Legacy `.button` classes |
