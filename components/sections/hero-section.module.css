@@ -1,7 +1,7 @@
 @keyframes heroFadeUp {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -11,7 +11,7 @@
 
 .fadeUp {
   opacity: 0;
-  animation: heroFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: heroFadeUp 0.5s ease forwards;
 }
 
 .delay0 {
@@ -19,23 +19,23 @@
 }
 
 .delay1 {
-  animation-delay: 0.08s;
+  animation-delay: 0.1s;
 }
 
 .delay2 {
-  animation-delay: 0.18s;
+  animation-delay: 0.25s;
 }
 
 .delay3 {
-  animation-delay: 0.28s;
+  animation-delay: 0.35s;
 }
 
 .delay4 {
-  animation-delay: 0.36s;
+  animation-delay: 0.45s;
 }
 
 .delay5 {
-  animation-delay: 0.48s;
+  animation-delay: 0.55s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -46,79 +46,22 @@
   }
 }
 
-.heroSection {
-  background-color: #05070a;
-  background-image:
-    radial-gradient(ellipse 90% 70% at 82% 28%, rgba(95, 142, 216, 0.11) 0%, transparent 58%),
-    radial-gradient(ellipse 55% 45% at 12% 78%, rgba(184, 121, 75, 0.05) 0%, transparent 52%),
-    linear-gradient(165deg, #060910 0%, #05070a 42%, #070b12 100%);
-}
-
-.heroGridNoise {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 70% at 70% 40%, black 20%, transparent 75%);
-  opacity: 0.35;
-}
-
-.primaryBtn {
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
 .primaryBtn:hover {
   background: #d09a6e;
-  box-shadow: 0 12px 40px rgba(184, 121, 75, 0.28);
-  transform: translateY(-1px);
+  box-shadow: 0 16px 42px rgba(184, 121, 75, 0.24);
 }
 
-.secondaryBtn {
-  transition: background 0.2s ease, border-color 0.2s ease;
+.commandPanel {
+  background: rgba(8, 12, 18, 0.72);
+  border: 1px solid rgba(24, 32, 48, 0.9);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
 }
 
-.secondaryBtn:hover {
-  background: rgba(184, 121, 75, 0.07);
-  border-color: rgba(184, 121, 75, 0.65);
+.moduleRowActive {
+  border-color: rgba(95, 142, 216, 0.45);
+  background: rgba(95, 142, 216, 0.08);
 }
 
-.systemStage {
-  position: relative;
-  border-radius: 20px;
-  border: 1px solid rgba(95, 142, 216, 0.14);
-  background: linear-gradient(155deg, rgba(12, 18, 28, 0.92) 0%, rgba(6, 9, 14, 0.88) 55%, rgba(8, 12, 20, 0.94) 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    inset 0 -24px 48px rgba(0, 0, 0, 0.35),
-    0 32px 80px rgba(0, 0, 0, 0.45);
-}
-
-.systemStage::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(95, 142, 216, 0.22) 0%, transparent 42%, rgba(184, 121, 75, 0.12) 100%);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.flowChip {
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: #7f8b9c;
-  white-space: nowrap;
-}
-
-.flowChipActive {
-  color: #a8c4e8;
-}
-
-.mobileRail {
-  border-radius: 14px;
-  border: 1px solid rgba(95, 142, 216, 0.12);
-  background: rgba(8, 12, 18, 0.65);
+.signalLine {
+  background: linear-gradient(90deg, rgba(95, 142, 216, 0.15) 0%, rgba(95, 142, 216, 0.55) 50%, rgba(95, 142, 216, 0.15) 100%);
 }

@@ -2,195 +2,57 @@ import styles from "@/components/sections/hero-section.module.css";
 
 const flowSteps = ["Трафик", "Сайт", "AI-квалификация", "Заявка", "Обработка"] as const;
 
-const routeNodes = [
-  { id: "traffic", label: "Трафик", x: 72, y: 300, active: false },
-  { id: "site", label: "Сайт", x: 168, y: 210, active: false },
-  { id: "ai", label: "AI", x: 280, y: 148, active: false },
-  { id: "lead", label: "Заявка", x: 392, y: 210, active: true },
-  { id: "process", label: "Обработка", x: 488, y: 300, active: false }
+const systemModules = [
+  { label: "Сайт", detail: "Оффер · доверие · заявка", active: false },
+  { label: "Заявка", detail: "Форма · квиз · захват", active: true },
+  { label: "AI", detail: "Квалификация обращения", active: false },
+  { label: "Telegram / CRM", detail: "Передача в продажи", active: false },
+  { label: "Аналитика", detail: "Цели · события · цикл", active: false }
 ] as const;
-
-function AcquisitionSystemVisual({ className = "" }: { className?: string }) {
-  return (
-    <div className={`${styles.systemStage} ${className}`} aria-hidden>
-      <div className="relative aspect-[4/3] w-full min-h-[280px] md:min-h-[360px]">
-        <svg
-          viewBox="0 0 560 380"
-          className="h-full w-full"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Маршрут привлечения: от трафика до обработки заявки"
-        >
-          <defs>
-            <linearGradient id="routeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(95,142,216,0.05)" />
-              <stop offset="50%" stopColor="rgba(95,142,216,0.18)" />
-              <stop offset="100%" stopColor="rgba(184,121,75,0.08)" />
-            </linearGradient>
-            <linearGradient id="pathStroke" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(95,142,216,0.25)" />
-              <stop offset="45%" stopColor="rgba(95,142,216,0.65)" />
-              <stop offset="100%" stopColor="rgba(95,142,216,0.3)" />
-            </linearGradient>
-            <radialGradient id="nodeActive" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(95,142,216,0.55)" />
-              <stop offset="100%" stopColor="rgba(95,142,216,0)" />
-            </radialGradient>
-            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          <ellipse cx="280" cy="210" rx="220" ry="118" stroke="rgba(95,142,216,0.08)" strokeWidth="1" />
-          <ellipse cx="280" cy="210" rx="168" ry="88" stroke="rgba(95,142,216,0.06)" strokeWidth="1" />
-          <rect x="24" y="24" width="512" height="332" rx="16" fill="url(#routeGlow)" opacity="0.45" />
-
-          <path
-            d="M 72 300 C 110 240, 130 220, 168 210 S 230 160, 280 148 S 350 160, 392 210 S 450 240, 488 300"
-            stroke="url(#pathStroke)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M 72 300 C 110 240, 130 220, 168 210 S 230 160, 280 148 S 350 160, 392 210"
-            stroke="rgba(95,142,216,0.85)"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeDasharray="4 6"
-            opacity="0.55"
-          />
-
-          {routeNodes.map((node) => (
-            <g key={node.id}>
-              {node.active ? (
-                <>
-                  <circle cx={node.x} cy={node.y} r="36" fill="url(#nodeActive)" />
-                  <circle
-                    cx={node.x}
-                    cy={node.y}
-                    r="14"
-                    fill="rgba(95,142,216,0.15)"
-                    stroke="rgba(95,142,216,0.55)"
-                    strokeWidth="1"
-                    filter="url(#softGlow)"
-                  />
-                  <circle cx={node.x} cy={node.y} r="5" fill="#5F8ED8" />
-                </>
-              ) : (
-                <>
-                  <circle
-                    cx={node.x}
-                    cy={node.y}
-                    r="10"
-                    fill="rgba(8,12,18,0.9)"
-                    stroke="rgba(148,163,184,0.28)"
-                    strokeWidth="1"
-                  />
-                  <circle cx={node.x} cy={node.y} r="3" fill="rgba(148,163,184,0.45)" />
-                </>
-              )}
-              <text
-                x={node.x}
-                y={node.y + 28}
-                textAnchor="middle"
-                fill={node.active ? "#A8C4E8" : "#7F8B9C"}
-                fontSize="11"
-                fontFamily="ui-monospace, monospace"
-                letterSpacing="0.08em"
-              >
-                {node.label.toUpperCase()}
-              </text>
-            </g>
-          ))}
-
-          <text x="32" y="48" fill="#7F8B9C" fontSize="10" fontFamily="ui-monospace, monospace" letterSpacing="0.14em">
-            ACQUISITION ROUTE · LIVE
-          </text>
-          <text x="32" y="64" fill="#5F8ED8" fontSize="10" fontFamily="ui-monospace, monospace" letterSpacing="0.1em">
-            MANAGED SYSTEM LAYER
-          </text>
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function FlowStrip({ className = "" }: { className?: string }) {
-  return (
-    <div
-      className={`flex flex-wrap items-center gap-x-1 gap-y-2 ${className}`}
-      aria-label="Маршрут: Трафик, Сайт, AI-квалификация, Заявка, Обработка"
-    >
-      {flowSteps.map((label, index) => {
-        const isActive = label === "Заявка";
-        return (
-          <span key={label} className="inline-flex items-center">
-            <span className="inline-flex items-center gap-2">
-              <span
-                className="block h-2 w-2 shrink-0 rounded-full"
-                style={
-                  isActive
-                    ? { background: "#5F8ED8", boxShadow: "0 0 0 3px rgba(95,142,216,0.22)" }
-                    : { background: "transparent", border: "1.5px solid rgba(148,163,184,0.28)" }
-                }
-                aria-hidden
-              />
-              <span className={`${styles.flowChip} ${isActive ? styles.flowChipActive : ""}`}>{label}</span>
-            </span>
-            {index < flowSteps.length - 1 ? (
-              <span className="mx-2 block h-px w-4 shrink-0 md:w-6" style={{ background: "rgba(95,142,216,0.35)" }} aria-hidden />
-            ) : null}
-          </span>
-        );
-      })}
-    </div>
-  );
-}
 
 export function HeroSection() {
   return (
     <section
       id="top"
-      className={`${styles.heroSection} relative min-h-[min(92vh,820px)] overflow-hidden font-[family-name:var(--font-onest),Onest,sans-serif] md:min-h-[min(100vh,920px)]`}
+      className="relative min-h-[min(100vh,900px)] overflow-hidden bg-[#05070A] font-[family-name:var(--font-onest),Onest,sans-serif] md:min-h-screen"
     >
-      <div className={`${styles.heroGridNoise} pointer-events-none absolute inset-0 z-0`} aria-hidden />
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 75% 40%, rgba(95,142,216,0.06) 0%, transparent 70%)"
+        }}
+        aria-hidden
+      />
 
-      <div className="relative z-[2] mx-auto flex max-w-[1360px] flex-col justify-center gap-10 px-6 py-14 md:min-h-[min(100vh,920px)] md:grid md:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] md:items-center md:gap-12 md:px-[60px] md:py-20">
-        <div className="flex flex-col gap-6 md:gap-7">
+      <div className="relative z-[2] mx-auto flex max-w-[1360px] flex-col justify-center gap-10 px-6 py-16 md:min-h-screen md:grid md:grid-cols-[1fr_1fr] md:items-center md:gap-14 md:px-[60px] md:py-24">
+        {/* Left — copy, CTAs, flow strip */}
+        <div className="flex flex-col gap-7 md:gap-8">
           <p
-            className={`${styles.fadeUp} ${styles.delay0} m-0 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#B8794B]`}
+            className={`${styles.fadeUp} ${styles.delay0} m-0 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#B8794B]`}
           >
             Делаем Диджитал · сайты, заявки, AI-интеграции
           </p>
 
-          <h1 className={`${styles.fadeUp} ${styles.delay1} m-0 max-w-[600px]`}>
-            <span className="block text-[clamp(28px,5.2vw,38px)] font-bold leading-[1.12] tracking-[-0.03em] text-[#C8D0DC]">
-              Собираем для бизнеса
-            </span>
-            <span className="mt-1 block text-[clamp(36px,6.8vw,58px)] font-extrabold leading-[1.02] tracking-[-0.04em] text-[#5F8ED8]">
-              управляемую систему
-            </span>
-            <span className="mt-1 block text-[clamp(32px,5.8vw,48px)] font-extrabold leading-[1.06] tracking-[-0.035em] text-[#F5F7FB]">
-              привлечения клиентов
-            </span>
+          <h1
+            className={`${styles.fadeUp} ${styles.delay1} m-0 max-w-[620px] text-[clamp(30px,6.5vw,42px)] font-extrabold leading-[1.06] tracking-[-0.035em] md:text-[clamp(38px,3.6vw,54px)]`}
+          >
+            <span className="block text-[#F5F7FB]">Собираем для бизнеса</span>
+            <span className="block text-[#5F8ED8]">управляемую систему</span>
+            <span className="block text-[#F5F7FB]">привлечения клиентов</span>
           </h1>
 
           <p
-            className={`${styles.fadeUp} ${styles.delay2} m-0 max-w-[520px] text-[15px] font-normal leading-[1.7] text-[#9AA6B5] md:text-[16px]`}
+            className={`${styles.fadeUp} ${styles.delay2} m-0 max-w-[540px] text-[15px] font-normal leading-[1.65] text-[#B8C1CE] md:text-base`}
           >
             Соединяем сайт, оффер, заявки, Telegram/CRM, AI-квалификацию и аналитику в понятный маршрут от первого
             касания до обращения.
           </p>
 
-          <div className={`${styles.fadeUp} ${styles.delay3} flex flex-wrap items-center gap-3`}>
+          <div className={`${styles.fadeUp} ${styles.delay3} flex flex-wrap items-center gap-3.5`}>
             <a
               href="#contacts"
-              className={`${styles.primaryBtn} inline-flex items-center justify-center rounded-[10px] bg-[#B8794B] px-7 py-3.5 text-[15px] font-bold text-[#F5F7FB] no-underline`}
+              className={`${styles.primaryBtn} inline-flex items-center justify-center rounded-[10px] bg-[#B8794B] px-7 py-3.5 text-[15px] font-bold text-[#F5F7FB] no-underline transition-colors`}
               data-analytics-event="cta_primary_click"
               data-analytics-label="hero_primary"
               data-analytics-value="#contacts"
@@ -199,7 +61,7 @@ export function HeroSection() {
             </a>
             <a
               href="#build"
-              className={`${styles.secondaryBtn} inline-flex items-center justify-center rounded-[10px] border border-[rgba(184,121,75,0.45)] bg-transparent px-6 py-3.5 text-[15px] font-semibold text-[#B8794B] no-underline`}
+              className="inline-flex items-center justify-center rounded-[10px] border-[1.5px] border-[#B8794B] bg-transparent px-[26px] py-3.5 text-[15px] font-semibold text-[#B8794B] no-underline transition-colors hover:bg-[rgba(184,121,75,0.08)]"
               data-analytics-event="cta_secondary_click"
               data-analytics-label="hero_secondary_how_it_works"
               data-analytics-value="#build"
@@ -208,15 +70,88 @@ export function HeroSection() {
             </a>
           </div>
 
-          <FlowStrip className={`${styles.fadeUp} ${styles.delay4} hidden md:flex`} />
+          <div
+            className={`${styles.fadeUp} ${styles.delay4} flex flex-wrap items-center gap-0`}
+            aria-label="Маршрут: Трафик, Сайт, AI-квалификация, Заявка, Обработка"
+          >
+            {flowSteps.map((label, index) => {
+              const isActive = index === 0;
+
+              return (
+                <span key={label} className="inline-flex items-center">
+                  <span className="inline-flex items-center gap-2">
+                    <span
+                      className="block h-2.5 w-2.5 shrink-0 rounded-full"
+                      style={
+                        isActive
+                          ? {
+                              background: "#5F8ED8",
+                              boxShadow: "0 0 0 4px rgba(95,142,216,0.2)"
+                            }
+                          : {
+                              background: "transparent",
+                              border: "1.5px solid rgba(148,163,184,0.3)"
+                            }
+                      }
+                      aria-hidden
+                    />
+                    <span className="text-xs text-[#7F8B9C]">{label}</span>
+                  </span>
+                  {index < flowSteps.length - 1 ? (
+                    <span
+                      className="mx-2 block h-px w-5 shrink-0 md:w-7"
+                      style={{ background: "rgba(95,142,216,0.4)" }}
+                      aria-hidden
+                    />
+                  ) : null}
+                </span>
+              );
+            })}
+          </div>
         </div>
 
-        <div className={`${styles.fadeUp} ${styles.delay5} w-full md:justify-self-end`}>
-          <AcquisitionSystemVisual className="hidden md:block" />
-          <div className={`${styles.mobileRail} p-4 md:hidden`}>
-            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[#5F8ED8]">Маршрут системы</p>
-            <FlowStrip />
+        {/* Right — command artifact */}
+        <div
+          className={`${styles.fadeUp} ${styles.delay5} ${styles.commandPanel} w-full max-w-[520px] rounded-[14px] p-5 md:max-w-none md:justify-self-end md:p-6`}
+          aria-hidden
+        >
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7F8B9C]">
+              Системный контур
+            </span>
+            <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-[#5F8ED8]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#5F8ED8]" aria-hidden />
+              В маршруте
+            </span>
           </div>
+
+          <div className={`${styles.signalLine} mb-4 h-px w-full`} aria-hidden />
+
+          <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
+            {systemModules.map((mod) => (
+              <li
+                key={mod.label}
+                className={`flex items-center justify-between gap-3 rounded-[12px] border border-[rgba(24,32,48,0.8)] px-3.5 py-2.5 ${
+                  mod.active ? styles.moduleRowActive : ""
+                }`}
+              >
+                <div className="flex min-w-0 flex-col gap-0.5">
+                  <span className="text-[13px] font-semibold text-[#F5F7FB]">{mod.label}</span>
+                  <span className="truncate text-[11px] text-[#7F8B9C]">{mod.detail}</span>
+                </div>
+                <span
+                  className="shrink-0 font-mono text-[10px] uppercase tracking-[0.1em]"
+                  style={{ color: mod.active ? "#5F8ED8" : "rgba(127,139,156,0.6)" }}
+                >
+                  {mod.active ? "активно" : "слой"}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="mb-0 mt-4 text-[11px] leading-[1.5] text-[#7F8B9C]">
+            Управляемый маршрут — не набор разрозненных инструментов.
+          </p>
         </div>
       </div>
     </section>

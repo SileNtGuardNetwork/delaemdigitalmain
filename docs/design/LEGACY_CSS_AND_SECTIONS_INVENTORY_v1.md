@@ -50,7 +50,7 @@ Body background still uses legacy `--bg` / `--bg-2` gradients + grid noise (`bod
 
 | Area | System |
 | --- | --- |
-| Hero | `hero-section.tsx` + module CSS — **V2-7R-1** (Hybrid A+C route SVG; no portrait) |
+| Hero | `hero-section.tsx` + module CSS — **V2-2 company-led** (no portrait; command panel) |
 | Header | Tailwind + `--dd-*` |
 | Sections 2–13 | `dd-ui` + Tailwind |
 | Cookie / contact form | Legacy `.button` classes |
@@ -85,7 +85,6 @@ Sections 10–13 remain on legacy `DdContainer` (1180px) until their rebuild pas
 | `id="founder"` on `founder-section.tsx` | **Done** — header/footer «Обо мне» anchor works |
 | Footer nav synced with `headerNavigation` | **Done** — `footer.tsx` imports `lib/navigation.ts` |
 | Container width decision documented | **Done** — flagship `1360px`; legacy `--container` 1180px unchanged |
-| `header.tsx` V2-7R-1 | **Done** — 1360px shell, monogram lockup, filled CTA |
 
 ## Recommended cleanup order (Step 2-B+)
 
