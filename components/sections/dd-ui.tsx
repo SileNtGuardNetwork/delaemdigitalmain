@@ -344,6 +344,94 @@ export function DiagnosticReportRow({
   );
 }
 
+/** Product ladder card — services section */
+export function ProductLadderCard({
+  level,
+  title,
+  price,
+  outcome,
+  includes,
+  fit,
+  cta,
+  href,
+  featured = false,
+  ctaVariant = "secondary",
+  analyticsLabel,
+  analyticsValue
+}: {
+  level: string;
+  title: string;
+  price: string;
+  outcome: string;
+  includes: readonly string[];
+  fit: string;
+  cta: string;
+  href: string;
+  featured?: boolean;
+  ctaVariant?: "primary" | "secondary";
+  analyticsLabel?: string;
+  analyticsValue?: string;
+}) {
+  const Cta = ctaVariant === "primary" ? PrimaryBtn : SecondaryBtn;
+
+  return (
+    <article
+      className={`flex min-w-0 flex-col gap-5 rounded-[var(--dd-radius-lg)] border p-5 md:gap-6 md:p-6 ${
+        featured ? "border-[rgba(95,142,216,.38)]" : "border-[var(--dd-border-cool)]"
+      }`}
+      style={{
+        background: featured
+          ? "linear-gradient(165deg, rgba(14,22,34,.78) 0%, rgba(8,12,18,.65) 100%)"
+          : "rgba(8,12,18,.55)"
+      }}
+    >
+      <div className="flex flex-col gap-3">
+        <span
+          className={`font-mono text-[10px] font-semibold uppercase tracking-[0.14em] ${
+            featured ? "text-[var(--dd-diagnostic-blue)]" : "text-[var(--dd-action-steel-blue)]"
+          }`}
+        >
+          {level}
+        </span>
+        <h3 className="text-[clamp(22px,2.2vw,28px)] font-bold tracking-[-0.025em] text-[var(--dd-text-primary)]">
+          {title}
+        </h3>
+        <p className="text-[22px] font-bold tracking-[-0.02em] text-[var(--dd-text-primary)]">{price}</p>
+        <p className="text-[14px] leading-[1.6] text-[var(--dd-text-secondary)]">{outcome}</p>
+      </div>
+
+      <ul className="flex flex-col gap-2 border-t border-[rgba(148,163,184,.08)] pt-4">
+        {includes.map((item) => (
+          <li key={item} className="flex items-start gap-2.5 text-[13px] text-[var(--dd-text-secondary)]">
+            <span
+              className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-[var(--dd-action-steel-blue)]"
+              aria-hidden
+            />
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <p
+        className="rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-steel)] p-3 text-[12px] leading-[1.55] text-[var(--dd-text-muted)]"
+        style={{ background: "rgba(8,12,18,.45)" }}
+      >
+        {fit}
+      </p>
+
+      <Cta
+        href={href}
+        className="mt-auto w-full justify-center px-5 py-3 text-[14px] sm:w-auto sm:self-start"
+        data-analytics-event="services_cta_click"
+        data-analytics-label={analyticsLabel ?? title}
+        data-analytics-value={analyticsValue ?? price}
+      >
+        {cta}
+      </Cta>
+    </article>
+  );
+}
+
 export function PrimaryBtn({
   children,
   href,
