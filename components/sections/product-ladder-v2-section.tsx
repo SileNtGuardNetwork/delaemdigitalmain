@@ -3,7 +3,9 @@ import {
   DdSub,
   FlagshipContainer,
   KickerLine,
+  PrimaryBtn,
   ProductLadderCard,
+  SecondaryBtn,
   SectionFrame
 } from "@/components/sections/dd-ui";
 import { pricing } from "@/lib/pricing";
@@ -13,22 +15,23 @@ const ladderOrder = ["delaem-site", "delaem-traffic", "delaem-system"] as const;
 const meta = {
   "delaem-site": {
     level: "Уровень 01",
-    outcome: "Premium-посадочная под рекламу: доверие, заявка, готовность к трафику.",
-    fit: "Когда нужен сильный сайт и первый управляемый маршрут к заявке.",
+    outcome: "Сильная упаковка, доверие, структура и первый вход в заявки.",
+    fit: "Когда нужен сильный сайт и понятный маршрут к первому обращению.",
     cta: "Обсудить сайт",
     href: "?service=delaem-site&source=products#contacts"
   },
   "delaem-traffic": {
     level: "Уровень 02",
-    outcome: "Запуск заявок: рекламный вход, квалификация и передача в рабочий канал.",
-    fit: "Когда нужен поток обращений, а не только красивая страница.",
+    outcome:
+      "Сайт и маршрут для входящего потока — реклама ведёт в подготовленную систему, а не просто на страницу.",
+    fit: "Когда нужен поток обращений и связка с обработкой.",
     cta: "Разобрать трафик",
     href: "?service=delaem-traffic&source=products#contacts"
   },
   "delaem-system": {
     level: "Уровень 03",
-    outcome: "Полный контур под ключ: сайт, AI, Telegram, аналитика и цикл улучшений.",
-    fit: "Когда выручка зависит от управляемой системы привлечения.",
+    outcome: "Полный контур: оффер, сайт, заявки, AI/Telegram/CRM, аналитика и улучшения.",
+    fit: "Когда выручка зависит от управляемой системы привлечения под ключ.",
     cta: "Собрать систему",
     href: "?service=delaem-system&source=products#contacts"
   }
@@ -54,10 +57,13 @@ export function ProductLadderV2Section() {
   return (
     <SectionFrame id="products" bg="#05070A" fadeTo="#080C12" className="min-h-0">
       <FlagshipContainer className="py-20 md:py-24">
-        <div className="mb-10 flex max-w-[720px] flex-col gap-5">
-          <KickerLine>Продукты</KickerLine>
-          <DdH2>Три уровня входа — от сайта до системы под ключ</DdH2>
-          <DdSub>Цены и состав — из актуального прайса. Без скрытых доплат на старте разговора.</DdSub>
+        <div className="mb-10 flex max-w-[760px] flex-col gap-5">
+          <KickerLine>Продукты Делаем Диджитал</KickerLine>
+          <DdH2>Можно начать с сайта, трафика или полной системы.</DdH2>
+          <DdSub>
+            Подбираем уровень под задачу: от сильного сайта до связанного контура привлечения клиентов с заявками,
+            Telegram/CRM, AI и аналитикой.
+          </DdSub>
         </div>
 
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
@@ -78,6 +84,27 @@ export function ProductLadderV2Section() {
               analyticsValue={product.price}
             />
           ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <PrimaryBtn
+            href="#contacts"
+            className="px-7 py-3.5 text-[15px]"
+            data-analytics-event="cta_primary_click"
+            data-analytics-label="products_primary_cta"
+            data-analytics-value="#contacts"
+          >
+            Разбор системы
+          </PrimaryBtn>
+          <SecondaryBtn
+            href="#process"
+            className="px-6 py-3 text-[14px]"
+            data-analytics-event="cta_secondary_click"
+            data-analytics-label="products_how_to_choose"
+            data-analytics-value="#process"
+          >
+            Как выбрать продукт?
+          </SecondaryBtn>
         </div>
       </FlagshipContainer>
     </SectionFrame>
