@@ -54,7 +54,7 @@ Header CTA: **Обсудить проект** → `#contacts` (hero-factory-brie
 
 **Rule for rebuild passes:** New and rebuilt sections use `FlagshipContainer` / `--dd-container-flagship`. Do **not** change global `--container: 1180px` in a mass pass — legacy `.container` rules and unrebuilt sections depend on it.
 
-**Known width jump:** Sections 2–3 at 1360px; section 4+ (`DdContainer`) at 1180px — visible at system → assembly boundary until Step 2-C rebuilds assembly.
+**Known width jump:** Sections 2–5 at 1360px (`FlagshipContainer`); section 6+ (`DdContainer`) at 1180px — visible at assembly → services boundary until Step 2-D.
 
 **Unification:** Planned when sections 4+ migrate to `FlagshipContainer`.
 

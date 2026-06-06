@@ -294,6 +294,56 @@ export function RouteStageCard({
   );
 }
 
+/** Assembly / contour module card — blue system accents */
+export function ModuleCard({
+  index,
+  title,
+  description
+}: {
+  index: number;
+  title: string;
+  description: string;
+}) {
+  return (
+    <article
+      className="flex min-w-0 flex-col gap-3 rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-cool)] p-4 transition-[border-color] duration-200 hover:border-[rgba(113,151,198,.32)] md:p-5"
+      style={{ background: "rgba(8,12,18,.55)" }}
+    >
+      <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-steel-blue)]">
+        module · {String(index).padStart(2, "0")}
+      </span>
+      <h3 className="text-[17px] font-bold leading-[1.25] tracking-[-0.02em] text-[var(--dd-text-primary)]">
+        {title}
+      </h3>
+      <p className="text-[13px] leading-[1.6] text-[var(--dd-text-secondary)]">{description}</p>
+    </article>
+  );
+}
+
+/** Audit diagnostic preview row — sample report field */
+export function DiagnosticReportRow({
+  label,
+  value,
+  emphasis = false
+}: {
+  label: string;
+  value: ReactNode;
+  emphasis?: boolean;
+}) {
+  return (
+    <div className="border-b border-[rgba(148,163,184,.08)] py-3.5 last:border-0">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--dd-text-muted)]">{label}</p>
+      <p
+        className={`mt-1 text-[14px] leading-[1.55] ${
+          emphasis ? "font-semibold text-[var(--dd-diagnostic-blue)]" : "text-[var(--dd-text-primary)]"
+        }`}
+      >
+        {value}
+      </p>
+    </div>
+  );
+}
+
 export function PrimaryBtn({
   children,
   href,

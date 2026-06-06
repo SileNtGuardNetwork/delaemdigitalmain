@@ -61,7 +61,10 @@ Body background still uses legacy `--bg` / `--bg-2` gradients + grid noise (`bod
 | `dd-ui.tsx` | `FlagshipContainer` → `--dd-container-flagship`, `FlowPath` stackOnMobile, `RouteStageCard` mobile padding |
 | `app/globals.css` | `--dd-container-flagship: 1360px` token (DD-STEP-2-B.1) |
 
-Sections 4–13 remain on legacy `DdContainer` (1180px) until their rebuild pass.
+| `assembly-section.tsx` | **Rebuilt (2-C)** — FlagshipContainer, 6-module 3×2 grid |
+| `audit-section.tsx` | **Rebuilt (2-C)** — diagnostic sample report, no fake dashboard |
+
+Sections 6–13 remain on legacy `DdContainer` (1180px) until their rebuild pass.
 
 ## Shell consistency (DD-STEP-2-A — done)
 
