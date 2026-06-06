@@ -1,111 +1,196 @@
 import {
-  DdContainer,
   DdH2,
-  DdLabel,
+  DdSub,
+  FlagshipContainer,
   KickerLine,
+  PhaseBand,
+  PrimaryBtn,
+  ProcessStepCard,
+  SecondaryBtn,
   SectionFrame,
   SectionIndex
 } from "@/components/sections/dd-ui";
 
-const steps = [
+const phases = [
   {
-    n: "01",
-    label: "Аудит",
-    title: "Смотрим, что у вас уже есть",
-    d: "Сверяем оффер, сайт, источники, регламенты, CRM и аналитику со списком из 30+ контрольных точек. На выходе — отчёт с приоритетами по выручке.",
-    meta: "1–2 недели"
-  },
-  {
-    n: "02",
     label: "Стратегия",
-    title: "Собираем целевой маршрут",
-    d: "Описываем будущую систему: каналы, оффер, путь заявки, стадии маршрута, регламенты. Согласуем бюджет, KPI и горизонт планирования.",
-    meta: "1 неделя"
+    steps: [
+      {
+        title: "Разбор системы",
+        description:
+          "Определяем, что уже есть, где теряются заявки и с какого узла нужно начинать."
+      },
+      {
+        title: "Стратегия и оффер",
+        description:
+          "Фиксируем, кому продаём, что обещаем и почему клиент должен выбрать именно вас."
+      }
+    ]
   },
   {
-    n: "03",
     label: "Сборка",
-    title: "Достраиваем недостающие узлы",
-    d: "Под посадочной, трафиком, CRM, квалификацией и дожимом работают четыре команды параллельно. Запуск — поэтапно, без длинного даунтайма.",
-    meta: "4–8 недель"
+    steps: [
+      {
+        title: "Структура и copy",
+        description: "Собираем маршрут сайта: от первого экрана до заявки."
+      },
+      {
+        title: "Дизайн и сборка",
+        description:
+          "Создаём интерфейс, который выглядит современно, быстро работает и ведёт пользователя к действию."
+      }
+    ]
   },
   {
-    n: "04",
-    label: "Запуск",
-    title: "Включаем и стабилизируем",
-    d: "Первые 4 недели — режим наблюдения. Чиним то, что вскрылось на реальных заявках. Передаём панель управления вашей команде.",
-    meta: "4 недели"
+    label: "Интеграции",
+    steps: [
+      {
+        title: "Интеграции",
+        description:
+          "Связываем сайт с каналами, формами, Telegram, AI-аудитом и обработкой заявок."
+      }
+    ]
   },
   {
-    n: "05",
-    label: "Оптимизация",
-    title: "Спринт-цикл улучшений",
-    d: "Раз в две недели — точечный апгрейд самой узкой точки маршрута. Без переделок, без «давайте всё перерисуем».",
-    meta: "непрерывно"
+    label: "Измерение",
+    steps: [
+      {
+        title: "Аналитика",
+        description:
+          "Настраиваем приборную панель системы: цели, события, UTM и ключевые действия."
+      },
+      {
+        title: "Traffic-ready Gate",
+        description:
+          "Проверяем, готова ли система принимать поток людей без утечки заявок."
+      }
+    ]
+  },
+  {
+    label: "Улучшение",
+    steps: [
+      {
+        title: "Трафик",
+        description: "Направляем рекламный поток не на страницу, а в подготовленную систему."
+      },
+      {
+        title: "Улучшения",
+        description: "После запуска система развивается по данным."
+      }
+    ]
   }
 ] as const;
 
+const phaseRail = ["Стратегия", "Сборка", "Интеграции", "Измерение", "Улучшение"] as const;
+
+const phasesIndexed = (() => {
+  let index = 0;
+  return phases.map((phase) => ({
+    label: phase.label,
+    steps: phase.steps.map((step) => {
+      index += 1;
+      return { ...step, index };
+    })
+  }));
+})();
+
 export function ProcessSection() {
   return (
-    <SectionFrame bg="#080C12" fadeTo="#05070A" style={{ minHeight: 880 }}>
-      <DdContainer className="py-24">
-        <div className="mb-16 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <div className="flex max-w-[760px] flex-col gap-[18px]">
-            <KickerLine>Процесс · § 07</KickerLine>
+    <SectionFrame bg="#080C12" fadeTo="#05070A" className="min-h-0 md:min-h-[900px]">
+      <FlagshipContainer className="py-20 md:py-24">
+        <div className="mb-10 flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+          <div className="flex max-w-[840px] flex-col gap-5">
+            <KickerLine>Процесс сборки · § 07</KickerLine>
             <DdH2>
-              Как мы работаем —
-              <br />
-              в пять шагов.
+              От разрозненного digital — к системе, которая готова принимать{" "}
+              <span className="text-[var(--dd-diagnostic-blue)]">трафик и заявки</span>.
             </DdH2>
+            <DdSub className="max-w-[640px]">
+              ClientFlow System собирается по этапам: сначала диагностика и стратегия, затем сайт, интеграции,
+              аналитика, трафик и цикл улучшений.
+            </DdSub>
           </div>
           <SectionIndex n={7} />
         </div>
 
-        <div className="relative flex flex-col">
-          <span
-            aria-hidden
-            className="pointer-events-none absolute bottom-8 left-[38px] top-8 w-px"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(184,121,75,.5) 0%, rgba(127,166,214,.18) 50%, rgba(148,163,184,0) 100%)"
-            }}
-          />
-          {steps.map((step, index) => (
-            <div key={step.n}>
-              <div
-                className="grid items-start gap-8 py-8"
-                style={{ gridTemplateColumns: "minmax(0, 88px) minmax(0, 220px) 1fr minmax(0, 140px)" }}
-              >
-                <div className="pt-1.5 font-mono text-sm font-semibold tracking-[0.08em] text-[var(--dd-text-muted)]">
-                  {step.n}
-                </div>
-                <div className="flex flex-col gap-1.5 pt-1">
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-copper)]">
-                    {step.label}
-                  </span>
-                  <DdLabel className="font-normal normal-case tracking-normal">{step.meta}</DdLabel>
-                </div>
-                <div className="flex max-w-[640px] flex-col gap-3">
-                  <h3 className="text-[26px] font-bold leading-[1.2] tracking-[-0.02em] text-[var(--dd-text-primary)]">
-                    {step.title}
-                  </h3>
-                  <p className="max-w-[580px] text-[15px] leading-[1.6] text-[var(--dd-text-secondary)]">{step.d}</p>
-                </div>
-                <div className="flex items-start justify-end gap-2 pt-2">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--dd-text-muted)]">
-                    этап {index + 1} / {steps.length}
-                  </span>
-                  <span
-                    className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--dd-action-steel-blue)] opacity-70"
-                    aria-hidden
+        <div
+          className="mb-10 hidden flex-wrap items-center gap-2 rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-cool)] p-4 xl:flex"
+          style={{ background: "rgba(14,22,34,.4)" }}
+          aria-label="Фазы производственного конвейера"
+        >
+          {phaseRail.map((phase, index) => (
+            <span key={phase} className="inline-flex items-center gap-2">
+              <span className="text-[12px] font-semibold tracking-[0.04em] text-[var(--dd-text-primary)]">
+                {phase}
+              </span>
+              {index < phaseRail.length - 1 ? (
+                <svg
+                  width="16"
+                  height="10"
+                  viewBox="0 0 16 10"
+                  fill="none"
+                  className="text-[rgba(95,142,216,.45)]"
+                  aria-hidden
+                >
+                  <path
+                    d="M0 5h10M7 1.5 12 5l-5 3.5"
+                    stroke="currentColor"
+                    strokeWidth="1.3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
-                </div>
-              </div>
-              {index < steps.length - 1 ? <hr className="border-0 border-t border-[var(--dd-border-steel)]" /> : null}
-            </div>
+                </svg>
+              ) : null}
+            </span>
           ))}
         </div>
-      </DdContainer>
+
+        <div className="flex flex-col gap-8 md:gap-10">
+          {phasesIndexed.map((phase) => {
+            const gridClass =
+              phase.steps.length === 1
+                ? "grid grid-cols-1"
+                : "grid grid-cols-1 gap-4 sm:grid-cols-2";
+
+            return (
+              <PhaseBand key={phase.label} label={phase.label}>
+                <div className={gridClass}>
+                  {phase.steps.map((step) => (
+                    <ProcessStepCard
+                      key={step.title}
+                      index={step.index}
+                      title={step.title}
+                      description={step.description}
+                    />
+                  ))}
+                </div>
+              </PhaseBand>
+            );
+          })}
+        </div>
+
+        <blockquote
+          className="mt-10 rounded-[var(--dd-radius-md)] border-l-2 px-5 py-5 md:mt-12 md:px-7"
+          style={{
+            borderColor: "var(--dd-diagnostic-blue)",
+            background: "rgba(14,22,34,.45)"
+          }}
+        >
+          <p className="max-w-[960px] text-[15px] font-medium leading-[1.65] text-[var(--dd-text-primary)] md:text-base">
+            ClientFlow System не заканчивается публикацией сайта. Запуск — это начало измеримого маршрута, где видно,
+            что работает, где теряется клиент и какой элемент нужно усилить дальше.
+          </p>
+        </blockquote>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <PrimaryBtn href="#contacts" className="px-6 py-3 text-[14px]">
+            Начать с Разбора системы
+          </PrimaryBtn>
+          <SecondaryBtn href="#audit" className="px-6 py-3 text-[14px]">
+            Пройти ClientFlow Аудит
+          </SecondaryBtn>
+        </div>
+      </FlagshipContainer>
     </SectionFrame>
   );
 }

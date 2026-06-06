@@ -344,6 +344,56 @@ export function DiagnosticReportRow({
   );
 }
 
+/** Process pipeline step — production board */
+export function ProcessStepCard({
+  index,
+  title,
+  description
+}: {
+  index: number;
+  title: string;
+  description: string;
+}) {
+  return (
+    <article
+      className="flex min-w-0 flex-col gap-2.5 rounded-[var(--dd-radius-sm)] border border-[var(--dd-border-cool)] p-4 md:gap-3 md:p-5"
+      style={{ background: "rgba(8,12,18,.55)" }}
+    >
+      <div className="flex items-center gap-2.5">
+        <span
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[8px] font-mono text-[11px] font-semibold text-[var(--dd-diagnostic-blue)]"
+          style={{
+            border: "1px solid rgba(95,142,216,.35)",
+            background: "rgba(14,22,34,.65)"
+          }}
+          aria-hidden
+        >
+          {String(index).padStart(2, "0")}
+        </span>
+        <h3 className="text-[15px] font-bold leading-[1.3] tracking-[-0.02em] text-[var(--dd-text-primary)] md:text-base">
+          {title}
+        </h3>
+      </div>
+      <p className="text-[13px] leading-[1.6] text-[var(--dd-text-secondary)]">{description}</p>
+    </article>
+  );
+}
+
+/** Process phase band label */
+export function PhaseBand({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-3">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--dd-action-steel-blue)]">
+          {label}
+        </span>
+        <div className="h-px flex-1" style={{ background: "rgba(95,142,216,.22)" }} aria-hidden />
+      </div>
+      {children}
+    </div>
+  );
+}
+
 /** Product ladder card — services section */
 export function ProductLadderCard({
   level,

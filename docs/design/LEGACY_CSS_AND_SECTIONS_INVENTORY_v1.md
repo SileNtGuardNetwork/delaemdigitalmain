@@ -66,7 +66,9 @@ Body background still uses legacy `--bg` / `--bg-2` gradients + grid noise (`bod
 
 | `services-section.tsx` | **Rebuilt (2-D)** — FlagshipContainer, `ProductLadderCard`, `lib/pricing.ts` |
 
-Sections 7–13 remain on legacy `DdContainer` (1180px) until their rebuild pass.
+| `process-section.tsx` | **Rebuilt (2-E)** — FlagshipContainer, 9-step `PhaseBand` pipeline |
+
+Sections 8–13 remain on legacy `DdContainer` (1180px) until their rebuild pass.
 
 ## Shell consistency (DD-STEP-2-A — done)
 
